@@ -126,7 +126,6 @@ class ReclamoSugerenciaController extends Controller
              //Instancia para el adjunto
              $name = 'solicitud ' . $model->REC_NUMERO . ' '. $model->REC_FECHA . ' ' . date('H i');
              $model->file = UploadedFile::getInstance($model,'file');
-
              $model->save();
              //si el archivo no es null, entonces lo guarda y guarda el adjunto en la bd.
               if ($model->file != null){
@@ -136,9 +135,11 @@ class ReclamoSugerenciaController extends Controller
              $adjunto->REC_NUMERO = $model->REC_NUMERO;
              $adjunto->ADJ_TIPO = 'Reclamo-Sugerencia';
              $adjunto->ADJ_URL = 'uploads/reclamo-sugerencia/Adjunto '. $name . '.' .$model->file->extension;
-             $adjunto->save();}
+             $adjunto->save();
+            }
 
               //guardar Creacion en el Historial
+              /*
               $historial = new HistorialEstados();
               $historial->REC_NUMERO = $model->REC_NUMERO;
               $historial->ERS_ID = $model->ERS_ID;
@@ -151,7 +152,7 @@ class ReclamoSugerenciaController extends Controller
                       $historial->HES_COMENTARIO = "El usuario ". $historial->USU_RUT . " ha ingresado la Sugerencia Nº ". $historial->REC_NUMERO .  " el día ". $historial->HES_FECHA_HORA;
                 }
                 $historial->save();
-
+                */
               return $this->redirect(['view', 'id' => $model->REC_NUMERO]);
            } else {
                return $this->render('create', [
@@ -179,24 +180,30 @@ class ReclamoSugerenciaController extends Controller
         }
 
 
-
-        $historial = new HistorialEstados();
         if ($model->load(Yii::$app->request->post())) {
           $model->REC_FECHA = date('Y-m-d');
           $model->REC_HORA = date('H:i:s');
+          //Instancia para el adjunto
+          $name = 'solicitud ' . $model->REC_NUMERO . ' '. $model->REC_FECHA . ' ' . date('H i');
+          $model->file = UploadedFile::getInstance($model,'file');
           $model->save();
-          //Guardar en el historial el update
-          $historial->REC_NUMERO = $model->REC_NUMERO;
-          $historial->ERS_ID = $model->ERS_ID;
-          $historial->USU_RUT = $model->USU_RUT;
-          $historial->HES_FECHA_HORA = date('Y-m-d H:i:s');
-          $historial->HES_COMENTARIO = "El usuario ". $historial->USU_RUT . " ha Actualizado el Formulario Nº ". $historial->REC_NUMERO ." el día ". $historial->HES_FECHA_HORA;
-          $historial->save();
-            return $this->redirect(['view', 'id' => $model->REC_NUMERO]);
+
+          if ($model->file != null){
+         $model->file->saveAs('uploads/reclamo-sugerencia/Adjunto '. $name . '.' .$model->file->extension);
+         //guardar la ruta en la bd
+         $adjunto = new Adjuntos();
+         $adjunto->REC_NUMERO = $model->REC_NUMERO;
+         $adjunto->ADJ_TIPO = 'Reclamo-Sugerencia';
+         $adjunto->ADJ_URL = 'uploads/reclamo-sugerencia/Adjunto '. $name . '.' .$model->file->extension;
+         $adjunto->save();
+        }
+          return $this->redirect(['view', 'id' => $model->REC_NUMERO]);
 
           }else {
 
-          return $this->redirect(['view', 'id' => $model->REC_NUMERO]);
+            return $this->render('create', [
+                'model' => $model,
+            ]);
       }
     }
 
@@ -208,17 +215,59 @@ class ReclamoSugerenciaController extends Controller
      */
     public function actionDelete($id)
     {
-        $model = $this->findModel($id);
-        if($model->ERS_ID == 1){
-          $model->ERS_ID = 5;
-          $motivo = $model->REC_MOTIVO;
-          $model->REC_MOTIVO = $motivo;
-          $model->save();
-          return $this->redirect(['index']);
-        }
+
+        $this->findModel($id)->delete();
+
 
         return $this->redirect(['site/index']);//parche
     }
+
+
+    //funcion que envía el reclamo-sugerencia
+    public function actionSend($id){
+
+        $model = $this->findModel($id);
+
+        $query = new Query;
+        $query->select ('ADJ_ID')
+            ->from('ADJUNTOS')
+            ->where('REC_NUMERO=:reclamo', [':reclamo' => $model->REC_NUMERO])
+            ->limit('1');
+        $query = $query->one();
+        if ($query){
+          $adjunto = new Adjuntos();
+          $adjunto = $adjunto->findOne($query);
+        }else{
+          $adjunto = null;
+        }
+
+
+
+         $model->REC_FECHA = date('Y-m-d');
+         $model->REC_HORA = date('H:i:s');
+         $model->ERS_ID = 2;
+         $motivo = $model->REC_MOTIVO;
+         $model->REC_MOTIVO = $motivo;
+         $model->save();
+
+         //instancia para crear el Historial;
+         $historial = new HistorialEstados();
+         $historial->REC_NUMERO = $model->REC_NUMERO;
+         $historial->ERS_ID = $model->ERS_ID;
+         $historial->USU_RUT = $model->USU_RUT;
+         $historial->HES_FECHA_HORA = date('Y-m-d H:i:s');
+         if($model->TRS_ID == 1){
+             $historial->HES_COMENTARIO = "El usuario ". $historial->USU_RUT . " ha ingresado el Reclamo Nº ". $historial->REC_NUMERO ." el día ". $historial->HES_FECHA_HORA;
+
+         }else{
+                 $historial->HES_COMENTARIO = "El usuario ". $historial->USU_RUT . " ha ingresado la Sugerencia Nº ". $historial->REC_NUMERO .  " el día ". $historial->HES_FECHA_HORA;
+           }
+           $historial->save();
+
+           return $this->redirect(['view', 'id' => $model->REC_NUMERO]);
+
+    }
+
 /* funcion que evalua el reclamo/sugerencia, autorizandola o rechazandola*/
     public function actionEvaluate($id)
     {
@@ -241,7 +290,7 @@ class ReclamoSugerenciaController extends Controller
           $historial = new HistorialEstados();
         if($solucion->SRS_VISTO_BUENO == 'Autorizado'){
 
-              $model->ERS_ID = 2;
+              $model->ERS_ID = 3;
               $motivo = $model->REC_MOTIVO;
               $model->REC_MOTIVO = $motivo;
               $model->save();
@@ -255,7 +304,7 @@ class ReclamoSugerenciaController extends Controller
               $historial->save();
 
           }else{
-              $model->ERS_ID = 3;
+              $model->ERS_ID = 4;
               $motivo = $model->REC_MOTIVO;
               $model->REC_MOTIVO = $motivo;
               $model->save();
@@ -274,7 +323,7 @@ class ReclamoSugerenciaController extends Controller
 
 
         } else {
-            if($model->ERS_ID != 1){
+            if($model->ERS_ID != 2){
               //soucion parche
               return $this->redirect(['/solucion-reclamo-sugerencia/index']);
             }else {

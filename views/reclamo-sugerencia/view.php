@@ -2,10 +2,10 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-use backend\models\TipoReclamoSugerencia;
-use backend\models\TipoSolicitanteReclamoSugerencia;
-use backend\models\EstadoReclamoSugerencia;
-use backend\models\Adjuntos;
+use app\models\TipoReclamoSugerencia;
+use app\models\TipoSolicitanteReclamoSugerencia;
+use app\models\EstadoReclamoSugerencia;
+use app\models\Adjuntos;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\ReclamoSugerencia */
@@ -21,18 +21,27 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?php
         if ($model->ERS_ID == 1){
+
         echo Html::a('Actualizar', ['update', 'id' => $model->REC_NUMERO], ['class' => 'btn btn-primary']);
 
-        echo Html::a('Evaluar', ['evaluate', 'id' => $model->REC_NUMERO], ['class' => 'btn btn-success']);
+        echo Html::a('Enviar', ['send', 'id' => $model->REC_NUMERO], ['class' => 'btn btn-success',
+        'data' => [
+            'confirm' => 'Una vez enviada la Solicitud no se podrán efectuar cambios, ¿Está seguro de enviar la Solicitud?',
+            'method' => 'post',
+          ],
+          ]);
 
         echo Html::a('Eliminar', ['delete', 'id' => $model->REC_NUMERO], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => '¿Esta seguro de eliminar esta Solicitud?',
-                //'method' => 'post',
+                'confirm' => '¿Está seguro de eliminar esta Solicitud?',
+                'method' => 'post',
             ],
         ]);
       }else {
+
+        echo Html::a('Evaluar', ['evaluate', 'id' => $model->REC_NUMERO], ['class' => 'btn btn-success']);
+
         echo Html::a('Volver', '?r=reclamo-sugerencia', ['class' => 'btn btn-default']);
       }
         ?>
