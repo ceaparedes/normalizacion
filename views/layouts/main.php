@@ -4,68 +4,387 @@
 /* @var $content string */
 
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
-use app\assets\AppAsset;
+use app\assets\MyAsset;
 
-AppAsset::register($this);
+
+MyAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- font awesome desde la web-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!--end font awesome-->
+    <!-- serve fonts (open sans) from google -->
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300" />
+    <!-- end font-->
+    <meta http-equiv="X-UA-Compatible" content="IE=10; IE=9; IE=8; IE=7; IE=EDGE;chrome=1">
+    <meta charset="ISO-8859-1">
+    <meta name="description" content="Sistema Realizado para el Departamento de Normalización y Certificación de la Universidad del Bío-Bío">
+    <meta name="author" content="Víctor Cea Paredes">
+    <link rel="shortcut icon" href="dist/favicon.ico">
     <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+
+    <title>Normalización y Certificación - Universidad del Bío-Bío</title>
     <?php $this->head() ?>
 </head>
 <body>
 <?php $this->beginBody() ?>
 
-<div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => 'My Company',
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
-            Yii::$app->user->isGuest ?
-                ['label' => 'Login', 'url' => ['/site/login']] :
-                [
-                    'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
-                    'url' => ['/site/logout'],
-                    'linkOptions' => ['data-method' => 'post']
-                ],
-        ],
-    ]);
-    NavBar::end();
-    ?>
+<div class="no-skin">
+  <!-- #section:basics/navbar.layout -->
+  <div id="navbar" class="navbar navbar-default ace-save-state navbar-fixed-top">
+    <script type="text/javascript">
+      try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+    </script>
 
-    <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= $content ?>
+    <div class="navbar-container" id="navbar-container ace-save-state navbar-fixed-top">
+      <!-- #section:basics/sidebar.mobile.toggle -->
+      <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" >
+        <span class="sr-only">Toggle sidebar</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <!-- /section:basics/sidebar.mobile.toggle -->
+      <div class="navbar-header pull-left">
+        <!-- #section:basics/navbar.layout.brand -->
+        <a href="#" class="navbar-brand">
+          <small style="font-size: 14px;">
+            <img style="width:20px;height:20px;" src="dist/escudo.png">
+            Universidad Del Bio-Bio
+          </small>
+        </a>
+
+        <!-- /section:basics/navbar.layout.brand -->
+
+        <!-- #section:basics/navbar.toggle -->
+
+        <!-- /section:basics/navbar.toggle -->
+      </div>
+
+      <!-- #section:basics/navbar.dropdown -->
+      <div class="navbar-buttons navbar-header pull-right" role="navigation">
+        <ul class="nav ace-nav">
+
+
+
+          <li class="purple">
+            <a href="http://werken.ubiobio.cl/" target="_blank">
+              <i class="ace-icon fa fa-book icon-animated-bell"></i>
+              <span class="badge badge-important">WERKEN</span>
+            </a>
+
+          </li>
+
+          <li class="green">
+            <a href="http://mail.alumnos.ubiobio.cl/" target="_blank">
+              <i class="ace-icon fa fa-envelope icon-animated-vertical"></i>
+              <span class="badge badge-success">CORREO</span>
+            </a>
+
+          </li>
+
+
+
+          <!-- #section:basics/navbar.user_menu -->
+          <li class="light-blue">
+            <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+              <img class="nav-user-photo" src="dist/user.jpg" alt="Foto Perfil" />
+              <span class="user-info">
+                <small>Bienvenid@,</small>
+                Marcelo
+              </span>
+
+              <i class="ace-icon fa fa-caret-down"></i>
+            </a>
+
+            <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+              <li>
+                <a href="#">
+                  <i class="ace-icon fa fa-cog"></i>
+                  Configuración
+                </a>
+              </li>
+
+              <li>
+                <a href="#">
+                  <i class="ace-icon fa fa-user"></i>
+                  Perfil
+                </a>
+              </li>
+
+              <li class="divider"></li>
+
+              <li>
+                <a href="#">
+                  <i class="ace-icon fa fa-power-off"></i>
+                  Salir
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <!-- /section:basics/navbar.user_menu -->
+        </ul>
+      </div>
+
+      <!-- /section:basics/navbar.dropdown -->
+    </div><!-- /.navbar-container -->
+  </div>
+
+  <!-- /section:basics/navbar.layout -->
+  <div class="main-container" id="main-container">
+    <script type="text/javascript">
+      try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+    </script>
+
+    <!-- #section:basics/sidebar -->
+    <div id="sidebar" class="sidebar responsive ace-save-state sidebar-fixed" data-sidebar = "true" data-sidebar-scroll = "true" data-sidebar-hover = "true">
+      <script type="text/javascript">
+        try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+      </script>
+
+<!-- botones feos-->
+      <!--<div class="sidebar-shortcuts" id="sidebar-shortcuts">
+        <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+          <button class="btn btn-success">
+            <i class="ace-icon fa fa-signal"></i>
+          </button>
+
+          <button class="btn btn-info">
+            <i class="ace-icon fa fa-pencil"></i>
+          </button>
+
+          <!-- #section:basics/sidebar.layout.shortcuts -->
+          <!--<button class="btn btn-warning">
+            <i class="ace-icon fa fa-users"></i>
+          </button>
+
+          <button class="btn btn-danger">
+            <i class="ace-icon fa fa-cogs"></i>
+          </button>
+          </div>
+          <!-- /section:basics/sidebar.layout.shortcuts -->
+
+
+        <!--<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+          <span class="btn btn-success"></span>
+
+          <span class="btn btn-info"></span>
+
+          <span class="btn btn-warning"></span>
+
+          <span class="btn btn-danger"></span>
+        </div>
+      </div><!-- /.sidebar-shortcuts -->
+
+      <ul class="nav nav-list">
+        <li class="active">
+          <a href="index.php">
+            <i class="menu-icon fa fa-university"></i>
+            <span class="menu-text"> Inicio </span>
+          </a>
+
+          <b class="arrow"></b>
+        </li>
+
+        <li class="">
+          <a href="#" class="dropdown-toggle">
+            <i class="menu-icon fa fa-pencil-square-o"></i>
+            <span class="menu-text"> Reclamos y Sugerencias</span>
+
+            <b class="arrow fa fa-angle-down"></b>
+          </a>
+
+          <b class="arrow"></b>
+
+          <ul class="submenu">
+            <li class="">
+              <a href="index.php?r=reclamo-sugerencia%2Fcreate">
+                <i class="menu-icon fa fa-caret-right"></i>
+                Completar Formulario
+              </a>
+
+              <b class="arrow"></b>
+            </li>
+
+            <li class="">
+              <a href="index.php?r=reclamo-sugerencia">
+                <i class="menu-icon fa fa-caret-right"></i>
+                Ver Reclamos y Sugerencias
+              </a>
+
+              <b class="arrow"></b>
+            </li>
+
+            <li class="">
+              <a href="index.php?r=solucion-reclamo-sugerencia">
+                <i class="menu-icon fa fa-caret-right"></i>
+                Ver Solicutudes Evaluadas
+              </a>
+
+              <b class="arrow"></b>
+            </li>
+
+            <li class="">
+              <a href="index.php?r=derivacion-reclamo-sugerencia">
+                <i class="menu-icon fa fa-caret-right"></i>
+                Ver Solicutudes Derivadas
+              </a>
+
+              <b class="arrow"></b>
+            </li>
+
+            <li class="">
+              <a href="index.php?r=historial-estados">
+                <i class="menu-icon fa fa-caret-right"></i>
+                Ver Historial de Solicitudes
+              </a>
+
+              <b class="arrow"></b>
+            </li>
+
+          </ul>
+        </li>
+
+        <li class="">
+          <a href="#" class="dropdown-toggle">
+            <i class="menu-icon fa fa-files-o"></i>
+            <span class="menu-text"> Documentos </span>
+
+            <b class="arrow fa fa-angle-down"></b>
+          </a>
+
+          <b class="arrow"></b>
+
+          <ul class="submenu">
+            <li class="">
+              <a href="tables.html">
+                <i class="menu-icon fa fa-caret-right"></i>
+                Submenú 1
+              </a>
+
+              <b class="arrow"></b>
+            </li>
+
+            <li class="">
+              <a href="jqgrid.html">
+                <i class="menu-icon fa fa-caret-right"></i>
+                submenu 2
+              </a>
+
+              <b class="arrow"></b>
+            </li>
+
+            <li class="">
+              <a href="jqgrid.html">
+                <i class="menu-icon fa fa-caret-right"></i>
+                submenu 3
+              </a>
+
+              <b class="arrow"></b>
+            </li>
+
+
+          </ul>
+        </li>
+
+        </ul><!-- /.nav-list -->
+
+      <!-- #section:basics/sidebar.layout.minimize -->
+      <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+        <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+      </div>
+
+      <!-- /section:basics/sidebar.layout.minimize -->
+      <script type="text/javascript">
+        try{ace.settings.check('sidebar' , 'collapsed')
+          }catch(e){}
+      </script>
     </div>
+
+    <!-- /section:basics/sidebar -->
+    <div class="main-content">
+      <!-- inicio breadcrumbs (el submenu de arriba)-->
+      <div class="breadcrumbs" id="breadcrumbs">
+					<script type="text/javascript">
+						try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+					</script>
+          <?= Breadcrumbs::widget([
+              'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+          ]) ?>
+				</div>
+        <!-- endbreadcrumbs (el submenu de arriba)-->
+
+      <!-- #section:basics/content.breadcrumbs -->
+      <div class="breadcrumbs" id="breadcrumbs">
+
+        <script type="text/javascript">
+          try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+        </script>
+
+        <ul class="breadcrumb">
+        <!-- contenido de la página-->
+        <?= $content ?>
+        <!--/contenido -->
+      </ul>
+
+      <div class="panel-footer">
+
+            <div class="footer-inner">
+                <!-- #section:basics/footer -->
+                <center>
+                <div class="footer-content">
+                    <span class="bigger-120">
+                        <span class="blue bolder">Universidad  del Bío-Bío</span>
+                        Todos los derechos reservados © 2014-2015
+                    </span>
+
+                    &nbsp; &nbsp;
+                    <span class="action-buttons">
+                        <a href="https://twitter.com/ubbchile" target="_blank">
+                            <i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
+                        </a>
+
+                        <a href="https://www.facebook.com/ubiobiochile" target="_blank">
+                            <i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>
+                        </a>
+
+                        <a href="https://www.flickr.com/photos/ubiobio" target="_blank">
+                            <i class="ace-icon fa fa-flickr bigger-150"></i>
+                        </a>
+
+                        <a href="http://cl.linkedin.com/in/ubiobio" target="_blank">
+                            <i class="ace-icon fa fa-linkedin-square blue bigger-150"></i>
+                        </a>
+
+                        <a href="https://www.youtube.com/user/udelbiobio" target="_blank">
+                            <i class="ace-icon fa fa-youtube red bigger-150"></i>
+                        </a>
+                    </span>
+                </div>
+              </center>
+                <!-- /section:basics/footer -->
+            </div>
+
+
+      </div>
+
+
+
+    </div>
+  </div>
+
+
+</div>
 </div>
 
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
 
 <?php $this->endBody() ?>
 </body>
