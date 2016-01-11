@@ -23,6 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
         if ($model->ERS_ID == 1){
 
         echo Html::a('Actualizar', ['update', 'id' => $model->REC_NUMERO], ['class' => 'btn btn-primary']);
+        echo ' ';
 
         echo Html::a('Enviar', ['send', 'id' => $model->REC_NUMERO], ['class' => 'btn btn-success',
         'data' => [
@@ -30,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'method' => 'post',
           ],
           ]);
+          echo ' ';
 
         echo Html::a('Eliminar', ['delete', 'id' => $model->REC_NUMERO], [
             'class' => 'btn btn-danger',
