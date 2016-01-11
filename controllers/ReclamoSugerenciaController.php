@@ -59,11 +59,13 @@ class ReclamoSugerenciaController extends Controller
     {
       $model = $this->findModel($id);
       $query = new Query;
+      //buscar el adjunto según el numero del reclamo
       $query->select ('ADJ_ID')
           ->from('ADJUNTOS')
           ->where('REC_NUMERO=:reclamo', [':reclamo' => $model->REC_NUMERO])
           ->limit('1');
       $query = $query->one();
+      //si existe el reclamo crea la instancia, sino deja la variable null
       if ($query){
         $adjunto = new Adjuntos();
         $adjunto = $adjunto->findOne($query);
@@ -71,9 +73,25 @@ class ReclamoSugerenciaController extends Controller
         $adjunto = null;
       }
 
+      //buscar la solucion al reclamo o sugerencia
+      $solQuery = new Query;
+      $solQuery->select ('SRS_ID')
+          ->from('SOLUCION_RECLAMO_SUGERENCIA')
+          ->where('REC_NUMERO=:reclamo', [':reclamo' => $model->REC_NUMERO])
+          ->limit('1');
+      $solQuery = $solQuery->one();
+
+      if($solQuery){
+      $solucion = new SolucionReclamoSugerencia();
+      $solucion = $solucion->findOne($solQuery);
+    }else {
+      $solucion = null;
+    }
+
         return $this->render('view', [
             'model' => $model,
             'adjunto' =>$adjunto,
+            'solucion'=>$solucion,
         ]);
     }
 
@@ -215,11 +233,16 @@ class ReclamoSugerenciaController extends Controller
      */
     public function actionDelete($id)
     {
+      $model = $this->findModel($id);
+      if($model->ERS_ID == 1){
+        $model->ERS_ID = 6;
+        $motivo = $model->REC_MOTIVO;
+        $model->REC_MOTIVO = $motivo;
+        $model->save();
+        return $this->redirect(['index']);
+      }
 
-        $this->findModel($id)->delete();
-
-
-        return $this->redirect(['site/index']);//parche
+      return $this->redirect(['site/index']);//parche
     }
 
 

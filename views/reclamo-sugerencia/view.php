@@ -42,8 +42,14 @@ $this->params['breadcrumbs'][] = $this->title;
         ]);
       }else {
 
+        if( $model->ERS_ID == 2){
         echo Html::a('Evaluar', ['evaluate', 'id' => $model->REC_NUMERO], ['class' => 'btn btn-success']);
+        echo " ";
+      }else {
+          echo Html::a('Ver Evaluacion', ['solucion-reclamo-sugerencia/view', 'id' => $solucion->SRS_ID], ['class' => 'btn btn-default']);
+          echo " ";
 
+      }
         echo Html::a('Volver', '?r=reclamo-sugerencia', ['class' => 'btn btn-default']);
       }
         ?>
