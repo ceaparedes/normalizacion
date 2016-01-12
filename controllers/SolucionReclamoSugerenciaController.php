@@ -87,6 +87,7 @@ class SolucionReclamoSugerenciaController extends Controller
 
         return $this->redirect(['index']);
     }
+
     //funcion para evaluar la solucion del reclamo/Sugerencia
     public function actionEvaluate($id)
     {
@@ -116,7 +117,7 @@ class SolucionReclamoSugerenciaController extends Controller
           $model->save();
           if($reclamo->REC_VISTO_BUENO == 'Autorizado'){
               $model->ESR_ID = 2;
-              $reclamo->ERS_ID = 4;
+              $reclamo->ERS_ID = 5;
               $reclamo->save();
               $model->save();
               //historial
@@ -129,7 +130,7 @@ class SolucionReclamoSugerenciaController extends Controller
               //end historial
           }else{
               $model->ESR_ID = 3;
-              $reclamo->ERS_ID = 1;
+              $reclamo->ERS_ID = 2;
               $reclamo->save();
               $model->save();
               //historial
@@ -182,7 +183,14 @@ class SolucionReclamoSugerenciaController extends Controller
           $derivacion = new DerivacionReclamoSugerencia();
           $reclamo = new ReclamoSugerencia();
           $reclamo = $reclamo->findOne($model->REC_NUMERO);
-          if ($derivacion->load(Yii::$app->request->post()) )
+          //validacion ajax
+          if(Yii::$app->request->isAjax && $model->load($_POST))
+          {
+            Yii::$app->response->format = 'json';
+            return \yii\widgets\ActiveForm::validate($model);
+          }
+
+          if ($derivacion->load(Yii::$app->request->post()) && $model->load(Yii::$app->request->post()) && $model->save())
           {
             $derivacion->DRS_FECHA_DERIVACION = date('Y-m-d');
             $derivacion->SRS_ID = $model->SRS_ID;

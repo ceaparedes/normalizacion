@@ -18,10 +18,13 @@ use app\models\SolucionReclamoSugerencia;
 
   <?= $form->field($solucion, 'SRS_COMENTARIO')->textArea(array('rows'=>4)) ?>
 
-  <?= $form->field($solucion, 'SRS_ANTECEDENTES')->textArea(array('rows'=>4)) ?>
+
 
   <div class="form-group">
-  <?= Html::submitInput('Evaluar', ['class' =>  'btn btn-primary']) ?>
+  <?= Html::submitInput('Evaluar', ['class' =>  'btn btn-success', 'data' => [
+      'confirm' => 'Una vez enviada la respuesta no se podrán efectuar cambios, ¿Está seguro de enviar la Evaluación?',
+      'method' => 'post',
+    ],]) ?>
 </div>
 
 

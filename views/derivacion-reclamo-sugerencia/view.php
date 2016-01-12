@@ -8,7 +8,7 @@ use backend\models\EstadoDerivacionReclamoSugerencia;
 /* @var $model frontend\models\DerivacionReclamoSugerencia */
 
 $this->title ="Derivacion de Solicitud Nº". $model->DRS_ID;
-$this->params['breadcrumbs'][] = ['label' => 'Derivacion Reclamo Sugerencias', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Derivaciones Realizadas a los Reclamos y Sugerencias', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="derivacion-reclamo-sugerencia-view">
@@ -16,10 +16,15 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-      <?= Html::a('Volver al inicio', ['/site/index'], ['class' => 'btn btn-primary']) ?>
-      <?= Html::a('Ver Reclamos y Sugerencias', ['/reclamo-sugerencia/index'], ['class' => 'btn btn-primary']) ?>
+      <?= Html::a('Inicio', ['/site/index'], ['class' => 'btn btn-default']) ?>
+      <?php
+      if($model->EDR_ID == 1 ){
+      echo Html::a('Ver Reclamos y Sugerencias', ['/reclamo-sugerencia/index'], ['class' => 'btn btn-primary']);
+      echo " "; 
+    }?>
+      <?= Html::a('Ver Solicitudes Derivadas', ['index'], ['class' => 'btn btn-primary']) ?>
       <!--
-        <?= Html::a('Eliminar', ['delete', 'id' => $model->DRS_ID], [
+         Html::a('Eliminar', ['delete', 'id' => $model->DRS_ID], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => '¿Está seguro que quiere eliminar este ítem?',

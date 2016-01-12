@@ -16,7 +16,7 @@ use app\controllers\ReclamoSugerenciaController;
   <?= $form->field($reclamo, 'REC_VISTO_BUENO')->radioList(array('Autorizado'=>'Autorizar','Rechazado'=>'Rechazar')); ?>
 
 
-  <?= Html::submitInput('Envaluar', ['class' =>  'btn btn-primary']) ?>
+  <?= Html::submitInput('Evaluar', ['class' =>  'btn btn-primary']) ?>
 
 
 

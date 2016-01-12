@@ -103,7 +103,7 @@ class ReclamoSugerenciaController extends Controller
      public function actionCreate()
        {
            $model = new ReclamoSugerencia();
-
+           //validacion ajax
            if(Yii::$app->request->isAjax && $model->load($_POST))
            {
              Yii::$app->response->format = 'json';

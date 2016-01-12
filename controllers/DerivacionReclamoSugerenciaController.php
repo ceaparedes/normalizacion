@@ -117,10 +117,15 @@ class DerivacionReclamoSugerenciaController extends Controller
         return $this->redirect(['view', 'id' => $model->DRS_ID]);
 
       }else{
-        return $this->render('answer', [
+        if($model->EDR_ID == 1){
+            return $this->render('answer', [
             'model' => $model,
             'solucion' => $solucion,
             ]);
+          }else {
+            return $this->redirect(['view', 'id' => $model->DRS_ID]);
+          }
+
           }
         }
 

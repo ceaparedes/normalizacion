@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p><?= Html::a('Ver Reclamos-Sugerencias', ['/reclamo-sugerencia/index'], ['class' => 'btn btn-primary']) ?>
+    <p><?= Html::a('Ver Reclamos-Sugerencias', ['/reclamo-sugerencia/index'], ['class' => 'btn btn-default']) ?>
     <?= Html::a('Ver Solicitudes Derivadas', ['/derivacion-reclamo-sugerencia/index'], ['class' => 'btn btn-primary']) ?>
     </p>
 

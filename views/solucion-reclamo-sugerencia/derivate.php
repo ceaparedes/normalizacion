@@ -29,17 +29,21 @@ $this->params['breadcrumbs'][] = 'Derivar';
             'rECNUMERO.REC_VISTO_BUENO',
             'rECNUMERO.eRS.ERS_ESTADO',
             'SRS_COMENTARIO',
-            'SRS_ANTECEDENTES',
         ],
     ]) ?>
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?= $form->field($model, 'SRS_ANTECEDENTES')->textArea(array('rows'=>4)) ?>
     <?= $form->field($derivacion, 'USU_RUT')->textInput() ?>
     <?= $form->field($derivacion, 'DRS_CARGO')->textInput() ?>
     <?= $form->field($derivacion, 'DRS_UNIDAD')->textInput() ?>
 
-    <?= Html::submitInput('Derivar', ['class' =>  'btn btn-primary']) ?>
+    <?= Html::submitInput('Derivar', ['class' =>  'btn btn-primary',
+    'data' => [
+        'confirm' => 'Una vez enviada la Petición no se podrán efectuar cambios, ¿Está seguro de enviar la Derivación?',
+        'method' => 'post',
+      ],]) ?>
 
     <?php $form = ActiveForm::end(); ?>
 

@@ -99,7 +99,9 @@ $this->params['breadcrumbs'][] = $this->title;
             ]);
 
       }
-      if($adjunto && $model->ERS_ID !=5){
+      //si existe el adjunto y el reclamo no esta eliminado
+      if($adjunto && $model->ERS_ID !=6){
+        //muestra el enlace al Archivo adjunto
         echo DetailView::widget([
         'model' => $adjunto,
         'attributes' => [

@@ -39,7 +39,10 @@ $this->params['breadcrumbs'][] = 'Respuesta';
 
     <?= $form->field($model, 'DRS_RESPUESTA')->textArea(array('rows' =>3)) ?>
 
-    <?= Html::submitInput('Responder', ['class' =>  'btn btn-primary']) ?>
+    <?= Html::submitInput('Responder', ['class' =>  'btn btn-success' ,  'data' => [
+        'confirm' => 'Una vez enviada la respuesta no se podrán efectuar cambios, ¿Está seguro de la respuesta escrita?',
+        'method' => 'post',
+      ],]) ?>
 
     <?php $form = ActiveForm::end(); ?>
 

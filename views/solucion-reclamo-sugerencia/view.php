@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model frontend\models\SolucionReclamoSugerencia */
 
 $this->title = "Solucion entregada a la solicitud Nº: " .$model->REC_NUMERO;
-$this->params['breadcrumbs'][] = ['label' => 'Solucion Reclamo Sugerencias', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Soluciones a los Reclamos y Sugerencias', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="solucion-reclamo-sugerencia-view">
@@ -15,10 +15,37 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-      <?= Html::a('Volver al inicio', ['/site/index'], ['class' => 'btn btn-primary']) ?>
-      <?= Html::a('Derivar', ['derivate', 'id' => $model->SRS_ID], ['class' => 'btn btn-success']) ?>
+      <?php
 
-      <?= Html::a('Ver Reclamos y Sugerencias', ['/reclamo-sugerencia/index'], ['class' => 'btn btn-primary']) ?>
+      echo Html::a('Inicio', ['/site/index'], ['class' => 'btn btn-default']);
+      echo ' ';
+
+      if ($model->ESR_ID == 1 && $model->SRS_VISTO_BUENO == 'Autorizado'){
+
+
+            echo Html::a('Derivar', ['derivate', 'id' => $model->SRS_ID], ['class' => 'btn btn-success'
+            ]);
+            echo " ";
+
+          }else {
+            if($model->ESR_ID == 2){
+            echo Html::a('Ver Solicitudes Derivadas', ['/derivacion-reclamo-sugerencia/index'], ['class' => 'btn btn-success'
+            ]);
+            echo " ";
+          }
+
+          }
+
+
+
+
+
+
+
+      echo Html::a('Ver Reclamos y Sugerencias', ['/reclamo-sugerencia/index'], ['class' => 'btn btn-primary']);
+
+
+      ?>
 
         <!--
         <?= Html::a('Eliminar', ['delete', 'id' => $model->SRS_ID], [
@@ -33,22 +60,40 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php
         if(!$model->SRS_RESULTADOS){
-          echo DetailView::widget([
-          'model' => $model,
-          'attributes' => [
-              'SRS_ID',
-              'USU_RUT',
-              'REC_NUMERO',
-              'ESR_ID',
-              'SRS_VISTO_BUENO',
-              'SRS_COMENTARIO',
-              'SRS_ANTECEDENTES',
-              //'SRS_FECHA_RESPUESTA',
-              'SRS_FECHA_ENVIO',
-              //'SRS_RESULTADOS',
-            ],
-            ]);
+          if($model->SRS_VISTO_BUENO== 'Autorizado'){
+              echo DetailView::widget([
+              'model' => $model,
+              'attributes' => [
+                  'SRS_ID',
+                  'USU_RUT',
+                  'REC_NUMERO',
+                  'eSR.ESR_ESTADO',
+                  'SRS_VISTO_BUENO',
+                  'SRS_COMENTARIO',
+                  'SRS_ANTECEDENTES',
+                  //'SRS_FECHA_RESPUESTA',
+                  'SRS_FECHA_ENVIO',
+                  //'SRS_RESULTADOS',
+                ],
+                ]);
+            }else {
+              echo DetailView::widget([
+              'model' => $model,
+              'attributes' => [
+                  'SRS_ID',
+                  'USU_RUT',
+                  'REC_NUMERO',
+                  'eSR.ESR_ESTADO',
+                  'SRS_VISTO_BUENO',
+                  'SRS_COMENTARIO',
+                  //'SRS_ANTECEDENTES',
+                  //'SRS_FECHA_RESPUESTA',
+                  'SRS_FECHA_ENVIO',
+                  //'SRS_RESULTADOS',
+                ],
+                ]);
 
+            }
         }else{
           echo DetailView::widget([
           'model' => $model,
