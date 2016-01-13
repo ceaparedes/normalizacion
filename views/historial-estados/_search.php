@@ -21,7 +21,7 @@ use app\models\EstadoReclamoSugerencia;
 
 
     <?= $form->field($model, 'ERS_ID')->dropDownList(
-        ArrayHelper::map(ESTADORECLAMOSUGERENCIA::find()->Where(['ERS_ID'=>[2,3,4,5],])->all(),'ERS_ID','ERS_ESTADO'),
+        ArrayHelper::map(ESTADORECLAMOSUGERENCIA::find()->Where(['ERS_ID'=>[2,3,4,5,6,7],])->all(),'ERS_ID','ERS_ESTADO'),
         ['prompt'=>' ']
     )  ?>
 

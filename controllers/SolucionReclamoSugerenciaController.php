@@ -117,7 +117,7 @@ class SolucionReclamoSugerenciaController extends Controller
           $model->save();
           if($reclamo->REC_VISTO_BUENO == 'Autorizado'){
               $model->ESR_ID = 2;
-              $reclamo->ERS_ID = 5;
+              $reclamo->ERS_ID = 7;
               $reclamo->save();
               $model->save();
               //historial
@@ -195,6 +195,8 @@ class SolucionReclamoSugerenciaController extends Controller
             $derivacion->DRS_FECHA_DERIVACION = date('Y-m-d');
             $derivacion->SRS_ID = $model->SRS_ID;
             $derivacion->EDR_ID = 1;
+            $reclamo->ERS_ID = 5;
+            $reclamo->save();
             $derivacion->save();
             //Historial
             $historial = new HistorialEstados();

@@ -82,6 +82,7 @@ class DerivacionReclamoSugerenciaController extends Controller
       $solucion = $solucion->findOne($model->SRS_ID);
 
 
+
       //validacion con ajax
       if(Yii::$app->request->isAjax && $model->load($_POST))
       {
@@ -106,6 +107,8 @@ class DerivacionReclamoSugerenciaController extends Controller
         $model->DRS_FECHA_RESPUESTA = date('Y-m-d');
         $model->EDR_ID = 2;
         $model->save();
+        $reclamo->ERS_ID = 6;
+        $reclamo->save();
         //historial
         $historial->REC_NUMERO = $reclamo->REC_NUMERO;
         $historial->ERS_ID = $reclamo->ERS_ID;

@@ -27,13 +27,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'rowOptions'=> function($model){
-                    if($model->ERS_ID == 6){
+                    if($model->ERS_ID == 8){
                       return ['class'=>'danger'];
-                    }if ($model->ERS_ID == 3) {
+                    }if ($model->ERS_ID == 3 || $model->ERS_ID == 5 || $model->ERS_ID == 6 ) {
                       return ['class'=>'success'];
                     }if ($model->ERS_ID == 4) {
                      return ['class'=>'warning'];
-                   }if ($model->ERS_ID == 5) {
+                   }if ($model->ERS_ID == 7) {
                      return ['class'=>'info'];
                    }
                 },
