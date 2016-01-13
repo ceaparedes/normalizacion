@@ -235,7 +235,7 @@ class ReclamoSugerenciaController extends Controller
     {
       $model = $this->findModel($id);
       if($model->ERS_ID == 1){
-        $model->ERS_ID = 6;
+        $model->ERS_ID = 8;
         $motivo = $model->REC_MOTIVO;
         $model->REC_MOTIVO = $motivo;
         $model->save();
