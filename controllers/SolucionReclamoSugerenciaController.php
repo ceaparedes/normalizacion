@@ -141,7 +141,7 @@ class SolucionReclamoSugerenciaController extends Controller
               $historial->ERS_ID = $reclamo->ERS_ID;
               $historial->USU_RUT = $reclamo->USU_RUT;
               $historial->HES_FECHA_HORA = date('Y-m-d H:i:s');
-              $historial->HES_COMENTARIO = "El usuario ". $historial->USU_RUT . " ha Rechazado la Solucion Entregada al formulario Nº ". $historial->REC_NUMERO ." el día ". $historial->HES_FECHA_HORA '. '. 'La solicitud debe ser modificada para que vuelva a ser evaluada.';
+              $historial->HES_COMENTARIO = "El usuario ". $historial->USU_RUT . " ha Rechazado la Solucion Entregada al formulario Nº ". $historial->REC_NUMERO ." el día ". $historial->HES_FECHA_HORA .'. '. 'La solicitud debe ser modificada para que vuelva a ser evaluada.';
               $historial->save();
               //end Historial
           }

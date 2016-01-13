@@ -54,7 +54,7 @@ class DerivacionActionColumn extends Column
      *
      * @see buttons
      */
-    public $template = '{view} {answer} {delete}';
+    public $template = '{view} {answer} ';
     /**
      * @var array button rendering callbacks. The array keys are the button names (without curly brackets),
      * and the values are the corresponding button rendering callbacks. The callbacks should use the following

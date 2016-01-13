@@ -54,7 +54,7 @@ class SolucionReclamoSugerenciaActionColumn extends Column
      *
      * @see buttons
      */
-    public $template = '{view} {evaluate} {delete} {resultados} {derivate}';
+    public $template = '{view} {evaluate} {resultados} {derivate}';
     /**
      * @var array button rendering callbacks. The array keys are the button names (without curly brackets),
      * and the values are the corresponding button rendering callbacks. The callbacks should use the following
@@ -170,7 +170,7 @@ class SolucionReclamoSugerenciaActionColumn extends Column
                     'aria-label' => Yii::t('yii', 'resultados'),
                     'data-pjax' => '0',
                 ], $this->buttonOptions);
-                return Html::a('<span class="glyphicon glyphicon-envelope"></span>', $url, $options);
+                return Html::a('<span class="glyphicon glyphicon-send"></span>', $url, $options);
             };
         }
     }
