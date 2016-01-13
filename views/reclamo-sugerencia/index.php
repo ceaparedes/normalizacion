@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Crear Reclamo Sugerencia', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Completar Formulario', ['create'], ['class' => 'btn btn-success']) ?>
         <?= Html::a('Ver Soluciones', ['/solucion-reclamo-sugerencia/index'], ['class' => 'btn btn-primary']) ?>
     </p>
 
