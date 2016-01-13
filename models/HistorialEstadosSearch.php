@@ -55,16 +55,17 @@ class HistorialEstadosSearch extends HistorialEstados
             // $query->where('0=1');
             return $dataProvider;
         }
-        $query->joinWith('eRS');
+
         $query->andFilterWhere([
             'HES_ID' => $this->HES_ID,
             'HES_FECHA_HORA' => $this->HES_FECHA_HORA,
+            'ERS_ID'=> $this->ERS_ID,
         ]);
 
         $query->andFilterWhere(['like', 'REC_NUMERO', $this->REC_NUMERO])
             ->andFilterWhere(['like', 'USU_RUT', $this->USU_RUT])
-            ->andFilterWhere(['like', 'HES_COMENTARIO', $this->HES_COMENTARIO])
-            ->andFilterWhere(['like', 'ERS_ESTADO', $this->ERS_ID]);
+            ->andFilterWhere(['like', 'HES_COMENTARIO', $this->HES_COMENTARIO]);
+            
 
         return $dataProvider;
     }
