@@ -19,10 +19,14 @@ $this->params['breadcrumbs'][] = $this->title;
       <?= Html::a('Inicio', ['/site/index'], ['class' => 'btn btn-default']) ?>
       <?php
       if($model->EDR_ID == 1 ){
-      echo Html::a('Ver Reclamos y Sugerencias', ['/reclamo-sugerencia/index'], ['class' => 'btn btn-primary']);
-      echo " "; 
+      echo Html::a('Responder ', ['answer', 'id' => $model->DRS_ID], ['class' => 'btn btn-success']);
+      echo " ";
     }?>
+
+    <?= Html::a('Ver Soluciones', ['solucion-reclamo-sugerencia/index'], ['class' => 'btn btn-primary']) ?>
       <?= Html::a('Ver Solicitudes Derivadas', ['index'], ['class' => 'btn btn-primary']) ?>
+
+
       <!--
          Html::a('Eliminar', ['delete', 'id' => $model->DRS_ID], [
             'class' => 'btn btn-danger',

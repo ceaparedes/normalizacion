@@ -56,6 +56,8 @@ class SolucionReclamoSugerenciaController extends Controller
     public function actionView($id)
     {
       $model = $this->findModel($id);
+      $reclamo = new ReclamoSugerencia();
+      $reclamo = $reclamo->findOne($model->REC_NUMERO);
       $query = new Query;
       $query->select ('ADJ_ID')
           ->from('ADJUNTOS')
@@ -72,6 +74,7 @@ class SolucionReclamoSugerenciaController extends Controller
         return $this->render('view', [
             'model' => $model,
             'adjunto' =>$adjunto,
+            'reclamo' =>$reclamo,
         ]);
     }
 
@@ -130,7 +133,7 @@ class SolucionReclamoSugerenciaController extends Controller
               //end historial
           }else{
               $model->ESR_ID = 3;
-              $reclamo->ERS_ID = 2;
+              $reclamo->ERS_ID = 1;
               $reclamo->save();
               $model->save();
               //historial
@@ -138,7 +141,7 @@ class SolucionReclamoSugerenciaController extends Controller
               $historial->ERS_ID = $reclamo->ERS_ID;
               $historial->USU_RUT = $reclamo->USU_RUT;
               $historial->HES_FECHA_HORA = date('Y-m-d H:i:s');
-              $historial->HES_COMENTARIO = "El usuario ". $historial->USU_RUT . " ha Rechazado la Solucion Entregada al formulario Nº ". $historial->REC_NUMERO ." el día ". $historial->HES_FECHA_HORA;
+              $historial->HES_COMENTARIO = "El usuario ". $historial->USU_RUT . " ha Rechazado la Solucion Entregada al formulario Nº ". $historial->REC_NUMERO ." el día ". $historial->HES_FECHA_HORA '. '. 'La solicitud debe ser modificada para que vuelva a ser evaluada.';
               $historial->save();
               //end Historial
           }

@@ -20,27 +20,28 @@ $this->params['breadcrumbs'][] = $this->title;
       echo Html::a('Inicio', ['/site/index'], ['class' => 'btn btn-default']);
       echo ' ';
 
-      if ($model->ESR_ID == 1 && $model->SRS_VISTO_BUENO == 'Autorizado'){
-
+      if ($reclamo->ERS_ID == 3){
 
             echo Html::a('Derivar', ['derivate', 'id' => $model->SRS_ID], ['class' => 'btn btn-success'
             ]);
             echo " ";
 
           }else {
-            if($model->ESR_ID == 2){
-            echo Html::a('Ver Solicitudes Derivadas', ['/derivacion-reclamo-sugerencia/index'], ['class' => 'btn btn-success'
-            ]);
-            echo " ";
+
+            if($reclamo->ERS_ID == 4 || $reclamo->ERS_ID == 6){
+              echo Html::a('Evaluar Respuesta', ['evaluate' , 'id' => $model->SRS_ID], ['class' => 'btn btn-success'
+              ]);
+              echo " ";
+            }
+            if($reclamo->ERS_ID == 5){
+              if($reclamo->ERS_ID == 4 || $reclamo->ERS_ID == 6){
+                echo Html::a('Ver Derivaciones Realizadas', ['derivacion-reclamo-sugerencia/index'], ['class' => 'btn btn-success'
+                ]);
+                echo " ";
+
+            }
           }
-
-          }
-
-
-
-
-
-
+        }
 
       echo Html::a('Ver Reclamos y Sugerencias', ['/reclamo-sugerencia/index'], ['class' => 'btn btn-primary']);
 
@@ -113,6 +114,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
       ]);
     }
+
     if($adjunto ){
       echo DetailView::widget([
       'model' => $adjunto,
@@ -129,6 +131,7 @@ $this->params['breadcrumbs'][] = $this->title;
     ]);
 
     }
+
     ?>
 
 </div>
