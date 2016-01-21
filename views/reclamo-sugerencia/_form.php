@@ -17,6 +17,7 @@ use app\models\TipoSolicitanteReclamoSugerencia;
                               ['enctype' => 'multipart/form-data',
                               'enableAjaxValidation'=>true]]); ?>
 
+
     <?= $form->field($model, 'USU_RUT')->textInput() ?>
 
     <?= $form->field($model, 'TSR_ID')->dropDownList(
@@ -38,11 +39,24 @@ use app\models\TipoSolicitanteReclamoSugerencia;
     <?= $form->field($model, 'REC_REPARTICION')->textInput() ?>
 
     <?= $form->field($model, 'REC_MOTIVO')->textArea(array('rows'=>6)) ?>
-    <?= $form->field($model, 'file')->fileInput() ?>
+
+    <?= $form->field($model, 'file')->fileInput(['class'=>'btn btn-info']) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Guardar' : 'Actualizar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-    </div>
+
+      <div class="form-group">
+
+
+           <?= Html::submitButton('<label class="box-title pull-right margenbtnsuperior dark">
+               <span class="btn btn-xs btn-info no-radius" id="reclamo-sugerencia-create" onclick="submit">
+                 <i class="glyphicon glyphicon-floppy-disk"></i>
+               </span> Guardar </label>',
+              ['class' => 'btn btn-xs btn-white no-radius btn-info',
+           ]) ?>
+
+   </div>
+
+
 
     <?php ActiveForm::end(); ?>
 

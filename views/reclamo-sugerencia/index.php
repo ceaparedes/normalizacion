@@ -2,9 +2,9 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use backend\models\TipoReclamoSugerencia;
-use backend\models\TipoSolicitanteReclamoSugerencia;
-use backend\models\EstadoReclamoSugerencia;
+use app\models\TipoReclamoSugerencia;
+use app\models\TipoSolicitanteReclamoSugerencia;
+use app\models\EstadoReclamoSugerencia;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\ReclamoSugerenciaSearch */
@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="reclamo-sugerencia-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+      <div class="page-header"><h1><?= Html::encode($this->title) ?></h1></div>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>

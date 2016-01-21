@@ -16,41 +16,60 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="reclamo-sugerencia-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+      <div class="page-header"><h1><?= Html::encode($this->title) ?></h1></div>
 
     <p>
         <?php
         if ($model->ERS_ID == 1){
-
-        echo Html::a('Actualizar', ['update', 'id' => $model->REC_NUMERO], ['class' => 'btn btn-primary']);
+        //boton Actualizar
+        echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
+      <span class="btn btn-xs btn-info no-radius ">
+        <i class="glyphicon  glyphicon-pencil"></i></span> Actualizar </label>', ['update', 'id' => $model->REC_NUMERO],
+        ['class' => 'btn btn-xs btn-white no-radius btn-info']);
         echo ' ';
+        //boton enviar
+        echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
+      <span class="btn btn-xs btn-info no-radius" id="agregaperiodo" onclick="envia()">
+        <i class="glyphicon glyphicon-send"></i>
+      </span>
+      Enviar</label>', ['send', 'id' => $model->REC_NUMERO],
 
-        echo Html::a('Enviar', ['send', 'id' => $model->REC_NUMERO], ['class' => 'btn btn-success',
+        ['class' => 'btn btn-xs btn-white no-radius btn-info',
         'data' => [
             'confirm' => 'Una vez enviada la Solicitud no se podrán efectuar cambios, ¿Está seguro de enviar la Solicitud?',
             'method' => 'post',
           ],
           ]);
           echo ' ';
-
-        echo Html::a('Eliminar', ['delete', 'id' => $model->REC_NUMERO], [
-            'class' => 'btn btn-danger',
-            'data' => [
+          //boton eliminar
+          echo Html::a('<label class="box-title pull-right margenbtnsuperior dark"> <span class="btn btn-xs btn-info no-radius"><i class="glyphicon  glyphicon-trash"></i></span>  Eliminar </label>',['delete', 'id' => $model->REC_NUMERO],
+              ['class' => 'btn btn-xs btn-white no-radius btn-info',
+                'data' => [
                 'confirm' => '¿Está seguro de eliminar esta Solicitud?',
                 'method' => 'post',
-            ],
-        ]);
+                ],
+          ]);
+
+
       }else {
 
         if( $model->ERS_ID == 2){
-        echo Html::a('Evaluar', ['evaluate', 'id' => $model->REC_NUMERO], ['class' => 'btn btn-success']);
+        echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
+      <span class="btn btn-xs btn-info no-radius ">
+        <i class="glyphicon  glyphicon-pencil"></i></span>Evaluar</label>', ['evaluate', 'id' => $model->REC_NUMERO], ['class' => 'btn btn-xs btn-white no-radius btn-info']);
         echo " ";
       }else {
-          echo Html::a('Ver Evaluacion', ['solucion-reclamo-sugerencia/view', 'id' => $solucion->SRS_ID], ['class' => 'btn btn-default']);
+          echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
+      <span class="btn btn-xs btn-info no-radius">
+        <i class="ace-icon fa fa-expand"></i>
+      </span> Ver Evaluacion</label>', ['solucion-reclamo-sugerencia/view', 'id' => $solucion->SRS_ID], ['class' => 'btn btn-xs btn-white no-radius btn-info']);
           echo " ";
 
       }
-        echo Html::a('Volver', '?r=reclamo-sugerencia', ['class' => 'btn btn-default']);
+        echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
+      <span class="btn btn-xs btn-info no-radius ">
+        <i class="glyphicon glyphicon-arrow-left"></i>
+      </span> Volver </label>', '?r=reclamo-sugerencia', ['class' => 'btn btn-xs btn-white no-radius btn-info']);
       }
         ?>
 

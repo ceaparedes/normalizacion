@@ -58,7 +58,7 @@ class ReclamoSugerencia extends \yii\db\ActiveRecord
             [['REC_REPARTICION'],'string', 'max'=>100],
             [['REC_MOTIVO'],'string', 'max'=>250],
             [['REC_EMAIL_USUARIO'],'email'],
-            [['file'],'file', 'skipOnEmpty' => true, 'maxSize' => 1024 * 1024 * 2],
+            [['file'],'file', 'skipOnEmpty' => true, 'maxSize' => 1024 * 1024 * 2, 'extensions'=> 'jpg, png, doc, pdf'],
             [['ERS_ID', 'TSR_ID', 'TRS_ID','REC_TELEFONO_USUARIO'], 'integer'],
             [['REC_FECHA', 'REC_HORA', 'ERS_ID'], 'safe'],
             [['REC_MOTIVO','REC_REPARTICION'], 'textValidate'],

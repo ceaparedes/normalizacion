@@ -21,10 +21,18 @@ use app\models\SolucionReclamoSugerencia;
 
 
   <div class="form-group">
-  <?= Html::submitInput('Evaluar', ['class' =>  'btn btn-success', 'data' => [
-      'confirm' => 'Una vez enviada la respuesta no se podrán efectuar cambios, ¿Está seguro de enviar la Evaluación?',
-      'method' => 'post',
-    ],]) ?>
+
+    <?= Html::submitButton('<label class="box-title pull-right margenbtnsuperior dark">
+        <span class="btn btn-xs btn-info no-radius" id="reclamo-sugerencia-evaluate" onclick="submit">
+          <i class="glyphicon glyphicon-pencil"></i>
+        </span> Evaluar </label>',
+       ['class' => 'btn btn-xs btn-white no-radius btn-info',
+       'data' => [
+         'confirm' => 'Una vez enviada la respuesta no se podrán efectuar cambios, ¿Está seguro de enviar la Evaluación?',
+         'method' => 'post',
+       ],]) ?>
+
+
 </div>
 
 
