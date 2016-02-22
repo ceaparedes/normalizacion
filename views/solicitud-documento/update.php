@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\SolicitudDocumento */
 
-$this->title = 'Update Solicitud Documento: ' . ' ' . $model->SOL_ID;
+$this->title = 'Actualizar Solicitud de Documentos: ' . ' ' . $model->SOL_ID;
 $this->params['breadcrumbs'][] = ['label' => 'Solicitud Documentos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->SOL_ID, 'url' => ['view', 'id' => $model->SOL_ID]];
 $this->params['breadcrumbs'][] = 'Update';
@@ -16,6 +16,7 @@ $this->params['breadcrumbs'][] = 'Update';
 
     <?= $this->render('_form', [
         'model' => $model,
+        'docs' => $docs,
     ]) ?>
 
 </div>

@@ -7,24 +7,20 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\HistorialSolicitudSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Historial Solicituds';
+$this->title = 'Historial de Solicitudes de Documentos';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="historial-solicitud-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+      <div class="page-header"><h1><?= Html::encode($this->title) ?></h1>
+    <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('Create Historial Solicitud', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
 
+<div class="box-body table-responsive no-padding table-bordered siempre_responsivo">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
             'HSO_ID',
             'ESO_ID',
             'USU_RUT',
@@ -36,4 +32,5 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
+</div>
 </div>

@@ -86,9 +86,14 @@ class SolucionReclamoSugerenciaController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
+      $model = $this->findModel($id);
+      if($model->ESO_ID == 1){
+        $model->ESO_ID = 6;
+      
+        $model->save();
         return $this->redirect(['index']);
+      }
+        return $this->redirect(['site/index']);
     }
 
     //funcion para evaluar la solucion del reclamo/Sugerencia

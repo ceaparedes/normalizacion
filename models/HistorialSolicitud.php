@@ -46,12 +46,12 @@ class HistorialSolicitud extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'HSO_ID' => 'Hso  ID',
-            'ESO_ID' => 'Eso  ID',
-            'USU_RUT' => 'Usu  Rut',
-            'SOL_ID' => 'Sol  ID',
-            'HSO_FECHA' => 'Hso  Fecha',
-            'HSO_COMENTARIO' => 'Hso  Comentario',
+            'HSO_ID' => 'ID',
+            'ESO_ID' => 'Estado',
+            'USU_RUT' => 'Usuario',
+            'SOL_ID' => 'Solicitud Nº',
+            'HSO_FECHA' => 'Fecha',
+            'HSO_COMENTARIO' => 'Comentario',
         ];
     }
 

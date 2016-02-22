@@ -283,9 +283,9 @@ MyAsset::register($this);
             </li>
 
             <li class="">
-              <a href="jqgrid.html">
+              <a href="index.php?r=historial-solicitud">
                 <i class="menu-icon fa fa-caret-right"></i>
-                submenu 3
+                Ver Historial de Solicitudes
               </a>
 
               <b class="arrow"></b>

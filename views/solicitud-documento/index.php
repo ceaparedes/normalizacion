@@ -33,6 +33,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'SOL_FECHA',
             // 'SOL_UNIDAD',
             'SOL_FUNDAMENTO',
+            [
+              'attribute'=> 'ESO_ID',
+              'value'=>'eSO.ESO_ESTADO',
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

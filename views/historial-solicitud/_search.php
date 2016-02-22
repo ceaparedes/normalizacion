@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use app\models\EstadoSolicitud
 
 /* @var $this yii\web\View */
 /* @var $model app\models\HistorialSolicitudSearch */
@@ -15,13 +17,12 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'HSO_ID') ?>
-
-    <?= $form->field($model, 'ESO_ID') ?>
-
-    <?= $form->field($model, 'USU_RUT') ?>
-
     <?= $form->field($model, 'SOL_ID') ?>
+
+    <?= $form->field($model, 'ESO_ID')->dropDownList(
+        ArrayHelper::map(ESTADOSOLICITUD::find()->Where(['ESO_ID'=>[2,3,4,5],])->all(),'ESO_ID','ESO_ESTADO'),
+        ['prompt'=>' ']
+    )  ?>
 
     <?= $form->field($model, 'HSO_FECHA') ?>
 

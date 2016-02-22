@@ -107,6 +107,22 @@ class SolicitudDocumentoController extends Controller
           $model->SOL_ID = $last_id;
           $model->ESO_ID = 1;
 
+          //Instancia para el adjunto
+          $name = 'solicitud ' . $model->SOL_ID . ' '. $model->SOL_FECHA . ' ' . date('H i');
+          $model->file = UploadedFile::getInstance($model,'file');
+          $model->save();
+          //si el archivo no es null, entonces lo guarda y guarda el adjunto en la bd.
+           if ($model->file != null){
+          $model->file->saveAs('uploads/reclamo-sugerencia/Adjunto '. $name . '.' .$model->file->extension);
+          //guardar la ruta en la bd
+          $adjunto = new Adjuntos();
+          $adjunto->SOL_ID = $model->SOL_ID;
+          $adjunto->ADJ_TIPO = 'Solicitud Documento';
+          $adjunto->ADJ_URL = 'uploads/reclamo-sugerencia/Adjunto '. $name . '.' .$model->file->extension;
+          $adjunto->save();
+         }
+
+
             $model->save();
             return $this->redirect(['view', 'id' => $model->SOL_ID]);
         } else {
@@ -119,7 +135,8 @@ class SolicitudDocumentoController extends Controller
 
 
 
-    public function actionSend($id){
+    public function actionSend($id)
+    {
 
       $model = $this->findModel($id);
 
@@ -136,12 +153,9 @@ class SolicitudDocumentoController extends Controller
         $adjunto = null;
       }
 
-
-
        $model->SOL_FECHA = date('Y-m-d');
        //$model->SOL_HORA = date('H:i:s');
        $model->ESO_ID = 2;
-
        $model->save();
 
        //instancia para crear el Historial;
@@ -151,10 +165,9 @@ class SolicitudDocumentoController extends Controller
        $historial->USU_RUT = $model->USU_RUT;
        $historial->HSO_FECHA_HORA = date('Y-m-d H:i:s');
 
-       $historial->HSO_COMENTARIO = "El usuario ". $historial->USU_RUT . " ha ingresado la sólicitud  Nº ". $historial->SOL_ID ." el día ". $historial->HSO_FECHA_HORA;
+       $historial->HSO_COMENTARIO = "El usuario ". $historial->USU_RUT . " ha ingresado la solicitud  Nº ". $historial->SOL_ID ." el día ". $historial->HSO_FECHA_HORA;
 
-
-         $historial->save();
+       $historial->save();
 
          return $this->redirect(['view', 'id' => $model->SOL_ID]);
 
@@ -169,12 +182,50 @@ class SolicitudDocumentoController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $docs = new docs();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $query = new Query;
+        $query->select ('ADJ_ID')
+            ->from('ADJUNTOS')
+            ->where('SOL_ID=:solicitud', [':solicitud' => $model->SOL_ID])
+            ->limit('1');
+        $query = $query->one();
+        if ($query){
+          $adjunto = new Adjuntos();
+          $adjunto = $adjunto->findOne($query);
+        }else{
+          $adjunto = null;
+        }
+
+        //condicion para que se ejecute ajax
+        if(Yii::$app->request->isAjax && $model->load($_POST))
+        {
+          Yii::$app->response->format = 'json';
+          return \yii\widgets\ActiveForm::validate($model);
+        }
+
+        if ($model->load(Yii::$app->request->post()) ) {
+          $model->SOL_FECHA = date('Y-m-d');
+          //$model->SOL_HORA = date('H:i:s');
+          //Instancia para el adjunto
+          $name = 'solicitud ' . $model->SOL_ID . ' '. $model->SOL_FECHA . ' ' . date('H i');
+          $model->file = UploadedFile::getInstance($model,'file');
+          $model->save();
+          if ($model->file != null){
+         $model->file->saveAs('uploads/solicitud-documento/Adjunto '. $name . '.' .$model->file->extension);
+         //guardar la ruta en la bd
+         $adjunto = new Adjuntos();
+         $adjunto->SOL_ID = $model->SOL_ID;
+         $adjunto->ADJ_TIPO = 'Solicitud Documento';
+         $adjunto->ADJ_URL = 'uploads/solicitud-documento/Adjunto '. $name . '.' .$model->file->extension;
+         $adjunto->save();
+        }
+
             return $this->redirect(['view', 'id' => $model->SOL_ID]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'docs' => $docs,
             ]);
         }
     }
@@ -208,23 +259,5 @@ class SolicitudDocumentoController extends Controller
         }
     }
 
-    public function actionSubcat() {
-    $out = [];
-    if (isset($_POST['depdrop_parents'])) {
-        $parents = $_POST['depdrop_parents'];
-        if ($parents != null) {
-            $cat_id = $parents[0];
-            $out = self::getSubCatList($cat_id);
-            // the getSubCatList function will query the database based on the
-            // cat_id and return an array like below:
-            // [
-            //    ['id'=>'<sub-cat-id-1>', 'name'=>'<sub-cat-name1>'],
-            //    ['id'=>'<sub-cat_id_2>', 'name'=>'<sub-cat-name2>']
-            // ]
-            echo Json::encode(['output'=>$out, 'selected'=>'']);
-            return;
-        }
-    }
-    echo Json::encode(['output'=>'', 'selected'=>'']);
-}
+
 }
