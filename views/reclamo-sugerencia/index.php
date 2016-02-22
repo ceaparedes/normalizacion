@@ -19,13 +19,20 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Completar Formulario', ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Ver Soluciones', ['/solucion-reclamo-sugerencia/index'], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('<label class="box-title pull-right margenbtnsuperior dark">
+            <span class="btn btn-xs btn-info no-radius" id="reclamo-sugerencia-create" onclick="submit">
+              <i class="glyphicon  glyphicon-pencil"></i>
+            </span> Completar Formulario</label>', ['create'], ['class' => 'btn btn-xs btn-white no-radius btn-info']) ?>
+
     </p>
+<div class="bs-callout bs-callout-info">
+<div class="box-body table-responsive no-padding table-bordered siempre_responsivo">
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+
+
         'rowOptions'=> function($model){
                     if($model->ERS_ID == 8){
                       return ['class'=>'danger'];
@@ -37,8 +44,9 @@ $this->params['breadcrumbs'][] = $this->title;
                      return ['class'=>'info'];
                    }
                 },
+
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            //['class' => 'yii\grid\SerialColumn'],
 
             'REC_NUMERO',
             'USU_RUT',
@@ -67,5 +75,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ReclamoSugerenciaActionColumn'],
         ],
     ]); ?>
-
+  </div>
+</div>
 </div>

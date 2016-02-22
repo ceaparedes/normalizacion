@@ -12,30 +12,38 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="solucion-reclamo-sugerencia-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="page-header"><h1><?= Html::encode($this->title) ?></h1></div>
 
     <p>
       <?php
 
-      echo Html::a('Inicio', ['/site/index'], ['class' => 'btn btn-default']);
-      echo ' ';
+
 
       if ($reclamo->ERS_ID == 3){
 
-            echo Html::a('Derivar', ['derivate', 'id' => $model->SRS_ID], ['class' => 'btn btn-success'
+            echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
+          <span class="btn btn-xs btn-info no-radius" id="agregaperiodo" onclick="envia()">
+            <i class="glyphicon glyphicon-send"></i>
+          </span>Derivar </label>', ['derivate', 'id' => $model->SRS_ID], ['class' => 'btn btn-xs btn-white no-radius btn-info'
             ]);
             echo " ";
 
           }else {
 
             if($reclamo->ERS_ID == 4 || $reclamo->ERS_ID == 6){
-              echo Html::a('Evaluar Respuesta', ['evaluate' , 'id' => $model->SRS_ID], ['class' => 'btn btn-success'
+              echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
+            <span class="btn btn-xs btn-info no-radius" id="agregaperiodo" onclick="envia()">
+              <i class="glyphicon glyphicon-pencil"></i>
+            </span>Evaluar Respuesta</label>', ['evaluate' , 'id' => $model->SRS_ID], ['class' => 'btn btn-xs btn-white no-radius btn-info'
               ]);
               echo " ";
             }
             if($reclamo->ERS_ID == 5){
               if($reclamo->ERS_ID == 4 || $reclamo->ERS_ID == 6){
-                echo Html::a('Ver Derivaciones Realizadas', ['derivacion-reclamo-sugerencia/index'], ['class' => 'btn btn-success'
+                echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
+              <span class="btn btn-xs btn-info no-radius" id="agregaperiodo" onclick="envia()">
+                <i class="glyphicon glyphicon-send"></i>
+              </span>Ver Derivaciones Realizadas</label>', ['derivacion-reclamo-sugerencia/index'], ['class' => 'btn btn-xs btn-white no-radius btn-info'
                 ]);
                 echo " ";
 
@@ -43,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
           }
         }
 
-      echo Html::a('Ver Reclamos y Sugerencias', ['/reclamo-sugerencia/index'], ['class' => 'btn btn-primary']);
+
 
 
       ?>

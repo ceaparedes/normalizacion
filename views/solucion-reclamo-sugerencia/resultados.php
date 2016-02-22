@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = 'Resultados';
 ?>
 
 <div class="solucion-reclamo-sugerencia-create">
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="page-header"><h1><?= Html::encode($this->title) ?></h1></div>
 
     <?=DetailView::widget([
         'model' => $model,
@@ -40,6 +40,16 @@ $this->params['breadcrumbs'][] = 'Resultados';
     <?= $form->field($model, 'SRS_RESULTADOS')->textArea(array('rows' =>3)) ?>
 
     <?= Html::submitInput('Crear', ['class' =>  'btn btn-primary']) ?>
+
+    <?= Html::submitButton('<label class="box-title pull-right margenbtnsuperior dark">
+        <span class="btn btn-xs btn-info no-radius" id="reclamo-sugerencia-create" onclick="submit">
+          <i class="glyphicon glyphicon-floppy-disk"></i>
+        </span> Crear </label>',
+       ['class' => 'btn btn-xs btn-white no-radius btn-info',
+       'data' => [
+           'confirm' => 'Una vez escrito los resultados no se podrán efectuar cambios, ¿Está seguro de enviar los resultados?',
+           'method' => 'post',
+         ],]) ?>
 
     <?php $form = ActiveForm::end(); ?>
 

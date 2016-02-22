@@ -45,6 +45,8 @@ class SolicitudDocumentoSearch extends SolicitudDocumento
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            /*  'query' => ReclamoSugerencia::find()->
+                where(['ESO_ID' => [2,3,4,5]]),*/
         ]);
 
         $this->load($params);

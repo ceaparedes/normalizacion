@@ -13,20 +13,18 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="solucion-reclamo-sugerencia-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="page-header"><h1><?= Html::encode($this->title) ?></h1></div>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p><?= Html::a('Ver Reclamos-Sugerencias', ['/reclamo-sugerencia/index'], ['class' => 'btn btn-default']) ?>
-    <?= Html::a('Ver Solicitudes Derivadas', ['/derivacion-reclamo-sugerencia/index'], ['class' => 'btn btn-primary']) ?>
-    </p>
 
+    <div class="box-body table-responsive no-padding table-bordered siempre_responsivo">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'REC_NUMERO',
-            'SRS_ID',
+            //'SRS_ID',
             'USU_RUT',
             [
               'attribute'=>'ESR_ID',
@@ -43,4 +41,5 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
+</div>
 </div>

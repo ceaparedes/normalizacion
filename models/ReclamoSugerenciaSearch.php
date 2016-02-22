@@ -50,6 +50,8 @@ class ReclamoSugerenciaSearch extends ReclamoSugerencia
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+          /*  'query' => ReclamoSugerencia::find()->
+              where(['ERS_ID' => [2,3,4,5,6,7]]),*/
         ]);
 
         $this->load($params);

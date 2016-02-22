@@ -47,16 +47,19 @@ class SolicitudDocumento extends \yii\db\ActiveRecord
         return 'SOLICITUD_DOCUMENTO';
     }
 
+    public $file;
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['SOL_ID', 'USU_RUT', 'ODO_ID', 'TAS_ID'], 'required'],
+            [['SOL_ID'], 'required'],
             [['SOL_ID', 'USU_RUT', 'SOL_UNIDAD', 'SOL_FUNDAMENTO'], 'string'],
-            [['DOC_CODIGO', 'VER_ID', 'PDA_ID', 'ESO_ID', 'ODO_ID', 'TAS_ID', 'SIS_ID', 'SRS_ID'], 'integer'],
-            [['SOL_FECHA'], 'safe']
+            [['file'],'file'],
+
+            [['SOL_FECHA','DOC_CODIGO', 'VER_ID', 'PDA_ID', 'ESO_ID', 'ODO_ID', 'TAS_ID', 'SIS_ID', 'SRS_ID'], 'safe']
         ];
     }
 
@@ -66,19 +69,20 @@ class SolicitudDocumento extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'SOL_ID' => 'Sol  ID',
-            'DOC_CODIGO' => 'Doc  Codigo',
-            'VER_ID' => 'Ver  ID',
-            'PDA_ID' => 'Pda  ID',
-            'ESO_ID' => 'Eso  ID',
-            'USU_RUT' => 'Usu  Rut',
-            'ODO_ID' => 'Odo  ID',
-            'TAS_ID' => 'Tas  ID',
-            'SIS_ID' => 'Sis  ID',
-            'SRS_ID' => 'Srs  ID',
-            'SOL_FECHA' => 'Sol  Fecha',
-            'SOL_UNIDAD' => 'Sol  Unidad',
-            'SOL_FUNDAMENTO' => 'Sol  Fundamento',
+            'SOL_ID' => 'Nº Solicitud',
+            'DOC_CODIGO' => 'Codigo Documento',
+            'VER_ID' => 'ID Version',
+            'PDA_ID' => 'ID Plan de Accion',
+            'ESO_ID' => 'Estado',
+            'USU_RUT' => 'Usuario',
+            'ODO_ID' => 'Origen',
+            'TAS_ID' => 'Tipo Accion',
+            'SIS_ID' => 'ID Solucion SAC-SAP',
+            'SRS_ID' => 'ID Solucion Reclamo Sugerencia',
+            'SOL_FECHA' => 'Fecha Solicitud',
+            'SOL_UNIDAD' => 'Unidad',
+            'SOL_FUNDAMENTO' => 'Fundamento',
+            'file'=>'Adjunto',
         ];
     }
 

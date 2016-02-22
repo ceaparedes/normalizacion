@@ -16,7 +16,16 @@ use app\controllers\ReclamoSugerenciaController;
   <?= $form->field($reclamo, 'REC_VISTO_BUENO')->radioList(array('Autorizado'=>'Autorizar','Rechazado'=>'Rechazar')); ?>
 
 
-  <?= Html::submitInput('Evaluar', ['class' =>  'btn btn-primary']) ?>
+
+
+
+       <?= Html::submitButton('<label class="box-title pull-right margenbtnsuperior dark">
+           <span class="btn btn-xs btn-info no-radius" id="reclamo-sugerencia-create" onclick="submit">
+             <i class="glyphicon glyphicon-pencil"></i>
+           </span> Evaluar </label>',
+          ['class' => 'btn btn-xs btn-white no-radius btn-info',
+            ]) ?>
+
 
 
 

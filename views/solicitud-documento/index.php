@@ -15,10 +15,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('Create Solicitud Documento', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -28,16 +24,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'SOL_ID',
             'DOC_CODIGO',
             'VER_ID',
-            'PDA_ID',
-            'ESO_ID',
-            // 'USU_RUT',
+            //'PDA_ID',
+            //'ESO_ID',
+            'USU_RUT',
             // 'ODO_ID',
-            // 'TAS_ID',
+            'TAS_ID',
             // 'SIS_ID',
             // 'SRS_ID',
-            // 'SOL_FECHA',
+            'SOL_FECHA',
             // 'SOL_UNIDAD',
-            // 'SOL_FUNDAMENTO',
+            'SOL_FUNDAMENTO',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

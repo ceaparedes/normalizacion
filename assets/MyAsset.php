@@ -29,6 +29,7 @@ class MyAsset extends AssetBundle
 
     ];
     public $js = [
+      'js/main.js',
 
       'js/ace-extra.min.js',
 

@@ -12,6 +12,7 @@ use app\models\EstadoReclamoSugerencia;
 
 <div class="historial-estados-search">
 
+    <div class="bs-callout bs-callout-info no-bottom">
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
@@ -31,9 +32,9 @@ use app\models\EstadoReclamoSugerencia;
 
 
     <div class="form-group">
-        <?= Html::submitButton('Buscar', ['class' => 'btn btn-primary']) ?>
+        <?= Html::submitButton('<i class="ace-icon fa fa-search bigger-110"></i>Buscar', ['class' => 'btn btn-info']) ?>
     </div>
-
+</div>
     <?php ActiveForm::end(); ?>
 
 </div>

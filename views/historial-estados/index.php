@@ -14,9 +14,10 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="historial-estados-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+      <div class="page-header"><h1><?= Html::encode($this->title) ?></h1></div>
     <?php echo $this->render('_search', ['model' => $searchModel]); ?>
 
+    <div class="box-body table-responsive no-padding table-bordered siempre_responsivo">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
@@ -32,5 +33,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\HistorialRSActionColumn'],
         ],
     ]); ?>
-
+</div>
 </div>

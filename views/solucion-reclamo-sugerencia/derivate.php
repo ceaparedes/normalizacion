@@ -18,8 +18,8 @@ $this->params['breadcrumbs'][] = ['label' => $model->REC_NUMERO, 'url' => ['view
 $this->params['breadcrumbs'][] = 'Derivar';
 ?>
 
-<div class="solucion-reclamo-sugerencia-create">
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="solucion-reclamo-sugerencia-derivate">
+    <div class="page-header"><h1><?= Html::encode($this->title) ?></h1></div>
     <?=DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -39,11 +39,17 @@ $this->params['breadcrumbs'][] = 'Derivar';
     <?= $form->field($derivacion, 'DRS_CARGO')->textInput() ?>
     <?= $form->field($derivacion, 'DRS_UNIDAD')->textInput() ?>
 
-    <?= Html::submitInput('Derivar', ['class' =>  'btn btn-primary',
-    'data' => [
-        'confirm' => 'Una vez enviada la Petición no se podrán efectuar cambios, ¿Está seguro de enviar la Derivación?',
-        'method' => 'post',
-      ],]) ?>
+    <?= Html::submitButton('<label class="box-title pull-right margenbtnsuperior dark">
+        <span class="btn btn-xs btn-info no-radius" id="reclamo-sugerencia-create" onclick="submit">
+          <i class="glyphicon glyphicon-send"></i>
+        </span> Derivar </label>',
+       ['class' => 'btn btn-xs btn-white no-radius btn-info',
+       'data' => [
+           'confirm' => 'Una vez enviada la Petición no se podrán efectuar cambios, ¿Está seguro de enviar la Derivación?',
+           'method' => 'post',
+         ],]) ?>
+
+
 
     <?php $form = ActiveForm::end(); ?>
 

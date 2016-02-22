@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = 'Autorizar';
 ?>
 
 <div class="solucion-reclamo-sugerencia-create">
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="page-header"><h1><?= Html::encode($this->title) ?></h1></div>
     <?php
 
       if(!$respuesta){

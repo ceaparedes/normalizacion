@@ -265,18 +265,18 @@ MyAsset::register($this);
 
           <ul class="submenu">
             <li class="">
-              <a href="tables.html">
+              <a href="index.php?r=solicitud-documento%2Fcreate">
                 <i class="menu-icon fa fa-caret-right"></i>
-                Submenú 1
+                Completar Solicitud
               </a>
 
               <b class="arrow"></b>
             </li>
 
             <li class="">
-              <a href="jqgrid.html">
+              <a href="index.php?r=solicitud-documento">
                 <i class="menu-icon fa fa-caret-right"></i>
-                submenu 2
+                Ver Solicitudes
               </a>
 
               <b class="arrow"></b>

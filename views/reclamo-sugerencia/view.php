@@ -11,7 +11,7 @@ use app\models\Adjuntos;
 /* @var $model frontend\models\ReclamoSugerencia */
 
 $this->title = "Solicitud Nº: " . $model->REC_NUMERO;
-$this->params['breadcrumbs'][] = ['label' => 'Reclamo Sugerencias', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Reclamos y Sugerencias', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="reclamo-sugerencia-view">
@@ -53,6 +53,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
       }else {
 
+        echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
+      <span class="btn btn-xs btn-info no-radius ">
+        <i class="glyphicon glyphicon-arrow-left"></i>
+      </span> Volver </label>', '?r=reclamo-sugerencia', ['class' => 'btn btn-xs btn-white no-radius btn-info']);
+      echo " ";
+
         if( $model->ERS_ID == 2){
         echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
       <span class="btn btn-xs btn-info no-radius ">
@@ -66,15 +72,13 @@ $this->params['breadcrumbs'][] = $this->title;
           echo " ";
 
       }
-        echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
-      <span class="btn btn-xs btn-info no-radius ">
-        <i class="glyphicon glyphicon-arrow-left"></i>
-      </span> Volver </label>', '?r=reclamo-sugerencia', ['class' => 'btn btn-xs btn-white no-radius btn-info']);
+
       }
         ?>
 
     </p>
-
+<div class="box-body table-responsive no-padding table-bordered siempre_responsivo">
+  <div class="bs-callout bs-callout-info">
     <?php
 
 
@@ -139,5 +143,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
      ?>
-
+</div>
+</div>
 </div>
