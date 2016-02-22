@@ -26,11 +26,10 @@ use app\models\EstadoSolicitud
 
     <?= $form->field($model, 'HSO_FECHA') ?>
 
-    <?php // echo $form->field($model, 'HSO_COMENTARIO') ?>
+    
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
+        <?= Html::submitButton('<i class="ace-icon fa fa-search bigger-110"></i>Buscar', ['class' => 'btn btn-info']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
