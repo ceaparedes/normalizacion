@@ -32,18 +32,18 @@ use app\models\docs;
     <?= $form->field($model, 'ODO_ID')->dropDownList(
         ArrayHelper::map(OrigenDocumento::find()->all(),'ODO_ID','ODO_ORIGEN'),
         ['prompt'=>'Seleccione el Origen',
-            /*  'onChange'=>'
+            'onChange'=>'
                   $.post( "index.php?r=tipo-accion-solicitud/lists&id='.'"+$(this).val(), function(data){
-                    $( "select#TAS_ID" ).html( data );}
-                );'*/]
+                    $( "select#solicituddocumento-TAS_ID" ).html( data );}
+                );']
     )  ?>
 
     <?= $form->field($model, 'TAS_ID')->dropDownList(
         ArrayHelper::map(TipoAccionSolicitud::find()->all(),'TAS_ID','TAS_ACCION'),
-        ['prompt'=>'Seleccione la Accion',
-
-        ]
+        ['prompt'=>'Seleccione la Accion',]
     )  ?>
+
+
 
     <?= $form->field($docs, 'titulo')->widget(Select2::classname(), [
     'data' => ArrayHelper::map(docs::find()->all(),'id','titulo'),

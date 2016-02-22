@@ -84,7 +84,7 @@ class SolicitudDocumentoController extends Controller
           $query = new Query;
           $query->select ('SOL_ID')
               ->from('SOLICITUD_DOCUMENTO')
-              ->where('YEAR(REC_FECHA) = DATEPART(yyyy,getDate())')
+              ->where('YEAR(SOL_FECHA) = DATEPART(yyyy,getDate())')
               ->orderBy('SOL_ID DESC')
               ->limit('1');
 

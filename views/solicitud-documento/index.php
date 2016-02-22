@@ -22,13 +22,12 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'SOL_ID',
-            'DOC_CODIGO',
-            'VER_ID',
-            //'PDA_ID',
-            //'ESO_ID',
             'USU_RUT',
             // 'ODO_ID',
-            'TAS_ID',
+            [
+              'attribute'=> 'TAS_ID',
+              'value'=>'tAS.TAS_ACCION'
+            ],
             // 'SIS_ID',
             // 'SRS_ID',
             'SOL_FECHA',

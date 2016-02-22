@@ -40,7 +40,7 @@ class OrigenDocumento extends \yii\db\ActiveRecord
     {
         return [
             'ODO_ID' => 'Odo  ID',
-            'ODO_ORIGEN' => 'Odo  Origen',
+            'ODO_ORIGEN' => 'Origen Documento',
         ];
     }
 

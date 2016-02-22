@@ -45,7 +45,7 @@ class TipoAccionSolicitud extends \yii\db\ActiveRecord
         return [
             'ODO_ID' => 'Odo  ID',
             'TAS_ID' => 'Tas  ID',
-            'TAS_ACCION' => 'Tas  Accion',
+            'TAS_ACCION' => 'Accion a Realizar',
         ];
     }
 

@@ -39,7 +39,7 @@ class EstadoDerivacionSolicitudDocumento extends \yii\db\ActiveRecord
     {
         return [
             'EDS_ID' => 'Eds  ID',
-            'EDS_ESTADO' => 'Eds  Estado',
+            'EDS_ESTADO' => 'Estado',
         ];
     }
 

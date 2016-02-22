@@ -78,10 +78,10 @@ class TipoAccionSolicitudController extends Controller
                       ->count();
 
         $posts =  TipoAccionSolicitud::find()
-                      ->where(['TAS_ID' => $id])
+                      ->where(['ODO_ID' => $id])
                       ->all();
 
-        if ($countTipoAccionSolicitud > 0){
+        if ($countPosts > 0){
           foreach ($posts as $post) {
             echo "<option value =". $post->TAS_ID."'>".$post->TAS_ACCION . "</option>";
           }
@@ -91,23 +91,5 @@ class TipoAccionSolicitudController extends Controller
         }
     }
 
-    public function actionSubcat() {
-    $out = [];
-    if (isset($_POST['depdrop_parents'])) {
-        $parents = $_POST['depdrop_parents'];
-        if ($parents != null) {
-            $cat_id = $parents[0];
-            $out = self::getSubCatList($cat_id);
-            // the getSubCatList function will query the database based on the
-            // cat_id and return an array like below:
-            // [
-            //    ['id'=>'<sub-cat-id-1>', 'name'=>'<sub-cat-name1>'],
-            //    ['id'=>'<sub-cat_id_2>', 'name'=>'<sub-cat-name2>']
-            // ]
-            echo Json::encode(['output'=>$out, 'selected'=>'']);
-            return;
-        }
-    }
-    echo Json::encode(['output'=>'', 'selected'=>'']);
-}
+
 }

@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\models\OrigenDocumento;
 
 /**
  * This is the model class for table "SOLICITUD_DOCUMENTO".
@@ -59,7 +60,8 @@ class SolicitudDocumento extends \yii\db\ActiveRecord
             [['SOL_ID', 'USU_RUT', 'SOL_UNIDAD', 'SOL_FUNDAMENTO'], 'string'],
             [['file'],'file'],
 
-            [['SOL_FECHA','DOC_CODIGO', 'VER_ID', 'PDA_ID', 'ESO_ID', 'ODO_ID', 'TAS_ID', 'SIS_ID', 'SRS_ID'], 'safe']
+            [['SOL_FECHA','DOC_CODIGO', 'VER_ID', 'PDA_ID', 'ESO_ID', 'ODO_ID', 'TAS_ID', 'SIS_ID', 'SRS_ID'], 'safe'],
+            [['SOL_FUNDAMENTO'], 'textValidate']
         ];
     }
 
@@ -171,7 +173,7 @@ class SolicitudDocumento extends \yii\db\ActiveRecord
      */
     public function getODO()
     {
-        return $this->hasOne(TIPOACCIONSOLICITUD::className(), ['ODO_ID' => 'ODO_ID']);
+        return $this->hasOne(OrigenDocumento::className(), ['ODO_ID' => 'ODO_ID']);
     }
 
     /**
@@ -205,4 +207,27 @@ class SolicitudDocumento extends \yii\db\ActiveRecord
     {
         return $this->hasMany(SOLUCIONINMEDIATASACSAP::className(), ['SOL_ID' => 'SOL_ID']);
     }
+
+
+    public function textValidate($attribute,$params)
+      {
+          $pattern2 ='/(aaa|eee|iii|ooo|uuu|bbb|ccc|ddd|fff|ggg|hhh|jjj|kkk|llll|mmm|nnn|ñññ|ppp|qqq|rrr|sss|ttt|vvv|www|xxx|yyy|zzz|ºº|°°|!!|\.\.|\'\'|\"\"|\,\,)/i';
+          $pattern3 ='/(AAA|EEE|III|OOO|UUU|BBB|CCC|DDD|FFF|GGG|HHH|JJJ|KKK|LLLL|MMM|NNN|ÑÑÑ|PPP|QQQ|RRR|SSS|TTT|VVV|WWW|XXX|YYY|ZZZ)/i';
+          $pattern4 ='/(ááá|ÁÁA|ééá|ÉÉÉ|ííí|ÍÍÍ|óóó|ÓÓÓ|úúú|ÚÚÚ)/i';
+          $pattern5 = '/(1111|2222|3333|4444|5555|6666|7777|8888|9999|0000)/i';
+          $pattern6 = '/(conchetumare|mierda|weon|puto|puta|culiao|hueon|CONCHETUMARE|MIERDA|WEON|PUTO|PUTA|CULIAO|HUEON|maraca|MARACA|maricon|MARICON|chupalo|CHUPALO)/i';
+
+          $pattern7 ='/^([a-zA-ZñÑáéíóú0-9º°\.\,\'\"\)\(\-\@\:\/\+]+([[:space:][:punct:]]{0,2}[a-zA-ZñÑáéíóú0-9º°\.\,\'\"\)\(\-\@\:\/\+?!]+)*)$/D';  //fixed
+
+          $pattern8 ='/^([0-9º°\.\,\'\"\)\(\-\@\:\/\+]+)$/i';
+
+        if(!preg_match($pattern7, $this->$attribute))$this->addError($attribute,'Verifique que su texto tenga al menos una palabra.');
+
+        if(preg_match($pattern8, $this->$attribute) )$this->addError($attribute,'Debe ingresar una palabra');
+
+        if(preg_match($pattern2, $this->$attribute) OR preg_match($pattern3, $this->$attribute) OR preg_match($pattern4, $this->$attribute) OR preg_match($pattern5, $this->$attribute) OR preg_match($pattern6, $this->$attribute))
+        $this->addError($attribute,'Verifique el texto ingresado');
+
+      }
+
 }

@@ -40,7 +40,7 @@ class EstadoSolicitud extends \yii\db\ActiveRecord
     {
         return [
             'ESO_ID' => 'Eso  ID',
-            'ESO_ESTADO' => 'Eso  Estado',
+            'ESO_ESTADO' => 'Estado',
         ];
     }
 
