@@ -3,12 +3,13 @@
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
-use kartik\widgets\DepDrop;
+use kartik\select2\Select2;
 use yii\helpers\Url;
 
 //use models
 use app\models\OrigenDocumento;
 use app\models\TipoAccionSolicitud;
+use app\models\docs;
 
 
 /* @var $this yii\web\View */
@@ -26,55 +27,15 @@ use app\models\TipoAccionSolicitud;
 
     <?= $form->field($model, 'SOL_UNIDAD')->textInput() ?>
 
-    <?php
-    $provincia = ArrayHelper::map(OrigenDocumento::find()->all(), 'ODO_ID', 'ODO_ORIGEN');
-    echo $form->field($model, 'ODO_ID')->dropDownList(
-        $provincia,
-        [
-            'prompt'=>'Por favor elija una',
-            'onchange'=>'
-                            $.get( "'.Url::toRoute('dependent-dropdown/origen-documento').'", { id: $(this).val() } )
-                                .done(function( data ) {
-                                    $( "#'.Html::getInputId($model, 'ODO_ID').'" ).html( data );
-                                }
-                            );
-                        '
-        ]
-    );
-    ?>
-
-    <?php echo $form->field($model, 'TAS_ID')->dropDownList(array(),
-        [
-            'prompt'=>'Por favor elija uno',
-            'onchange'=>'
-                            $.get( "'.Url::toRoute('dependent-dropdown/tipo-accion-solicitud').'", { id: $(this).val() } )
-                                .done(function( data ) {
-                                    $( "#'.Html::getInputId($model, 'TAS_ID').'" ).html( data );
-                                }
-                            );
-                        '
-        ]
-    ); ?>
-
-    <?php
-    if ($model->isNewRecord)
-        echo $form->field($model, 'ODO_ID')->dropDownList(['prompt'=>'Por favor elija una']);
-    else
-    {
-        $localidad = ArrayHelper::map(Localidades::find()->where(['ODO_ID' =>$model->localidad_id])->all(), 'TAS_ID', 'TAS_ACCION');
-        echo $form->field($model, 'TAS_ID')->dropDownList($localidad);
-    }
-    ?>
 
 
-<!--
     <?= $form->field($model, 'ODO_ID')->dropDownList(
         ArrayHelper::map(OrigenDocumento::find()->all(),'ODO_ID','ODO_ORIGEN'),
-        ['prompt'=>'Seleccione el tipo de Documento',
-        'onChange'=>'
-            $.post( "index.php?r=TipoAccionSolicitud/lists&id='.'"+$(this).val(), function(data){
-              $( "select#ORIGEN_DOCUMENTO.TAS_ID" ).html( data );}
-          );']
+        ['prompt'=>'Seleccione el Origen',
+            /*  'onChange'=>'
+                  $.post( "index.php?r=tipo-accion-solicitud/lists&id='.'"+$(this).val(), function(data){
+                    $( "select#TAS_ID" ).html( data );}
+                );'*/]
     )  ?>
 
     <?= $form->field($model, 'TAS_ID')->dropDownList(
@@ -82,11 +43,17 @@ use app\models\TipoAccionSolicitud;
         ['prompt'=>'Seleccione la Accion',
 
         ]
-    )  ?> -->
+    )  ?>
 
-    <?= $form->field($model, 'DOC_CODIGO')->textInput() ?>
-
-    <?= $form->field($model, 'VER_ID')->textInput() ?>
+    <?= $form->field($docs, 'titulo')->widget(Select2::classname(), [
+    'data' => ArrayHelper::map(docs::find()->all(),'id','titulo'),
+    'language' => 'es',
+    'options' => ['placeholder' => 'Seleccione el Documento ...'],
+    'pluginOptions' => [
+        'allowClear' => true
+    ],
+    ]);
+    ?>
 
 
 

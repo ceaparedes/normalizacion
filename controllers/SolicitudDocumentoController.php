@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\SolicitudDocumento;
 use app\models\SolicitudDocumentoSearch;
+use app\models\docs;
 //use Yii tools
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -73,6 +74,8 @@ class SolicitudDocumentoController extends Controller
           return \yii\widgets\ActiveForm::validate($model);
         }
 
+        $docs = new docs();
+
 
         if ($model->load(Yii::$app->request->post())) {
 
@@ -109,9 +112,12 @@ class SolicitudDocumentoController extends Controller
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'docs' => $docs,
             ]);
         }
     }
+
+
 
     public function actionSend($id){
 

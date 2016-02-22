@@ -3,6 +3,9 @@
 namespace app\models;
 use Yii;
 
+
+class docs extends \yii\db\ActiveRecord
+{
 public static function getDb()
     {
         // use the "db2" application component
@@ -33,12 +36,12 @@ public static function getDb()
             'tipod' => 'tipod',
             'especie' => 'especie',
             'activo' => 'activo',
-            'titulo' => 'titulo',
+            'titulo' => 'Documento',
             'resumen' => 'resumen',
             'archivo' => 'URL',
-          
+
         ];
     }
 
-
+}
 ?>
