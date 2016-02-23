@@ -45,7 +45,7 @@ use app\models\docs;
 
 
 
-    <?= $form->field($docs, 'titulo')->widget(Select2::classname(), [
+    <?= $form->field($docs, 'id')->widget(Select2::classname(), [
     'data' => ArrayHelper::map(docs::find()->all(),'id','titulo'),
     'language' => 'es',
     'options' => ['placeholder' => 'Seleccione el Documento ...'],

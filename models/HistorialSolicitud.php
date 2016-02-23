@@ -11,7 +11,7 @@ use Yii;
  * @property integer $ESO_ID
  * @property string $USU_RUT
  * @property string $SOL_ID
- * @property string $HSO_FECHA
+ * @property string $HSO_FECHA_HORA
  * @property string $HSO_COMENTARIO
  *
  * @property SOLICITUDDOCUMENTO $sOL
@@ -36,7 +36,7 @@ class HistorialSolicitud extends \yii\db\ActiveRecord
         return [
             [['ESO_ID'], 'integer'],
             [['USU_RUT', 'SOL_ID', 'HSO_COMENTARIO'], 'string'],
-            [['HSO_FECHA'], 'safe']
+            [['HSO_FECHA_HORA'], 'safe']
         ];
     }
 
@@ -50,7 +50,7 @@ class HistorialSolicitud extends \yii\db\ActiveRecord
             'ESO_ID' => 'Estado',
             'USU_RUT' => 'Usuario',
             'SOL_ID' => 'Solicitud Nº',
-            'HSO_FECHA' => 'Fecha',
+            'HSO_FECHA_HORA' => 'Fecha',
             'HSO_COMENTARIO' => 'Comentario',
         ];
     }

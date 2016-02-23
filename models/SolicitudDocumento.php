@@ -19,8 +19,10 @@ use app\models\OrigenDocumento;
  * @property integer $SIS_ID
  * @property integer $SRS_ID
  * @property string $SOL_FECHA
+ * @property string $SOL_HORA
  * @property string $SOL_UNIDAD
  * @property string $SOL_FUNDAMENTO
+ * @property string $SOL_VISTO_BUENO
  *
  * @property ADJUNTOS[] $aDJUNTOSs
  * @property BORRADORDOCUMENTO[] $bORRADORDOCUMENTOs
@@ -50,17 +52,18 @@ class SolicitudDocumento extends \yii\db\ActiveRecord
 
     public $file;
 
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['SOL_ID'], 'required'],
+            [['SOL_ID', 'SOL_FUNDAMENTO'], 'required'],
             [['SOL_ID', 'USU_RUT', 'SOL_UNIDAD', 'SOL_FUNDAMENTO'], 'string'],
-            [['file'],'file'],
+            [['file'],'file','skipOnEmpty' => true,  'extensions'=> 'jpg, png, doc, docx, pdf'],
 
-            [['SOL_FECHA','DOC_CODIGO', 'VER_ID', 'PDA_ID', 'ESO_ID', 'ODO_ID', 'TAS_ID', 'SIS_ID', 'SRS_ID'], 'safe'],
+            [['SOL_FECHA','DOC_CODIGO', 'VER_ID', 'PDA_ID', 'ESO_ID', 'ODO_ID', 'TAS_ID', 'SIS_ID', 'SRS_ID','SOL_VISTO_BUENO','SOL_HORA'], 'safe'],
             [['SOL_FUNDAMENTO'], 'textValidate']
         ];
     }
@@ -82,8 +85,10 @@ class SolicitudDocumento extends \yii\db\ActiveRecord
             'SIS_ID' => 'ID Solucion SAC-SAP',
             'SRS_ID' => 'ID Solucion Reclamo Sugerencia',
             'SOL_FECHA' => 'Fecha Solicitud',
+            'SOL_HORA' => 'Hora Solicitud',
             'SOL_UNIDAD' => 'Unidad',
             'SOL_FUNDAMENTO' => 'Fundamento',
+            'SOL_VISTO_BUENO' =>'Visto Bueno',
             'file'=>'Adjunto',
         ];
     }

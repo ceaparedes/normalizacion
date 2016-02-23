@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="solicitud-documento-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="page-header"><h1><?= Html::encode($this->title) ?></h1></div>
 
     <?php
     if ($model->ESO_ID == 1){
@@ -76,11 +76,12 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="box-body table-responsive no-padding table-bordered siempre_responsivo">
 <div class="bs-callout bs-callout-info">
 
-    <?= DetailView::widget([
+    <?php
+
+        echo DetailView::widget([
         'model' => $model,
         'attributes' => [
             'SOL_ID',
-
             'eSO.ESO_ESTADO',
             'USU_RUT',
             'oDO.ODO_ORIGEN',
@@ -89,6 +90,28 @@ $this->params['breadcrumbs'][] = $this->title;
             'SOL_UNIDAD',
             'SOL_FUNDAMENTO',
         ],
-    ]) ?>
+    ]);
 
+      echo DetailView::widget([
+        'model' => $docs,
+        'attributes' => [
+            'titulo',
+        ],
+    ]);
+
+    if($adjunto && $model->ERS_ID !=6){
+      //muestra el enlace al Archivo adjunto
+      echo DetailView::widget([
+      'model' => $adjunto,
+      'attributes' => [
+
+        [
+          'attribute'=>'ADJ_URL',
+          'format'=>'raw',
+          'value'=>Html::a('Archivo Adjunto', $adjunto->ADJ_URL, ['target' => '_blank']),
+
+        ],],
+      ]); }
+
+    ?>
 </div>

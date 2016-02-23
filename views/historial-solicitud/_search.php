@@ -24,9 +24,9 @@ use app\models\EstadoSolicitud
         ['prompt'=>' ']
     )  ?>
 
-    <?= $form->field($model, 'HSO_FECHA') ?>
+    <?= $form->field($model, 'HSO_FECHA_HORA') ?>
 
-    
+
 
     <div class="form-group">
         <?= Html::submitButton('<i class="ace-icon fa fa-search bigger-110"></i>Buscar', ['class' => 'btn btn-info']) ?>

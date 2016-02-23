@@ -6,6 +6,7 @@ use Yii;
 use app\models\SolicitudDocumento;
 use app\models\SolicitudDocumentoSearch;
 use app\models\docs;
+use app\models\HistorialSolicitud;
 //use Yii tools
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -13,7 +14,7 @@ use yii\filters\VerbFilter;
 use yii\db\Query;
 use yii\db\QueryTrait;
 use yii\web\UploadedFile;
-use kartik\widgets\DepDrop;
+
 
 /**
  * SolicitudDocumentoController implements the CRUD actions for SolicitudDocumento model.
@@ -54,8 +55,27 @@ class SolicitudDocumentoController extends Controller
      */
     public function actionView($id)
     {
+      $model = $this->findModel($id);
+      $query = new Query;
+      $docs = new docs();
+
+      //buscar el adjunto según el numero del reclamo
+      $query->select ('ADJ_ID')
+          ->from('ADJUNTOS')
+          ->where('SOL_ID=:solucion', [':solucion' => $model->SOL_ID])
+          ->limit('1');
+      $query = $query->one();
+      //si existe el reclamo crea la instancia, sino deja la variable null
+      if ($query){
+        $adjunto = new Adjuntos();
+        $adjunto = $adjunto->findOne($query);
+      }else{
+        $adjunto = null;
+      }
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'adjunto'=> $adjunto,
+            'docs' => $docs,
         ]);
     }
 
@@ -113,17 +133,18 @@ class SolicitudDocumentoController extends Controller
           $model->save();
           //si el archivo no es null, entonces lo guarda y guarda el adjunto en la bd.
            if ($model->file != null){
-          $model->file->saveAs('uploads/reclamo-sugerencia/Adjunto '. $name . '.' .$model->file->extension);
+          $model->file->saveAs('uploads/solicitud-documento/Adjunto '. $name . '.' .$model->file->extension);
           //guardar la ruta en la bd
           $adjunto = new Adjuntos();
           $adjunto->SOL_ID = $model->SOL_ID;
           $adjunto->ADJ_TIPO = 'Solicitud Documento';
-          $adjunto->ADJ_URL = 'uploads/reclamo-sugerencia/Adjunto '. $name . '.' .$model->file->extension;
+          $adjunto->ADJ_URL = 'uploads/solicitud-documento/Adjunto '. $name . '.' .$model->file->extension;
           $adjunto->save();
          }
 
 
             $model->save();
+            
             return $this->redirect(['view', 'id' => $model->SOL_ID]);
         } else {
             return $this->render('create', [
@@ -226,6 +247,7 @@ class SolicitudDocumentoController extends Controller
             return $this->render('update', [
                 'model' => $model,
                 'docs' => $docs,
+
             ]);
         }
     }
@@ -238,9 +260,15 @@ class SolicitudDocumentoController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+      $model = $this->findModel($id);
+      if($model->ESO_ID == 1){
+        $model->ESO_ID = 6;
 
+        $model->save();
         return $this->redirect(['index']);
+      }
+
+      return $this->redirect(['site/index']);//parche
     }
 
     /**

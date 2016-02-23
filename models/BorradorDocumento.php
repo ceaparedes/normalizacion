@@ -25,7 +25,7 @@ class BorradorDocumento extends \yii\db\ActiveRecord
     {
         return 'BORRADOR_DOCUMENTO';
     }
-
+    public $file,
     /**
      * @inheritdoc
      */
@@ -35,7 +35,8 @@ class BorradorDocumento extends \yii\db\ActiveRecord
             [['EBD_ID'], 'required'],
             [['EBD_ID'], 'integer'],
             [['SOL_ID'], 'string'],
-            [['BDO_FECHA_ENVIO', 'BDO_FECHA_RESPUESTA'], 'safe']
+            [['BDO_FECHA_ENVIO', 'BDO_FECHA_RESPUESTA'], 'safe'],
+            [['file'],'file', 'skipOnEmpty' => true, 'extensions' => 'doc, docx, pdf']
         ];
     }
 
@@ -48,8 +49,9 @@ class BorradorDocumento extends \yii\db\ActiveRecord
             'BDO_ID' => 'Bdo  ID',
             'EBD_ID' => 'Ebd  ID',
             'SOL_ID' => 'Sol  ID',
-            'BDO_FECHA_ENVIO' => 'Bdo  Fecha  Envio',
-            'BDO_FECHA_RESPUESTA' => 'Bdo  Fecha  Respuesta',
+            'BDO_FECHA_ENVIO' => 'Fecha  Envio',
+            'BDO_FECHA_RESPUESTA' => 'Fecha  Respuesta',
+            'file'=> 'Archivo Adjunto',
         ];
     }
 

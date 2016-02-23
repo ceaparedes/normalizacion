@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\models\docs;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\SolicitudDocumentoSearch */
@@ -12,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="solicitud-documento-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="page-header"><h1><?= Html::encode($this->title) ?></h1></div>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
@@ -37,6 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
               'attribute'=> 'ESO_ID',
               'value'=>'eSO.ESO_ESTADO',
             ],
+
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

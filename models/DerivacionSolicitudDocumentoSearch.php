@@ -19,7 +19,7 @@ class DerivacionSolicitudDocumentoSearch extends DerivacionSolicitudDocumento
     {
         return [
             [['DSD_ID', 'EDS_ID'], 'integer'],
-            [['SOL_ID', 'USU_RUT', 'DSD_CARGO', 'DSD_UNIDAD', 'DSD_FECHA_DERIVACION', 'DSD_FECHA_RESPUESTA'], 'safe'],
+            [['SOL_ID', 'USU_RUT', 'DSD_CARGO', 'DSD_UNIDAD', 'DSD_FECHA_DERIVACION', 'DSD_FECHA_RESPUESTA','DSD_RESPUESTA'], 'safe'],
         ];
     }
 
@@ -59,6 +59,7 @@ class DerivacionSolicitudDocumentoSearch extends DerivacionSolicitudDocumento
             'DSD_ID' => $this->DSD_ID,
             'EDS_ID' => $this->EDS_ID,
             'DSD_FECHA_DERIVACION' => $this->DSD_FECHA_DERIVACION,
+            'DSD_RESPUESTA' => $this->DSD_RESPUESTA,
             'DSD_FECHA_RESPUESTA' => $this->DSD_FECHA_RESPUESTA,
         ]);
 

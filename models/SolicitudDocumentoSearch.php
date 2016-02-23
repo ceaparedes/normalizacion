@@ -6,6 +6,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\SolicitudDocumento;
+use app\models\docs;
 
 /**
  * SolicitudDocumentoSearch represents the model behind the search form about `app\models\SolicitudDocumento`.
@@ -18,7 +19,7 @@ class SolicitudDocumentoSearch extends SolicitudDocumento
     public function rules()
     {
         return [
-            [['SOL_ID', 'USU_RUT', 'SOL_FECHA', 'SOL_UNIDAD', 'SOL_FUNDAMENTO'], 'safe'],
+            [['SOL_ID', 'USU_RUT', 'SOL_FECHA','SOL_HORA', 'SOL_UNIDAD', 'SOL_FUNDAMENTO'], 'safe'],
             [['DOC_CODIGO', 'VER_ID', 'PDA_ID', 'ESO_ID', 'ODO_ID', 'TAS_ID', 'SIS_ID', 'SRS_ID'], 'integer'],
         ];
     }
@@ -47,6 +48,7 @@ class SolicitudDocumentoSearch extends SolicitudDocumento
             'query' => $query,
             /*  'query' => ReclamoSugerencia::find()->
                 where(['ESO_ID' => [2,3,4,5]]),*/
+
         ]);
 
         $this->load($params);
@@ -67,6 +69,7 @@ class SolicitudDocumentoSearch extends SolicitudDocumento
             'SIS_ID' => $this->SIS_ID,
             'SRS_ID' => $this->SRS_ID,
             'SOL_FECHA' => $this->SOL_FECHA,
+            'SOL_HORA' => $this->SOL_HORA,
         ]);
 
         $query->andFilterWhere(['like', 'SOL_ID', $this->SOL_ID])

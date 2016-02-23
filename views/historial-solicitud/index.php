@@ -7,12 +7,12 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\HistorialSolicitudSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Historial de Solicitudes de Documentos';
+$this->title = 'Historial evolutivo de Solicitudes de Documentos';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="historial-solicitud-index">
 
-      <div class="page-header"><h1><?= Html::encode($this->title) ?></h1>
+      <div class="page-header"><h1><?= Html::encode($this->title) ?></h1></div>
     <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
 
 
@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'ESO_ID',
             'USU_RUT',
             'SOL_ID',
-            'HSO_FECHA',
+            'HSO_FECHA_HORA',
             // 'HSO_COMENTARIO',
 
             ['class' => 'yii\grid\ActionColumn'],

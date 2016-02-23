@@ -20,6 +20,7 @@ use Yii;
  * @property SOLICITUDDOCUMENTO $sOL
  * @property DERIVACIONRECLAMOSUGERENCIA $dRS
  * @property RECLAMOSUGERENCIA $rECNUMERO
+ * @property BORRADORDOCUMENTO[] $bORRADORDOCUMENTOs
  */
 class Adjuntos extends \yii\db\ActiveRecord
 {
@@ -95,5 +96,10 @@ class Adjuntos extends \yii\db\ActiveRecord
     public function getRECNUMERO()
     {
         return $this->hasOne(RECLAMOSUGERENCIA::className(), ['REC_NUMERO' => 'REC_NUMERO']);
+    }
+
+    public function getBORRADORDOCUMENTOs()
+    {
+        return $this->hasMany(BORRADORDOCUMENTO::className(), ['EBD_ID' => 'EBD_ID']);
     }
 }

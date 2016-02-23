@@ -19,7 +19,7 @@ class HistorialSolicitudSearch extends HistorialSolicitud
     {
         return [
             [['HSO_ID', 'ESO_ID'], 'integer'],
-            [['USU_RUT', 'SOL_ID', 'HSO_FECHA', 'HSO_COMENTARIO'], 'safe'],
+            [['USU_RUT', 'SOL_ID', 'HSO_FECHA_HORA', 'HSO_COMENTARIO'], 'safe'],
         ];
     }
 
@@ -58,7 +58,7 @@ class HistorialSolicitudSearch extends HistorialSolicitud
         $query->andFilterWhere([
             'HSO_ID' => $this->HSO_ID,
             'ESO_ID' => $this->ESO_ID,
-            'HSO_FECHA' => $this->HSO_FECHA,
+            'HSO_FECHA_HORA' => $this->HSO_FECHA_HORA,
         ]);
 
         $query->andFilterWhere(['like', 'USU_RUT', $this->USU_RUT])
