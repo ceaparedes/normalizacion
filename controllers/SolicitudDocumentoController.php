@@ -3,10 +3,12 @@
 namespace app\controllers;
 
 use Yii;
+//use models
 use app\models\SolicitudDocumento;
 use app\models\SolicitudDocumentoSearch;
 use app\models\docs;
 use app\models\HistorialSolicitud;
+use app\models\Adjuntos;
 //use Yii tools
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -59,10 +61,11 @@ class SolicitudDocumentoController extends Controller
       $query = new Query;
       $docs = new docs();
 
+
       //buscar el adjunto según el numero del reclamo
       $query->select ('ADJ_ID')
           ->from('ADJUNTOS')
-          ->where('SOL_ID=:solucion', [':solucion' => $model->SOL_ID])
+          ->where('SOL_ID=:solicitud', [':solicitud' => $model->SOL_ID])
           ->limit('1');
       $query = $query->one();
       //si existe el reclamo crea la instancia, sino deja la variable null
@@ -96,20 +99,20 @@ class SolicitudDocumentoController extends Controller
 
         $docs = new docs();
 
-
         if ($model->load(Yii::$app->request->post())) {
 
           $model->SOL_FECHA = date('Y-m-d');
-
+          //Busca la Ultima Solicitud para analizarla
           $query = new Query;
           $query->select ('SOL_ID')
               ->from('SOLICITUD_DOCUMENTO')
               ->where('YEAR(SOL_FECHA) = DATEPART(yyyy,getDate())')
               ->orderBy('SOL_ID DESC')
               ->limit('1');
-
           $rows = $query->one();
+
           $current_year = date('Y');
+          //condicion que genera la ID de la Solicitud
           if ($rows){
               $past = implode($rows);
               $id = explode("-", $past);
@@ -130,7 +133,9 @@ class SolicitudDocumentoController extends Controller
           //Instancia para el adjunto
           $name = 'solicitud ' . $model->SOL_ID . ' '. $model->SOL_FECHA . ' ' . date('H i');
           $model->file = UploadedFile::getInstance($model,'file');
+          
           $model->save();
+
           //si el archivo no es null, entonces lo guarda y guarda el adjunto en la bd.
            if ($model->file != null){
           $model->file->saveAs('uploads/solicitud-documento/Adjunto '. $name . '.' .$model->file->extension);
@@ -143,8 +148,7 @@ class SolicitudDocumentoController extends Controller
          }
 
 
-            $model->save();
-            
+
             return $this->redirect(['view', 'id' => $model->SOL_ID]);
         } else {
             return $this->render('create', [
