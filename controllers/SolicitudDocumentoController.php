@@ -133,7 +133,7 @@ class SolicitudDocumentoController extends Controller
           //Instancia para el adjunto
           $name = 'solicitud ' . $model->SOL_ID . ' '. $model->SOL_FECHA . ' ' . date('H i');
           $model->file = UploadedFile::getInstance($model,'file');
-          
+
           $model->save();
 
           //si el archivo no es null, entonces lo guarda y guarda el adjunto en la bd.
@@ -231,7 +231,7 @@ class SolicitudDocumentoController extends Controller
 
         if ($model->load(Yii::$app->request->post()) ) {
           $model->SOL_FECHA = date('Y-m-d');
-          //$model->SOL_HORA = date('H:i:s');
+          $model->SOL_HORA = date('H:i:s');
           //Instancia para el adjunto
           $name = 'solicitud ' . $model->SOL_ID . ' '. $model->SOL_FECHA . ' ' . date('H i');
           $model->file = UploadedFile::getInstance($model,'file');
@@ -273,6 +273,70 @@ class SolicitudDocumentoController extends Controller
       }
 
       return $this->redirect(['site/index']);//parche
+    }
+
+    public function actionEvaluate($id)
+    {
+
+      $model = $this->findModel($id);
+
+
+      if(Yii::$app->request->isAjax && $solucion->load($_POST))
+      {
+        Yii::$app->response->format = 'json';
+        return \yii\widgets\ActiveForm::validate($model);
+      }
+
+      if ($solucion->load(Yii::$app->request->post()))
+      {
+        //Aprobar o rechazar el Reclamo o Sugerencia
+        $historial = new HistorialSolicitud();
+      if($solucion->SRS_VISTO_BUENO == 'Autorizado'){
+
+            $model->ESO_ID = 3;
+
+            $model->save();
+
+            //insertar en el historial la aprobacion
+            $historial->SOL_ID = $model->SOL_ID;
+            $historial->ESO_ID = $model->ESO_ID;
+            $historial->USU_RUT = $model->USU_RUT;
+            $historial->HSO_FECHA_HORA = date('Y-m-d H:i:s');
+            $historial->HSO_COMENTARIO = "El usuario ". $historial->USU_RUT . " ha Aprobado la Solicitud Nº ". $historial->SOL_ID ." el día ". $historial->HSO_FECHA_HORA;
+            $historial->save();
+
+        }else{
+            $model->ERS_ID = 4;
+            $model->save();
+
+            //insertar en e historial el rechazo
+            $historial->SOL_ID = $model->SOL_ID;
+            $historial->ESO_ID = $model->ESO_ID;
+            $historial->USU_RUT = $model->USU_RUT;
+            $historial->HSO_FECHA_HORA = date('Y-m-d H:i:s');
+            $historial->HSO_COMENTARIO = "El usuario ". $historial->USU_RUT . " ha Rechazado la Solicitud Nº ". $historial->SOL_ID ." el día ". $historial->HSO_FECHA_HORA;
+            $historial->save();
+          }
+
+        return $this->redirect(['view', 'id' => $model->SOL_ID]);
+
+
+
+      } else {
+          if($model->ERS_ID != 2){
+            //soucion parche
+            return $this->redirect(['/index']);
+          }else {
+            return $this->render('evaluate', [
+                'model' => $model,
+                'solucion'=>$solucion,
+            ]);
+          }
+
+      }
+
+
+
     }
 
     /**
