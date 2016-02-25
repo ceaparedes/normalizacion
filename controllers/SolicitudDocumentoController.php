@@ -9,6 +9,7 @@ use app\models\SolicitudDocumentoSearch;
 use app\models\docs;
 use app\models\HistorialSolicitud;
 use app\models\Adjuntos;
+use app\models\DerivacionSolicitudDocumento;
 //use Yii tools
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -62,6 +63,7 @@ class SolicitudDocumentoController extends Controller
       $docs = new docs();
 
 
+
       //buscar el adjunto según el numero del reclamo
       $query->select ('ADJ_ID')
           ->from('ADJUNTOS')
@@ -90,6 +92,7 @@ class SolicitudDocumentoController extends Controller
     public function actionCreate()
     {
         $model = new SolicitudDocumento();
+        $docs = new docs();
         //validacion ajax
         if(Yii::$app->request->isAjax && $model->load($_POST))
         {
@@ -97,7 +100,7 @@ class SolicitudDocumentoController extends Controller
           return \yii\widgets\ActiveForm::validate($model);
         }
 
-        $docs = new docs();
+
 
         if ($model->load(Yii::$app->request->post())) {
 
@@ -133,7 +136,8 @@ class SolicitudDocumentoController extends Controller
           //Instancia para el adjunto
           $name = 'solicitud ' . $model->SOL_ID . ' '. $model->SOL_FECHA . ' ' . date('H i');
           $model->file = UploadedFile::getInstance($model,'file');
-
+          $documento = $docs->id;
+          $docs->save();
           $model->save();
 
           //si el archivo no es null, entonces lo guarda y guarda el adjunto en la bd.
@@ -179,7 +183,7 @@ class SolicitudDocumentoController extends Controller
       }
 
        $model->SOL_FECHA = date('Y-m-d');
-       //$model->SOL_HORA = date('H:i:s');
+       $model->SOL_HORA = date('H:i:s');
        $model->ESO_ID = 2;
        $model->save();
 
@@ -267,7 +271,6 @@ class SolicitudDocumentoController extends Controller
       $model = $this->findModel($id);
       if($model->ESO_ID == 1){
         $model->ESO_ID = 6;
-
         $model->save();
         return $this->redirect(['index']);
       }
@@ -275,10 +278,13 @@ class SolicitudDocumentoController extends Controller
       return $this->redirect(['site/index']);//parche
     }
 
+
+
     public function actionEvaluate($id)
     {
 
       $model = $this->findModel($id);
+      $docs = new docs();
 
 
       if(Yii::$app->request->isAjax && $solucion->load($_POST))
@@ -287,11 +293,11 @@ class SolicitudDocumentoController extends Controller
         return \yii\widgets\ActiveForm::validate($model);
       }
 
-      if ($solucion->load(Yii::$app->request->post()))
+      if ($model->load(Yii::$app->request->post()))
       {
         //Aprobar o rechazar el Reclamo o Sugerencia
         $historial = new HistorialSolicitud();
-      if($solucion->SRS_VISTO_BUENO == 'Autorizado'){
+      if($model->SOL_VISTO_BUENO == 'Autorizado'){
 
             $model->ESO_ID = 3;
 
@@ -306,7 +312,7 @@ class SolicitudDocumentoController extends Controller
             $historial->save();
 
         }else{
-            $model->ERS_ID = 4;
+            $model->ESO_ID = 4;
             $model->save();
 
             //insertar en e historial el rechazo
@@ -323,18 +329,17 @@ class SolicitudDocumentoController extends Controller
 
 
       } else {
-          if($model->ERS_ID != 2){
+          if($model->ESO_ID != 2){
             //soucion parche
             return $this->redirect(['/index']);
           }else {
             return $this->render('evaluate', [
                 'model' => $model,
-                'solucion'=>$solucion,
+                'docs' =>$docs,
             ]);
           }
 
-      }
-
+      }         
 
 
     }

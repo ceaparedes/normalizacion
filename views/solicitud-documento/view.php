@@ -89,12 +89,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'SOL_FECHA',
             'SOL_UNIDAD',
             'SOL_FUNDAMENTO',
+            
         ],
     ]);
 
       echo DetailView::widget([
         'model' => $docs,
         'attributes' => [
+            'id',
             'titulo',
         ],
     ]);

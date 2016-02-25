@@ -30,7 +30,7 @@ public static function getDb()
     public function attributeLabels()
     {
         return [
-            'id' => 'id',
+            'id' => 'Documentos',
             'idc' => 'idc',
             'tipo' => 'tipo',
             'tipod' => 'tipod',

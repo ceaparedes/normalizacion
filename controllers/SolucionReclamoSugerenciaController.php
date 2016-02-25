@@ -89,7 +89,7 @@ class SolucionReclamoSugerenciaController extends Controller
       $model = $this->findModel($id);
       if($model->ESO_ID == 1){
         $model->ESO_ID = 6;
-      
+
         $model->save();
         return $this->redirect(['index']);
       }
@@ -186,6 +186,7 @@ class SolucionReclamoSugerenciaController extends Controller
           }
         }
 
+        //controlador que deriva el reclamo y sugerencia
         public function actionDerivate($id){
           $model = $this->findModel($id);
           $derivacion = new DerivacionReclamoSugerencia();

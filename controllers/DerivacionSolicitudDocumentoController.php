@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\DerivacionSolicitudDocumento;
 use app\models\DerivacionSolicitudDocumentoSearch;
+use app\models\SOlicitudDocumento;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -48,8 +49,13 @@ class DerivacionSolicitudDocumentoController extends Controller
      */
     public function actionView($id)
     {
+      $model = $this->findModel($id);
+      $solicitud = new SolicitudDocumento();
+      $query = new Query();
+      $
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
         ]);
     }
 

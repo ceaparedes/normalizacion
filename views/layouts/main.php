@@ -281,6 +281,24 @@ MyAsset::register($this);
 
               <b class="arrow"></b>
             </li>
+            <!--
+            <li class="">
+              <a href=" ">
+                <i class="menu-icon fa fa-caret-right"></i>
+                Ver Solicitudes Derivadas
+              </a>
+
+              <b class="arrow"></b>
+            </li>
+
+            <li class="">
+              <a href=" ">
+                <i class="menu-icon fa fa-caret-right"></i>
+                Ver que se yo
+              </a>
+            -->
+              <b class="arrow"></b>
+            </li>
 
             <li class="">
               <a href="index.php?r=historial-solicitud">

@@ -2,41 +2,42 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use app\models\SolicitudDocumento;
+use app\models\OrigenDocumento;
+use app\models\TipoAccionSolicitud;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\DerivacionSolicitudDocumento */
 
-$this->title = $model->DSD_ID;
+$this->title = 'Solicitud Derivada Nº: '$model->DSD_ID;
 $this->params['breadcrumbs'][] = ['label' => 'Derivacion Solicitud Documentos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="derivacion-solicitud-documento-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="page header"><h1><?= Html::encode($this->title) ?></h1></div>
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->DSD_ID], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->DSD_ID], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
+
+        <?= DetailView::widget([
+            'model' => $model,
+            'attributes' => [
+                'DSD_ID',
+                //'SOL_ID',
+                'USU_RUT',
+                'DSD_CARGO',
+                'DSD_UNIDAD',
+                'DSD_FECHA_DERIVACION',
             ],
         ]) ?>
-    </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'DSD_ID',
-            'EDS_ID',
-            'SOL_ID',
-            'USU_RUT',
-            'DSD_CARGO',
-            'DSD_UNIDAD',
-            'DSD_FECHA_DERIVACION',
-            'DSD_FECHA_RESPUESTA',
-        ],
-    ]) ?>
+        <?= DetailView::widget([
+            'model' => $solicitud,
+            'attributes' => [
+                'SOL_ID',
+                'oDO.ODO_ORIGEN',
+                'tAS.TAS_ACCION',
+                'SOL_FUNDAMENTO',
+            ],
+        ]) ?>
 
 </div>

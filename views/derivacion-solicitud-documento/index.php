@@ -7,17 +7,13 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\DerivacionSolicitudDocumentoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Derivacion Solicitud Documentos';
+$this->title = 'Solicitudes de Documentos Derivadas';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="derivacion-solicitud-documento-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="page-header"><h1><?= Html::encode($this->title) ?></h1></div>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?= Html::a('Create Derivacion Solicitud Documento', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
