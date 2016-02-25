@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\SolicitudDocumento */
 
-$this->title = ' Solicitud de Documentos';
-$this->params['breadcrumbs'][] = ['label' => 'Solicitud Documentos', 'url' => ['index']];
+$this->title = ' Solicitud de Documento';
+$this->params['breadcrumbs'][] = ['label' => 'Solicitudes de Documentos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="solicitud-documento-create">

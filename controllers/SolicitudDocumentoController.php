@@ -22,6 +22,21 @@ use yii\web\UploadedFile;
 /**
  * SolicitudDocumentoController implements the CRUD actions for SolicitudDocumento model.
  */
+
+ /*
+ **Estados de Solicitud Documento**
+ 1.-Guardado
+ 2.-Enviado Por el usuario
+ 3.-Aprobado Por Jefe Directo
+ 4.-Rechazado por Jefe Directo
+ 5.-Aprobado por Normalizacion
+ 6.-Rechazado por Normalizacion
+ 7.-Derivado
+ 8.-Cerrado
+ 9.-Eliminado
+
+**pueden surgir cambion
+ */
 class SolicitudDocumentoController extends Controller
 {
     public function behaviors()
@@ -339,7 +354,7 @@ class SolicitudDocumentoController extends Controller
             ]);
           }
 
-      }         
+      }
 
 
     }

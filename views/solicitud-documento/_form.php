@@ -33,7 +33,7 @@ use app\models\docs;
         ArrayHelper::map(OrigenDocumento::find()->all(),'ODO_ID','ODO_ORIGEN'),
         ['prompt'=>'Seleccione el Origen',
             'onChange'=>'
-                  $.post( "index.php?r=tipo-accion-solicitud/lists&id='.'"+$(this).val(), function(data){
+                  $.post( "index.php?r=tipo-accion-solicitud%2Flists&id='.'"+$(this).val(), function(data){
                     $( "select#solicituddocumento-TAS_ID" ).html( data );}
                 );']
     )  ?>

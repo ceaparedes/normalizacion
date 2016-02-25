@@ -20,6 +20,20 @@ use yii\web\UploadedFile;
 /**
  * ReclamoSugerenciaController implements the CRUD actions for ReclamoSugerencia model.
  */
+
+ /*
+ **Estados de Reclamos y Sugerencias**
+ 1.-guardado
+ 2.-Enviado Por el usuario
+ 3.-Aprobado por Normalizacion
+ 4.-Rechazado por Normalizacion
+ 5.-Derivado al Responsable
+ 6.-Respondido por el Responsable
+ 7.-Respuesta Aprobada por el usuario
+ 8.-Cerrado
+ 9.-Eliminado
+
+ */
 class ReclamoSugerenciaController extends Controller
 {
     public function behaviors()

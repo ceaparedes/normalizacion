@@ -6,8 +6,8 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\SolicitudDocumento */
 
-$this->title = $model->SOL_ID;
-$this->params['breadcrumbs'][] = ['label' => 'Solicitud Documentos', 'url' => ['index']];
+$this->title = "Solicitud " . $model->SOL_ID;
+$this->params['breadcrumbs'][] = ['label' => 'Solicitudes de Documentos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="solicitud-documento-view">
@@ -89,14 +89,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'SOL_FECHA',
             'SOL_UNIDAD',
             'SOL_FUNDAMENTO',
-            
+
         ],
     ]);
 
       echo DetailView::widget([
         'model' => $docs,
         'attributes' => [
-            'id',
+
             'titulo',
         ],
     ]);
