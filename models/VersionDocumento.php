@@ -14,6 +14,7 @@ use Yii;
  * @property string $VER_FECHA_VIGENCIA_INICIO
  * @property string $VER_FECHA_VIGENCIA_TERMINO
  * @property string $VER_URL
+ * @property string $VER_NUMERO_EDICION
  *
  * @property HISTORIALVERSIONDOCUMENTO[] $hISTORIALVERSIONDOCUMENTOs
  * @property HISTORIALVERSIONDOCUMENTO[] $hISTORIALVERSIONDOCUMENTOs0
@@ -38,8 +39,8 @@ class VersionDocumento extends \yii\db\ActiveRecord
     {
         return [
             [['DOC_CODIGO'], 'required'],
-            [['DOC_CODIGO', 'VER_NUMEROCOPIA'], 'integer'],
-            [['VER_DESCRIPCION', 'VER_URL'], 'string'],
+            [['DOC_CODIGO', 'VER_NUMERO_COPIA'], 'integer'],
+            [['VER_DESCRIPCION', 'VER_URL','VER_NUMERO_EDICION'], 'string'],
             [['VER_FECHA_VIGENCIA_INICIO', 'VER_FECHA_VIGENCIA_TERMINO'], 'safe']
         ];
     }
@@ -50,13 +51,13 @@ class VersionDocumento extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'DOC_CODIGO' => 'Doc  Codigo',
-            'VER_ID' => 'Ver  ID',
-            'VER_DESCRIPCION' => 'Ver  Descripcion',
-            'VER_NUMEROCOPIA' => 'Ver  Numerocopia',
-            'VER_FECHA_VIGENCIA_INICIO' => 'Ver  Fecha  Vigencia  Inicio',
-            'VER_FECHA_VIGENCIA_TERMINO' => 'Ver  Fecha  Vigencia  Termino',
-            'VER_URL' => 'Ver  Url',
+            'DOC_CODIGO' => 'Código Documento',
+            'VER_ID' => 'Versión Documento',
+            'VER_DESCRIPCION' => 'Descripcion de la Versión',
+            'VER_NUMERO_COPIA' => 'Número copia',
+            'VER_FECHA_VIGENCIA_INICIO' => ' Inicio  Vigencia',
+            'VER_FECHA_VIGENCIA_TERMINO' => 'Término Vigencia ',
+            'VER_URL' => 'URL',
         ];
     }
 

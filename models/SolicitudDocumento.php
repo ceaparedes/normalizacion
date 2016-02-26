@@ -29,7 +29,7 @@ use app\models\OrigenDocumento;
  * @property DERIVACIONSOLICITUDDOCUMENTO[] $dERIVACIONSOLICITUDDOCUMENTOs
  * @property DETALLECAMBIOSSOLICITUD[] $dETALLECAMBIOSSOLICITUDs
  * @property HISTORIALSOLICITUD[] $hISTORIALSOLICITUDs
- * @property VERSIONDOCUMENTO $dOCCODIGO
+ * @property DOCUMENTO $dOCCODIGO
  * @property VERSIONDOCUMENTO $vER
  * @property SOLUCIONRECLAMOSUGERENCIA $sRS
  * @property USUARIO $uSURUT
@@ -76,7 +76,7 @@ class SolicitudDocumento extends \yii\db\ActiveRecord
         return [
             'SOL_ID' => 'Nº Solicitud',
             'DOC_CODIGO' => 'Codigo Documento',
-            'VER_ID' => 'ID Version',
+            'VER_ID' => 'Version Documento',
             'PDA_ID' => 'ID Plan de Accion',
             'ESO_ID' => 'Estado',
             'USU_RUT' => 'Usuario',

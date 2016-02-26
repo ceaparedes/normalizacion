@@ -278,8 +278,6 @@ class ReclamoSugerenciaController extends Controller
           $adjunto = null;
         }
 
-
-
          $model->REC_FECHA = date('Y-m-d');
          $model->REC_HORA = date('H:i:s');
          $model->ERS_ID = 2;
@@ -325,7 +323,7 @@ class ReclamoSugerenciaController extends Controller
 
           //Aprobar o rechazar el Reclamo o Sugerencia
           $historial = new HistorialEstados();
-        if($solucion->SRS_VISTO_BUENO == 'Autorizado'){
+        if($solucion->SRS_VISTO_BUENO == 'Aprobado'){
 
               $model->ERS_ID = 3;
               $motivo = $model->REC_MOTIVO;

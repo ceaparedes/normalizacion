@@ -10,6 +10,8 @@ use app\models\docs;
 use app\models\HistorialSolicitud;
 use app\models\Adjuntos;
 use app\models\DerivacionSolicitudDocumento;
+use app\models\Documento;
+use app\models\DetalleCambiosSolicitud;
 //use Yii tools
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -35,7 +37,7 @@ use yii\web\UploadedFile;
  8.-Cerrado
  9.-Eliminado
 
-**pueden surgir cambion
+**pueden surgir cambios
  */
 class SolicitudDocumentoController extends Controller
 {
@@ -74,10 +76,30 @@ class SolicitudDocumentoController extends Controller
     public function actionView($id)
     {
       $model = $this->findModel($id);
-      $query = new Query;
-      $docs = new docs();
+      $query = new Query; // query para traer el archivo adjunto (en caso de que exista)
+      $doc = new Documento();
+      $docquery = new Query; //instancia query para traer el documento.
 
+      $cambios = new DetalleCambiosSolicitud();
+      $cquery = new Query; // instancia query para traer los cambios propuestos
 
+      /*docquery star*/
+      $docquery->select ('DOC_CODIGO')
+          ->from('DOCUMENTO')
+          ->where('DOC_CODIGO=:documento', [':documento' => $model->DOC_CODIGO])
+          ->limit('1');
+      $docquery = $docquery->one();
+      $doc = $doc->findOne($docquery);
+      /*docquery end*/
+
+      /*cquery start*/
+      $cquery->select ('DCS_ID')
+          ->from('DETALLE_CAMBIOS_SOLICITUD')
+          ->where('SOL_ID=:cambios', [':cambios' => $model->SOL_ID])
+          ->limit('1');
+      $cquery = $cquery->one();
+      $cambios = $cambios->findOne($cquery);
+      /*cquery end*/
 
       //buscar el adjunto según el numero del reclamo
       $query->select ('ADJ_ID')
@@ -95,7 +117,8 @@ class SolicitudDocumentoController extends Controller
         return $this->render('view', [
             'model' => $model,
             'adjunto'=> $adjunto,
-            'docs' => $docs,
+            'doc' => $doc,
+            'cambios'=>$cambios,
         ]);
     }
 
@@ -108,6 +131,7 @@ class SolicitudDocumentoController extends Controller
     {
         $model = new SolicitudDocumento();
         $docs = new docs();
+        $cambios = new DetalleCambiosSolicitud();
         //validacion ajax
         if(Yii::$app->request->isAjax && $model->load($_POST))
         {
@@ -115,9 +139,7 @@ class SolicitudDocumentoController extends Controller
           return \yii\widgets\ActiveForm::validate($model);
         }
 
-
-
-        if ($model->load(Yii::$app->request->post())) {
+        if ($model->load(Yii::$app->request->post()) && $cambios->load(Yii::$app->request->post())) {
 
           $model->SOL_FECHA = date('Y-m-d');
           //Busca la Ultima Solicitud para analizarla
@@ -151,9 +173,12 @@ class SolicitudDocumentoController extends Controller
           //Instancia para el adjunto
           $name = 'solicitud ' . $model->SOL_ID . ' '. $model->SOL_FECHA . ' ' . date('H i');
           $model->file = UploadedFile::getInstance($model,'file');
-          $documento = $docs->id;
-          $docs->save();
+
           $model->save();
+          $cambios->SOL_ID = $model->SOL_ID;
+          $cambios->save();
+
+
 
           //si el archivo no es null, entonces lo guarda y guarda el adjunto en la bd.
            if ($model->file != null){
@@ -173,6 +198,7 @@ class SolicitudDocumentoController extends Controller
             return $this->render('create', [
                 'model' => $model,
                 'docs' => $docs,
+                'cambios'=> $cambios,
             ]);
         }
     }
@@ -285,7 +311,7 @@ class SolicitudDocumentoController extends Controller
     {
       $model = $this->findModel($id);
       if($model->ESO_ID == 1){
-        $model->ESO_ID = 6;
+        $model->ESO_ID = 9;
         $model->save();
         return $this->redirect(['index']);
       }
@@ -312,10 +338,9 @@ class SolicitudDocumentoController extends Controller
       {
         //Aprobar o rechazar el Reclamo o Sugerencia
         $historial = new HistorialSolicitud();
-      if($model->SOL_VISTO_BUENO == 'Autorizado'){
+      if($model->SOL_VISTO_BUENO == 'Aprobado'){
 
             $model->ESO_ID = 3;
-
             $model->save();
 
             //insertar en el historial la aprobacion
@@ -329,7 +354,6 @@ class SolicitudDocumentoController extends Controller
         }else{
             $model->ESO_ID = 4;
             $model->save();
-
             //insertar en e historial el rechazo
             $historial->SOL_ID = $model->SOL_ID;
             $historial->ESO_ID = $model->ESO_ID;
@@ -356,6 +380,56 @@ class SolicitudDocumentoController extends Controller
 
       }
 
+
+    }
+
+
+/* action que evalua la solicitud de parte del departamento de Normalizacion*/
+    public function actionNevaluate($id)
+    {
+      $model = $this->findModel($id);
+
+      if(Yii::$app->request->isAjax && $solucion->load($_POST))
+      {
+        Yii::$app->response->format = 'json';
+        return \yii\widgets\ActiveForm::validate($model);
+      }
+
+      if ($model->load(Yii::$app->request->post()))
+      {
+        //Aprobar o rechazar el Reclamo o Sugerencia
+        $historial = new HistorialSolicitud();
+      if($model->SOL_VISTO_BUENO == 'Aprobado'){
+
+        $model->ESO_ID = 5;
+        $model->save();
+        //insertar en el historial la aprobacion
+        $historial->SOL_ID = $model->SOL_ID;
+        $historial->ESO_ID = $model->ESO_ID;
+        $historial->USU_RUT = $model->USU_RUT;
+        $historial->HSO_FECHA_HORA = date('Y-m-d H:i:s');
+        $historial->HSO_COMENTARIO = "El usuario ". $historial->USU_RUT . " ha Aprobado la Solicitud Nº ". $historial->SOL_ID ." el día ". $historial->HSO_FECHA_HORA;
+        $historial->save();
+      }else {
+
+        $model->ESO_ID = 6;
+        $model->save();
+        //insertar en e historial el rechazo
+        $historial->SOL_ID = $model->SOL_ID;
+        $historial->ESO_ID = $model->ESO_ID;
+        $historial->USU_RUT = $model->USU_RUT;
+        $historial->HSO_FECHA_HORA = date('Y-m-d H:i:s');
+        $historial->HSO_COMENTARIO = "El usuario ". $historial->USU_RUT . " ha Rechazado la Solicitud Nº ". $historial->SOL_ID ." el día ". $historial->HSO_FECHA_HORA;
+        $historial->save();
+      }
+      return $this->redirect(['view', 'id' => $model->SOL_ID]);
+
+    }else {
+      return $this->render('evaluate', [
+          'model' => $model,
+          'docs' =>$docs,
+      ]);
+    }
 
     }
 

@@ -9,7 +9,9 @@ use yii\helpers\Url;
 //use models
 use app\models\OrigenDocumento;
 use app\models\TipoAccionSolicitud;
+use app\models\Documento;
 use app\models\docs;
+use app\models\VersionDocumento;
 
 
 /* @var $this yii\web\View */
@@ -32,10 +34,7 @@ use app\models\docs;
     <?= $form->field($model, 'ODO_ID')->dropDownList(
         ArrayHelper::map(OrigenDocumento::find()->all(),'ODO_ID','ODO_ORIGEN'),
         ['prompt'=>'Seleccione el Origen',
-            'onChange'=>'
-                  $.post( "index.php?r=tipo-accion-solicitud%2Flists&id='.'"+$(this).val(), function(data){
-                    $( "select#solicituddocumento-TAS_ID" ).html( data );}
-                );']
+            ]
     )  ?>
 
     <?= $form->field($model, 'TAS_ID')->dropDownList(
@@ -43,23 +42,34 @@ use app\models\docs;
         ['prompt'=>'Seleccione la Accion',]
     )  ?>
 
-
-
-    <?= $form->field($docs, 'id')->widget(Select2::classname(), [
-    'data' => ArrayHelper::map(docs::find()->all(),'id','titulo'),
+    <?= $form->field($model, 'DOC_CODIGO')->widget(Select2::classname(), [
+    'data' => ArrayHelper::map(Documento::find()->all(),'DOC_CODIGO','DOC_TITULO'),
     'language' => 'es',
-    'options' => ['placeholder' => 'Seleccione el Documento ...'],
+    'options' => ['placeholder' => 'Seleccione el Documento '],
     'pluginOptions' => [
         'allowClear' => true
-    ],
-    ]);
+          ],
+        ]);
+    ?>
+
+    <?= $form->field($model, 'VER_ID')->widget(Select2::classname(), [
+    'data' => ArrayHelper::map(VersionDocumento::find()->all(),'VER_ID','VER_NUMERO_EDICION'),
+    'language' => 'es',
+    'options' => ['placeholder' => 'Seleccione la Versión del Documento'],
+    'pluginOptions' => [
+        'allowClear' => true
+          ],
+        ]);
     ?>
 
 
+    <?= $form->field($model, 'SOL_FUNDAMENTO')->textArea(array('rows'=>3)) ?>
 
-    <?= $form->field($model, 'SOL_FUNDAMENTO')->textArea() ?>
+    <?= $form->field($cambios, 'DCS_CAMBIOS')->textArea(array('rows'=>6)) ?>
 
     <?= $form->field($model, 'file')->fileInput() ?>
+
+
 
     <div class="form-group">
       <?= Html::submitButton('<label class="box-title pull-right margenbtnsuperior dark">

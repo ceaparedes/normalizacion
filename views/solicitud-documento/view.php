@@ -2,6 +2,10 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use app\models\Documento;
+use app\models\SolicitudDocumento;
+use app\models\VersionDocumento;
+use app\models\DetalleCambiosSolicitud;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\SolicitudDocumento */
@@ -16,6 +20,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php
     if ($model->ESO_ID == 1){
+
+    echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
+      <span class="btn btn-xs btn-info no-radius ">
+      <i class="glyphicon glyphicon-arrow-left"></i>
+    </span> Volver </label>', '?r=reclamo-sugerencia', ['class' => 'btn btn-xs btn-white no-radius btn-info']);
+    echo " ";
     //boton Actualizar
     echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
   <span class="btn btn-xs btn-info no-radius ">
@@ -47,29 +57,30 @@ $this->params['breadcrumbs'][] = $this->title;
       ]);
 
 
-  }else {
+  }elseif ($model->ESO_ID == 2) {
 
-    echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
-  <span class="btn btn-xs btn-info no-radius ">
-    <i class="glyphicon glyphicon-arrow-left"></i>
-  </span> Volver </label>', '?r=reclamo-sugerencia', ['class' => 'btn btn-xs btn-white no-radius btn-info']);
-  echo " ";
+      echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
+      <span class="btn btn-xs btn-info no-radius ">
+      <i class="glyphicon  glyphicon-pencil"></i></span>Evaluar</label>', ['evaluate', 'id' => $model->SOL_ID], ['class' => 'btn btn-xs btn-white no-radius btn-info']);
+      echo " ";
+  }elseif($model->ESO_ID == 3 ) {
+       Html::a('<label class="box-title pull-right margenbtnsuperior dark">
+        <span class="btn btn-xs btn-info no-radius">
+        <i class="ace-icon fa fa-expand"></i>
+        </span> Evaluar</label>', ['nevaluate', 'id' => $model->SOL_ID], ['class' => 'btn btn-xs btn-white no-radius btn-info']);
+        echo " ";
 
-    if( $model->ESO_ID == 2){
-    echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
-  <span class="btn btn-xs btn-info no-radius ">
-    <i class="glyphicon  glyphicon-pencil"></i></span>Evaluar</label>', ['evaluate', 'id' => $model->SOL_ID], ['class' => 'btn btn-xs btn-white no-radius btn-info']);
-    echo " ";
-  }else {
-      /*echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
-  <span class="btn btn-xs btn-info no-radius">
-    <i class="ace-icon fa fa-expand"></i>
-  </span> Ver Evaluacion</label>', ['solucion-reclamo-sugerencia/view', 'id' => $solucion->SRS_ID], ['class' => 'btn btn-xs btn-white no-radius btn-info']);
-      echo " ";*/
+  }elseif($model->ESO_ID == 5){
+
+    Html::a('<label class="box-title pull-right margenbtnsuperior dark">
+     <span class="btn btn-xs btn-info no-radius">
+     <i class="ace-icon fa fa-send"></i>
+     </span> Derivar</label>', ['derivate', 'id' => $model->SOL_ID], ['class' => 'btn btn-xs btn-white no-radius btn-info']);
+     echo " ";
 
   }
 
-  }
+
     ?>
 
 </p>
@@ -84,7 +95,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'SOL_ID',
             'eSO.ESO_ESTADO',
             'USU_RUT',
-            'oDO.ODO_ORIGEN',
             'tAS.TAS_ACCION',
             'SOL_FECHA',
             'SOL_UNIDAD',
@@ -93,15 +103,26 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]);
 
-      echo DetailView::widget([
-        'model' => $docs,
+        echo DetailView::widget([
+        'model' => $cambios,
         'attributes' => [
-
-            'titulo',
+            'DCS_CAMBIOS'
         ],
     ]);
 
-    if($adjunto && $model->ERS_ID !=6){
+        echo DetailView::widget([
+        'model' => $doc,
+        'attributes' => [
+            'DOC_CODIGO',
+            'DOC_TITULO',
+            'DOC_TIPO',
+            'oDO.ODO_ORIGEN',
+        ],
+    ]);
+
+
+
+    if($adjunto && $model->ERS_ID !=9){
       //muestra el enlace al Archivo adjunto
       echo DetailView::widget([
       'model' => $adjunto,

@@ -46,10 +46,10 @@ class Documento extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'DOC_CODIGO' => 'Doc  Codigo',
+            'DOC_CODIGO' => 'Codigo Documento',
             'ODO_ID' => 'Odo  ID',
             'UOD_ID' => 'Uod  ID',
-            'DOC_TITULO' => 'Doc  Titulo',
+            'DOC_TITULO' => 'Titulo',
             'DOC_TIPO' => 'Doc  Tipo',
         ];
     }

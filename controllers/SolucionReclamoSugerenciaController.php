@@ -123,7 +123,7 @@ class SolucionReclamoSugerenciaController extends Controller
           $historial = new HistorialEstados();
           $reclamo->save();//esto tiene que ir aca si o si
           $model->save();
-          if($reclamo->REC_VISTO_BUENO == 'Autorizado'){
+          if($reclamo->REC_VISTO_BUENO == 'Aprobado'){
               $model->ESR_ID = 2;
               $reclamo->ERS_ID = 7;
               $reclamo->save();

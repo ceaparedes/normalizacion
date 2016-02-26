@@ -28,6 +28,7 @@ $this->params['breadcrumbs'][] = 'Evaluar';
               'SOL_FECHA',
               'SOL_UNIDAD',
               'SOL_FUNDAMENTO',
+              'SOL_VISTO_BUENO',
           ],
       ]);
 

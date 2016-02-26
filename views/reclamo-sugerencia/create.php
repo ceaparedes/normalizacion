@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\ReclamoSugerencia */
 
-$this->title = 'Formulario Reclamos y Sugerencia';
+$this->title = 'Formulario Reclamos y Sugerencias';
 $this->params['breadcrumbs'][] = ['label' => 'Reclamo Sugerencias', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

@@ -13,10 +13,7 @@ use app\controllers\ReclamoSugerenciaController;
   <?php $form = ActiveForm::begin(); ?>
 
 
-  <?= $form->field($reclamo, 'REC_VISTO_BUENO')->radioList(array('Autorizado'=>'Autorizar','Rechazado'=>'Rechazar')); ?>
-
-
-
+  <?= $form->field($reclamo, 'REC_VISTO_BUENO')->radioList(array('Aprobado'=>'Autorizar','Rechazado'=>'Rechazar')); ?>
 
 
        <?= Html::submitButton('<label class="box-title pull-right margenbtnsuperior dark">
