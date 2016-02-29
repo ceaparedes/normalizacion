@@ -75,7 +75,7 @@ class SolicitudDocumento extends \yii\db\ActiveRecord
     {
         return [
             'SOL_ID' => 'Nº Solicitud',
-            'DOC_CODIGO' => 'Codigo Documento',
+            'DOC_CODIGO' => 'Documento',
             'VER_ID' => 'Version Documento',
             'PDA_ID' => 'ID Plan de Accion',
             'ESO_ID' => 'Estado',
