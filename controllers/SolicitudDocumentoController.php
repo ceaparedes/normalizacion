@@ -509,7 +509,7 @@ class SolicitudDocumentoController extends Controller
 
       if($query){
         $cambios = new DetalleCambiosSolicitud();
-        $cambios = $cambios->findOne($query)
+        $cambios = $cambios->findOne($query);
       }else {
         $cambios = NULL;
       }

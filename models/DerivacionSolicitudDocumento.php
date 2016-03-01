@@ -42,7 +42,7 @@ class DerivacionSolicitudDocumento extends \yii\db\ActiveRecord
         return [
             [['EDS_ID'], 'integer'],
             [['SOL_ID', 'USU_RUT', 'DSD_CARGO', 'DSD_UNIDAD','DSD_RESPUESTA'], 'string'],
-            [['file']'file','skipOnEmpty' => true,  'extensions'=> ' doc, docx, pdf']
+            [['file']'file','skipOnEmpty' => true,  'extensions'=> 'doc, docx, pdf']
             [['DSD_FECHA_DERIVACION', 'DSD_FECHA_RESPUESTA'], 'safe']
         ];
     }
