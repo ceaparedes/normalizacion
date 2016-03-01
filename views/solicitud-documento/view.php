@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="page-header"><h1><?= Html::encode($this->title) ?></h1></div>
 
     <?php
-    if ($model->ESO_ID == 1){
+    if ($model->ESO_ID == 1 /*Guardado*/){
 
     echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
       <span class="btn btn-xs btn-info no-radius ">
@@ -57,20 +57,20 @@ $this->params['breadcrumbs'][] = $this->title;
       ]);
 
 
-  }elseif ($model->ESO_ID == 2) {
+  }elseif ($model->ESO_ID == 2 /*enviado*/) {
 
       echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
       <span class="btn btn-xs btn-info no-radius ">
       <i class="glyphicon  glyphicon-pencil"></i></span>Evaluar</label>', ['evaluate', 'id' => $model->SOL_ID], ['class' => 'btn btn-xs btn-white no-radius btn-info']);
       echo " ";
-  }elseif($model->ESO_ID == 3 ) {
+  }elseif($model->ESO_ID == 3 /*Aprobado por jefe directo*/ ) {
        Html::a('<label class="box-title pull-right margenbtnsuperior dark">
         <span class="btn btn-xs btn-info no-radius">
         <i class="ace-icon fa fa-expand"></i>
         </span> Evaluar</label>', ['nevaluate', 'id' => $model->SOL_ID], ['class' => 'btn btn-xs btn-white no-radius btn-info']);
         echo " "; //esto es lo que quiero eliminar con los roles ya implementados
 
-  }elseif($model->ESO_ID == 5){
+  }elseif($model->ESO_ID == 5/*Aprobado por Normalizacion*/){
 
     Html::a('<label class="box-title pull-right margenbtnsuperior dark">
      <span class="btn btn-xs btn-info no-radius">
@@ -78,6 +78,8 @@ $this->params['breadcrumbs'][] = $this->title;
      </span> Derivar</label>', ['derivate', 'id' => $model->SOL_ID], ['class' => 'btn btn-xs btn-white no-radius btn-info']);
      echo " ";
 
+  }elseif ($model->ESO_ID == 6 /*Derivado a Normalizacion*/) {
+    # code...
   }
 
 
@@ -122,7 +124,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 
-    if($adjunto && $model->ERS_ID !=9){
+    if($adjunto ){
       //muestra el enlace al Archivo adjunto
       echo DetailView::widget([
       'model' => $adjunto,

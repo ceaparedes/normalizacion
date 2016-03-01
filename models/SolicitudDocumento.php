@@ -63,7 +63,7 @@ class SolicitudDocumento extends \yii\db\ActiveRecord
             [['SOL_ID', 'USU_RUT', 'SOL_UNIDAD', 'SOL_FUNDAMENTO'], 'string'],
             [['file'],'file','skipOnEmpty' => true,  'extensions'=> 'jpg, png, doc, docx, pdf'],
 
-            [['SOL_FECHA','DOC_CODIGO', 'VER_ID', 'PDA_ID', 'ESO_ID', 'ODO_ID', 'TAS_ID', 'SIS_ID', 'SRS_ID','SOL_VISTO_BUENO','SOL_HORA'], 'safe'],
+            [['SOL_FECHA','DOC_CODIGO', 'VER_ID', 'PDA_ID', 'ESO_ID', 'ODO_ID', 'TAS_ID', 'SIS_ID', 'SRS_ID','SOL_VISTO_BUENO','SOL_HORA','SOL_VISTO_BUENO_N'], 'safe'],
             [['SOL_FUNDAMENTO'], 'textValidate']
         ];
     }
@@ -89,6 +89,7 @@ class SolicitudDocumento extends \yii\db\ActiveRecord
             'SOL_UNIDAD' => 'Unidad',
             'SOL_FUNDAMENTO' => 'Fundamento',
             'SOL_VISTO_BUENO' =>'Visto Bueno',
+            'SOL_VISTO_BUENO_N'=>'Visto Bueno',
             'file'=>'Adjunto',
         ];
     }

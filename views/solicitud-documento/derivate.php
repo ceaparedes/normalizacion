@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="solicitud-documentos-derivate">
 
     <div class="page-header"><h1><?= Html::encode($this->title) ?></h1></div>
-    <?=DetailView::widget([
+    <?php echo DetailView::widget([
         'model' => $model,
         'attributes' => [
             'SOL_ID',
@@ -24,7 +24,26 @@ $this->params['breadcrumbs'][] = $this->title;
             'SOL_FUNDAMENTO',
             'eSO.ESO_ESTADO',
         ],
-    ]) ?>
+    ]);
+
+        echo DetailView::widget([
+        'model' => $cambios,
+        'attributes' => [
+            'DCS_CAMBIOS'
+        ],
+    ]);
+
+        echo DetailView::widget([
+        'model' => $doc,
+        'attributes' => [
+            'DOC_CODIGO',
+            'DOC_TITULO',
+            'DOC_TIPO',
+            'oDO.ODO_ORIGEN',
+        ],
+    ]);
+
+     ?>
 
     <?php $form = ActiveForm::begin(); ?>
 

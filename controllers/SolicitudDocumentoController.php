@@ -350,10 +350,16 @@ class SolicitudDocumentoController extends Controller
     {
 
       $model = $this->findModel($id);
-      $docs = new docs();
+      $cambios = new DetalleCambiosSolicitud();
+      $cquery= new Query;
+       $cquery->select ('DCS_ID')
+          ->from('DETALLE_CAMBIOS_SOLICITUD')
+          ->where('SOL_ID=:solicitud', [':solicitud' => $model->SOL_ID])
+          ->limit('1');
 
 
-      if(Yii::$app->request->isAjax && $solucion->load($_POST))
+
+      if(Yii::$app->request->isAjax && $model->load($_POST))
       {
         Yii::$app->response->format = 'json';
         return \yii\widgets\ActiveForm::validate($model);
@@ -363,6 +369,7 @@ class SolicitudDocumentoController extends Controller
       {
         //Aprobar o rechazar el Reclamo o Sugerencia
         $historial = new HistorialSolicitud();
+      //if($model->SOL_VISTO_BUENO == 'Aprobado' && 'insertar rol aca')
       if($model->SOL_VISTO_BUENO == 'Aprobado'){
 
             $model->ESO_ID = 3;
@@ -376,7 +383,8 @@ class SolicitudDocumentoController extends Controller
             $historial->HSO_COMENTARIO = "El usuario ". $historial->USU_RUT . " ha Aprobado la Solicitud Nº ". $historial->SOL_ID ." el día ". $historial->HSO_FECHA_HORA;
             $historial->save();
 
-        }else{
+        }//elseif($model->SOL_VISTO_BUENO == 'Rechazado' && 'inserte Rol aqui')
+        elseif($model->SOL_VISTO_BUENO == 'Rechazado'){
             $model->ESO_ID = 4;
             $model->save();
             //insertar en e historial el rechazo
@@ -384,9 +392,40 @@ class SolicitudDocumentoController extends Controller
             $historial->ESO_ID = $model->ESO_ID;
             $historial->USU_RUT = $model->USU_RUT;
             $historial->HSO_FECHA_HORA = date('Y-m-d H:i:s');
-            $historial->HSO_COMENTARIO = "El usuario ". $historial->USU_RUT . " ha Rechazado la Solicitud Nº ". $historial->SOL_ID ." el día ". $historial->HSO_FECHA_HORA;
+            $historial->HSO_COMENTARIO = "El usuario ". $historial->USU_RUT . " ha Rechazado la Solicitud Nº ". $historial->SOL_ID ." el día ". $historial->HSO_FECHA_HORA . '. El caso queda cerrado.';
             $historial->save();
           }
+          /*
+          elseif ($model->SOL_VISTO_BUENO_NYC == 'Aprobado' && 'inserte rol aqui') {
+              $model->ESO_ID = 5;
+              $model->save();
+
+              //insertar en el historial la aprobacion
+              $historial->SOL_ID = $model->SOL_ID;
+              $historial->ESO_ID = $model->ESO_ID;
+              $historial->USU_RUT = $model->USU_RUT;
+              $historial->HSO_FECHA_HORA = date('Y-m-d H:i:s');
+              $historial->HSO_COMENTARIO = "El usuario ". $historial->USU_RUT . " ha Aprobado la Solicitud Nº ". $historial->SOL_ID ." el día ". $historial->HSO_FECHA_HORA;
+              $historial->save();
+
+              return $this->redirect(['/derivate']);
+
+          }elseif($model->SOL_VISTO_BUENO_NYC == 'Rechazado' && 'inserte rol aqui'){
+
+          $model->ESO_ID = 6;
+          $model->save();
+
+          //insertar en el historial la aprobacion
+          $historial->SOL_ID = $model->SOL_ID;
+          $historial->ESO_ID = $model->ESO_ID;
+          $historial->USU_RUT = $model->USU_RUT;
+          $historial->HSO_FECHA_HORA = date('Y-m-d H:i:s');
+          $historial->HSO_COMENTARIO = "El usuario ". $historial->USU_RUT . " ha Rechazado la Solicitud Nº ". $historial->SOL_ID ." el día ". $historial->HSO_FECHA_HORA . 'cerrando el caso';
+          $historial->save();
+
+
+
+        }*/
 
         return $this->redirect(['view', 'id' => $model->SOL_ID]);
 
@@ -399,7 +438,7 @@ class SolicitudDocumentoController extends Controller
           }else {
             return $this->render('evaluate', [
                 'model' => $model,
-                'docs' =>$docs,
+                'cambios' =>$cambios
             ]);
           }
 
@@ -414,7 +453,7 @@ class SolicitudDocumentoController extends Controller
     {
       $model = $this->findModel($id);
 
-      if(Yii::$app->request->isAjax && $solucion->load($_POST))
+      if(Yii::$app->request->isAjax && $model->load($_POST))
       {
         Yii::$app->response->format = 'json';
         return \yii\widgets\ActiveForm::validate($model);
@@ -455,6 +494,63 @@ class SolicitudDocumentoController extends Controller
           'docs' =>$docs,
       ]);
     }
+
+    }
+
+    public function actionDerivate($id){
+      $model = $this->findModel($id);
+      $derivacion = new DerivacionSolicitudDocumento();
+
+      $query = new Query;
+      $query->select ('DCS_ID')
+         ->from('DETALLE_CAMBIOS_SOLICITUD')
+         ->where('SOL_ID=:solicitud', [':solicitud' => $model->SOL_ID])
+         ->limit('1');
+
+      if($query){
+        $cambios = new DetalleCambiosSolicitud();
+        $cambios = $cambios->findOne($query)
+      }else {
+        $cambios = NULL;
+      }
+
+
+
+      //validacion ajax
+      if(Yii::$app->request->isAjax && $model->load($_POST))
+      {
+        Yii::$app->response->format = 'json';
+        return \yii\widgets\ActiveForm::validate($model);
+      }
+
+      if ($derivacion->load(Yii::$app->request->post()) && $model->load(Yii::$app->request->post()) )
+      {
+        $model->ESO_ID = 7;
+        $model->save();
+
+        $derivacion->DSD_FECHA_DERIVACION = date('Y-m-d');
+        $derivacion->SOL_ID= $model->SOL_ID;
+        $derivacion->EDS_ID = 1;
+
+        $derivacion->save();
+        //Historial
+        $historial = new HistorialSolicitud();
+        $historial->SOL_ID= $model->SOL_ID;
+        $historial->ESO_ID = $model->ESO_ID;
+        $historial->USU_RUT = $model->USU_RUT;
+        $historial->HSO_FECHA_HORA = date('Y-m-d H:i:s');
+        $historial->HSO_COMENTARIO = "El usuario ". $historial->USU_RUT . " ha Derivado la solucitud Nº ". $model->SOL_ID ." a la unidad  ".$derivacion->DSD_UNIDAD . " el día ". $historial->HSO_FECHA_HORA;
+        $historial->save();
+
+        return $this->redirect(['derivacion-solicitud-documento/view', 'id' => $derivacion->DSD_ID]);
+
+      }else{
+        return $this->render('derivate', [
+            'model' => $model,
+            'derivacion' => $derivacion,
+            'cambios' => $cambios,
+            ]);
+          }
 
     }
 

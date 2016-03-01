@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\DerivacionSolicitudDocumento */
 
-$this->title = 'Derivar Solicitud de Documento';
+$this->title = 'Borrador Documento';
 $this->params['breadcrumbs'][] = ['label' => 'Derivacion Solicitud Documentos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

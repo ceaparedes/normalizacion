@@ -31,12 +31,23 @@ $this->params['breadcrumbs'][] = 'Evaluar';
           ],
       ]);
 
-        echo DetailView::widget([
-          'model' => $docs,
-          'attributes' => [
-              'titulo',
-          ],
-      ]); ?>
+      echo DetailView::widget([
+      'model' => $cambios,
+      'attributes' => [
+          'DCS_CAMBIOS'
+      ],
+  ]);
+
+      echo DetailView::widget([
+      'model' => $doc,
+      'attributes' => [
+          'DOC_CODIGO',
+          'DOC_TITULO',
+          'DOC_TIPO',
+          'oDO.ODO_ORIGEN',
+      ],
+  ]);
+   ?>
 
       <?php $form = ActiveForm::begin(); ?>
 
@@ -48,7 +59,7 @@ $this->params['breadcrumbs'][] = 'Evaluar';
           </span> Evaluar </label>',
          ['class' => 'btn btn-xs btn-white no-radius btn-info',
          'data' => [
-             'confirm' => 'Una vez enviada la Petición no se podrán efectuar cambios, ¿Está seguro de enviar la Derivación?',
+             'confirm' => 'Una vez enviada la Petición no se podrán efectuar cambios, ¿Está seguro de enviar la Evaluación?',
              'method' => 'post',
            ],]) ?>
 
