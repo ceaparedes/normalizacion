@@ -24,12 +24,12 @@ $this->params['breadcrumbs'][] = $this->title;
     echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
       <span class="btn btn-xs btn-info no-radius ">
       <i class="glyphicon glyphicon-arrow-left"></i>
-    </span> Volver </label>', '?r=reclamo-sugerencia', ['class' => 'btn btn-xs btn-white no-radius btn-info']);
+    </span> Volver </label>', '?r=Solicitud-documento', ['class' => 'btn btn-xs btn-white no-radius btn-info']);
     echo " ";
     //boton Actualizar
     echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
   <span class="btn btn-xs btn-info no-radius ">
-    <i class="glyphicon  glyphicon-pencil"></i></span> Actualizar </label>', ['update', 'id' => $model->SOL_ID],
+    <i class="glyphicon glyphicon-pencil"></i></span> Actualizar </label>', ['update', 'id' => $model->SOL_ID],
     ['class' => 'btn btn-xs btn-white no-radius btn-info']);
     echo ' ';
 
@@ -68,7 +68,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <span class="btn btn-xs btn-info no-radius">
         <i class="ace-icon fa fa-expand"></i>
         </span> Evaluar</label>', ['nevaluate', 'id' => $model->SOL_ID], ['class' => 'btn btn-xs btn-white no-radius btn-info']);
-        echo " ";
+        echo " "; //esto es lo que quiero eliminar con los roles ya implementados
 
   }elseif($model->ESO_ID == 5){
 

@@ -174,6 +174,7 @@ class SolicitudDocumentoController extends Controller
           $name = 'solicitud ' . $model->SOL_ID . ' '. $model->SOL_FECHA . ' ' . date('H i');
           $model->file = UploadedFile::getInstance($model,'file');
 
+
           $model->save();
           $cambios->SOL_ID = $model->SOL_ID;
           $cambios->save();
@@ -310,13 +311,37 @@ class SolicitudDocumentoController extends Controller
     public function actionDelete($id)
     {
       $model = $this->findModel($id);
+
+
+      $adjunto = new Adjuntos();
+      $query = new Query;
+      $query->select ('ADJ_ID')
+          ->from('ADJUNTOS')
+          ->where('SOL_ID=:solicitud', [':solicitud' => $model->SOL_ID])
+          ->limit('1');
+      $query = $query->one();
+      if ($query){
+          $adjunto = $adjunto->findOne($query);
+          $adjunto = $adjunto->delete($query);
+      }
+
+      $cambios = new DetalleCambiosSolicitud();
+      $cquery= new Query;
+       $cquery->select ('DCS_ID')
+          ->from('DETALLE_CAMBIOS_SOLICITUD')
+          ->where('SOL_ID=:solicitud', [':solicitud' => $model->SOL_ID])
+          ->limit('1');
+          if ($cquery){
+              $cambios = $cambios->findOne($cquery);
+              $cambios = $cambios->delete($cquery);
+          }
+
       if($model->ESO_ID == 1){
-        $model->ESO_ID = 9;
-        $model->save();
+        $this->findModel($id)->delete();
         return $this->redirect(['index']);
       }
 
-      return $this->redirect(['site/index']);//parche
+
     }
 
 

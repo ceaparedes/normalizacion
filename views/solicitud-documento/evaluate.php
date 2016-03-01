@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = 'Evaluar';
       <?= $form->field($model, 'SOL_VISTO_BUENO')->radioList(array('Aprobado'=>'Autorizar','Rechazado'=>'Rechazar')); ?>
 
       <?= Html::submitButton('<label class="box-title pull-right margenbtnsuperior dark">
-          <span class="btn btn-xs btn-info no-radius" id="reclamo-sugerencia-create" onclick="submit">
+          <span class="btn btn-xs btn-info no-radius" id="solicitud-documento-evaluate" onclick="submit">
             <i class="glyphicon glyphicon-pencil"></i>
           </span> Evaluar </label>',
          ['class' => 'btn btn-xs btn-white no-radius btn-info',

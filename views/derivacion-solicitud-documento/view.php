@@ -18,6 +18,21 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="page header"><h1><?= Html::encode($this->title) ?></h1></div>
 
 
+  <?php
+  echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
+      <span class="btn btn-xs btn-info no-radius ">
+      <i class="glyphicon glyphicon-arrow-left"></i>
+    </span> Volver </label>', '?r=solicitud-documento', ['class' => 'btn btn-xs btn-white no-radius btn-info']);
+    echo " ";?>
+
+    <?= Html::submitButton('<label class="box-title pull-right margenbtnsuperior dark">
+        <span class="btn btn-xs btn-info no-radius" id="derivacion-solicitud-documento-create" onclick="submit">
+          <i class="glyphicon glyphicon-pencil"></i>
+        </span> Crear Borrador </label>', 'create',
+       ['class' => 'btn btn-xs btn-white no-radius btn-info',
+       ]) ?>
+
+
         <?= DetailView::widget([
             'model' => $model,
             'attributes' => [

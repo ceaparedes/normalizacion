@@ -248,15 +248,22 @@ class ReclamoSugerenciaController extends Controller
     public function actionDelete($id)
     {
       $model = $this->findModel($id);
-      if($model->ERS_ID == 1){
-        $model->ERS_ID = 8;
-        $motivo = $model->REC_MOTIVO;
-        $model->REC_MOTIVO = $motivo;
-        $model->save();
-        return $this->redirect(['index']);
+      $query->select ('ADJ_ID')
+          ->from('ADJUNTOS')
+          ->where('REC_NUMERO=:reclamo', [':reclamo' => $model->REC_NUMERO])
+          ->limit('1');
+      $query = $query->one();
+      if ($query){
+          $adjunto = $adjunto->findOne($query);
+          $adjunto = $adjunto->delete($query);
       }
+      if($model->ERS_ID == 1){
+        $this->findModel($id)->delete();
+        return $this->redirect(['index']);
 
-      return $this->redirect(['site/index']);//parche
+        }
+
+
     }
 
 
