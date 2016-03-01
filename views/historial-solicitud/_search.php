@@ -12,6 +12,8 @@ use app\models\EstadoSolicitud
 
 <div class="historial-solicitud-search">
 
+    <div class="bs-callout bs-callout-info no-bottom">
+      
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
@@ -20,7 +22,7 @@ use app\models\EstadoSolicitud
     <?= $form->field($model, 'SOL_ID') ?>
 
     <?= $form->field($model, 'ESO_ID')->dropDownList(
-        ArrayHelper::map(ESTADOSOLICITUD::find()->Where(['ESO_ID'=>[2,3,4,5],])->all(),'ESO_ID','ESO_ESTADO'),
+        ArrayHelper::map(ESTADOSOLICITUD::find()->Where(['ESO_ID'=>[2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18],])->all(),'ESO_ID','ESO_ESTADO'),
         ['prompt'=>' ']
     )  ?>
 

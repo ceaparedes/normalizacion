@@ -7,7 +7,7 @@ use Yii;
 /**
  * This is the model class for table "DOCUMENTO".
  *
- * @property integer $DOC_CODIGO
+ * @property string $DOC_CODIGO
  * @property integer $ODO_ID
  * @property integer $UOD_ID
  * @property string $DOC_TITULO
@@ -35,8 +35,9 @@ class Documento extends \yii\db\ActiveRecord
     {
         return [
             [['DOC_CODIGO', 'ODO_ID', 'UOD_ID'], 'required'],
-            [['DOC_CODIGO', 'ODO_ID', 'UOD_ID'], 'integer'],
-            [['DOC_TITULO', 'DOC_TIPO'], 'string']
+            [['ODO_ID', 'UOD_ID'], 'integer'],
+            [['DOC_TITULO', 'DOC_TIPO'], 'string'],
+            [['DOC_CODIGO'],'safe'],
         ];
     }
 

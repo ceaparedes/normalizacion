@@ -9,7 +9,7 @@ use app\models\OrigenDocumento;
  * This is the model class for table "SOLICITUD_DOCUMENTO".
  *
  * @property string $SOL_ID
- * @property integer $DOC_CODIGO
+ * @property string $DOC_CODIGO
  * @property integer $VER_ID
  * @property integer $PDA_ID
  * @property integer $ESO_ID

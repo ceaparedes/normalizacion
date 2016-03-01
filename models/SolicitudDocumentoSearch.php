@@ -19,8 +19,8 @@ class SolicitudDocumentoSearch extends SolicitudDocumento
     public function rules()
     {
         return [
-            [['SOL_ID', 'USU_RUT', 'SOL_FECHA','SOL_HORA', 'SOL_UNIDAD', 'SOL_FUNDAMENTO'], 'safe'],
-            [['DOC_CODIGO', 'VER_ID', 'PDA_ID', 'ESO_ID', 'ODO_ID', 'TAS_ID', 'SIS_ID', 'SRS_ID'], 'integer'],
+            [['SOL_ID', 'USU_RUT', 'SOL_FECHA','SOL_HORA', 'SOL_UNIDAD', 'SOL_FUNDAMENTO','DOC_CODIGO'], 'safe'],
+            [[ 'VER_ID', 'PDA_ID', 'ESO_ID', 'ODO_ID', 'TAS_ID', 'SIS_ID', 'SRS_ID'], 'integer'],
         ];
     }
 

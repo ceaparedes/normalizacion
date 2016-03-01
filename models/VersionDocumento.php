@@ -7,7 +7,7 @@ use Yii;
 /**
  * This is the model class for table "VERSION_DOCUMENTO".
  *
- * @property integer $DOC_CODIGO
+ * @property string $DOC_CODIGO
  * @property integer $VER_ID
  * @property string $VER_DESCRIPCION
  * @property integer $VER_NUMEROCOPIA
@@ -39,8 +39,8 @@ class VersionDocumento extends \yii\db\ActiveRecord
     {
         return [
             [['DOC_CODIGO'], 'required'],
-            [['DOC_CODIGO', 'VER_NUMERO_COPIA'], 'integer'],
-            [['VER_DESCRIPCION', 'VER_URL','VER_NUMERO_EDICION'], 'string'],
+            [['VER_NUMERO_COPIA'], 'integer'],
+            [['DOC_CODIGO','VER_DESCRIPCION', 'VER_URL','VER_NUMERO_EDICION'], 'string'],
             [['VER_FECHA_VIGENCIA_INICIO', 'VER_FECHA_VIGENCIA_TERMINO'], 'safe']
         ];
     }
