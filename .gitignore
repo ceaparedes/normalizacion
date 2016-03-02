@@ -5,6 +5,7 @@ protected/runtime/*
 protected/data/*.db
 themes/classic/views/
 web/uploads/*
+config/dbacuario.php
 
 # =========================
 # Operating System Files
