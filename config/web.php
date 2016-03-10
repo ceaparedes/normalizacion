@@ -39,8 +39,9 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
-        'db2' => require(__DIR__ . '/dbcreditotest.php'),
-        'db3' => require(__DIR__ . '/dbdocs.php'),
+        'dbcreditotest' => require(__DIR__ . '/dbcreditotest.php'),
+        'dbdocs' => require(__DIR__ . '/dbdocs.php'),
+        'dbusuario' => require(__DIR__ . '/dbusuario.php'),
     ],
     'params' => $params,
 ];

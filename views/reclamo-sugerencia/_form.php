@@ -18,7 +18,7 @@ use app\models\TipoSolicitanteReclamoSugerencia;
                               'enableAjaxValidation'=>true]]); ?>
 
 
-    <?= $form->field($model, 'USU_RUT')->textInput() ?>
+    <?= $form->field($model, 'REC_NOMBRE_USUARIO')->textInput() ?>
 
     <?= $form->field($model, 'TSR_ID')->dropDownList(
         ArrayHelper::map(TIPOSOLICITANTERECLAMOSUGERENCIA::find()->all(),'TSR_ID','TSR_TIPO_SOLICITANTE'),
@@ -30,7 +30,7 @@ use app\models\TipoSolicitanteReclamoSugerencia;
         ['prompt'=>'Seleccione el tipo de su Solicitud']
     )  ?>
 
-    <?= $form->field($model, 'REC_NOMBRE_USUARIO')->textInput() ?>
+
 
     <?= $form->field($model, 'REC_EMAIL_USUARIO')->textInput() ?>
 

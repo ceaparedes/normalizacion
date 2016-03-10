@@ -9,7 +9,7 @@ class docs extends \yii\db\ActiveRecord
 public static function getDb()
     {
         // use the "db2" application component
-        return \Yii::$app->db3;
+        return \Yii::$app->dbdocs;
     }
 
     public static function tableName()
