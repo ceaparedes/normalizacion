@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use app\models\EstadoDerivacionSolicitudDocumento;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\DerivacionSolicitudDocumentoSearch */
@@ -17,20 +18,27 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        //'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'DSD_ID',
-            'EDS_ID',
             'SOL_ID',
+            [
+              'attribute'=>'EDS_ID',
+              'value'=>'eDS.EDS_ESTADO'
+            ],
             'USU_RUT',
             'DSD_CARGO',
             // 'DSD_UNIDAD',
-            // 'DSD_FECHA_DERIVACION',
+            'DSD_FECHA_DERIVACION',
+            [
+              'attribute'=>'SOL_ID',
+              'value'=>'sOL.tAS.TAS_ACCION',
+              'label'=>'Accion a Realizar'
+            ],
             // 'DSD_FECHA_RESPUESTA',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\HistorialRSActionColumn'],
         ],
     ]); ?>
 

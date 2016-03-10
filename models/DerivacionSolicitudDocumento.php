@@ -32,7 +32,6 @@ class DerivacionSolicitudDocumento extends \yii\db\ActiveRecord
         return 'DERIVACION_SOLICITUD_DOCUMENTO';
     }
 
-    public $file;
 
     /**
      * @inheritdoc
@@ -41,9 +40,8 @@ class DerivacionSolicitudDocumento extends \yii\db\ActiveRecord
     {
         return [
             [['EDS_ID'], 'integer'],
-            [['SOL_ID', 'USU_RUT', 'DSD_CARGO', 'DSD_UNIDAD','DSD_RESPUESTA'], 'string'],
-            [['file']'file','skipOnEmpty' => true,  'extensions'=> 'doc, docx, pdf']
-            [['DSD_FECHA_DERIVACION', 'DSD_FECHA_RESPUESTA'], 'safe']
+            [['SOL_ID', 'USU_RUT', 'DSD_CARGO', 'DSD_UNIDAD',], 'string'],
+            [['DSD_FECHA_DERIVACION', 'DSD_FECHA_RESPUESTA','DSD_RESPUESTA'], 'safe']
         ];
     }
 
@@ -53,15 +51,16 @@ class DerivacionSolicitudDocumento extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'DSD_ID' => 'Dsd  ID',
+            'DSD_ID' => 'Derivacion ID',
             'EDS_ID' => 'Estado',
             'SOL_ID' => 'Solicitud Nº',
             'USU_RUT' => 'Usuario',
             'DSD_CARGO' => 'Cargo',
             'DSD_UNIDAD' => 'Unidad',
             'DSD_FECHA_DERIVACION' => 'Fecha  Derivacion',
-            'DSD_RESPUESTA ' => 'Respuesta',
+            'DSD_RESPUESTA' => 'Respuesta',
             'DSD_FECHA_RESPUESTA' => 'Fecha  Respuesta',
+
         ];
     }
 

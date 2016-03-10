@@ -39,7 +39,7 @@ class EstadoBorradorDocumento extends \yii\db\ActiveRecord
     {
         return [
             'EBD_ID' => 'Ebd  ID',
-            'EBD_ESTADO' => 'Ebd  Estado',
+            'EBD_ESTADO' => 'Estado Borrador',
         ];
     }
 

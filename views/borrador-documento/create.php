@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\BorradorDocumento */
 
-$this->title = 'Create Borrador Documento';
+$this->title = 'Subir Borrador Documento';
 $this->params['breadcrumbs'][] = ['label' => 'Borrador Documentos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -15,7 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
-        'model' => $model,
+      'model' => $model,
+      'derivacion'=>$derivacion,
     ]) ?>
 
 </div>

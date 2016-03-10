@@ -46,13 +46,13 @@ class ReclamoSugerencia extends \yii\db\ActiveRecord
 
     //atributo necesario para realizar un adjunto
     public $file;
-    /*
-    $spnormalizacion = Yii::app()->db()->createCommand('select *
+
+    /*$spcargo = Yii::app()->db2()->createCommand('select *
                                         from Creditotest..JEFATURA_CONTRATO j
                                         where j.jco_fecha_inicio <= GETDATE()
                                         and (j.jco_fecha_termino >= GETDATE() or jco_fecha_termino is null )
-                                        and j.rep_codigo = 30004000');
-                                        */
+                                        and j.rep_codigo = 30004000');*/
+
 
 
     /**

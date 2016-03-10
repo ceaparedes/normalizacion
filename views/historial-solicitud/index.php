@@ -21,14 +21,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            'HSO_ID',
+            'SOL_ID',
             'ESO_ID',
             'USU_RUT',
-            'SOL_ID',
+
             'HSO_FECHA_HORA',
             // 'HSO_COMENTARIO',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\HistorialRSActionColumn'],
         ],
     ]); ?>
 

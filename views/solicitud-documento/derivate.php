@@ -48,11 +48,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($derivacion, 'USU_RUT')->textInput() ?>
-    <?= $form->field($derivacion, 'DRS_CARGO')->textInput() ?>
-    <?= $form->field($derivacion, 'DRS_UNIDAD')->textInput() ?>
+    <?= $form->field($derivacion, 'DSD_CARGO')->textInput() ?>
+    <?= $form->field($derivacion, 'DSD_UNIDAD')->textInput() ?>
 
     <?= Html::submitButton('<label class="box-title pull-right margenbtnsuperior dark">
-        <span class="btn btn-xs btn-info no-radius" id="reclamo-sugerencia-create" onclick="submit">
+        <span class="btn btn-xs btn-info no-radius" id="reclamo-sugerencia-create" >
           <i class="glyphicon glyphicon-send"></i>
         </span> Derivar </label>',
        ['class' => 'btn btn-xs btn-white no-radius btn-info',

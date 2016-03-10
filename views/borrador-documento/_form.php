@@ -12,13 +12,11 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'EBD_ID')->textInput() ?>
+    <?= $form->field($derivacion, 'DSD_RESPUESTA')->textArea(['label'=>'Respuesta']) ?>
 
-    <?= $form->field($model, 'SOL_ID')->textInput() ?>
+    <?= $form->field($model, 'file')->fileInput()  ?>
 
-    <?= $form->field($model, 'BDO_FECHA_ENVIO')->textInput() ?>
 
-    <?= $form->field($model, 'BDO_FECHA_RESPUESTA')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

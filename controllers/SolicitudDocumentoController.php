@@ -12,6 +12,7 @@ use app\models\Adjuntos;
 use app\models\DerivacionSolicitudDocumento;
 use app\models\Documento;
 use app\models\DetalleCambiosSolicitud;
+use app\models\BorradorDocumento;
 //use Yii tools
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -78,28 +79,33 @@ class SolicitudDocumentoController extends Controller
       $model = $this->findModel($id);
       $query = new Query; // query para traer el archivo adjunto (en caso de que exista)
       $doc = new Documento();
-      $docquery = new Query; //instancia query para traer el documento.
+      $doc = $doc->findOne($model->DOC_CODIGO);
 
       $cambios = new DetalleCambiosSolicitud();
       $cquery = new Query; // instancia query para traer los cambios propuestos
-
-      /*docquery star*/
-      $docquery->select ('DOC_CODIGO')
-          ->from('DOCUMENTO')
-          ->where('DOC_CODIGO=:documento', [':documento' => $model->DOC_CODIGO])
-          ->limit('1');
-      $docquery = $docquery->one();
-      $doc = $doc->findOne($docquery);
-      /*docquery end*/
-
       /*cquery start*/
       $cquery->select ('DCS_ID')
           ->from('DETALLE_CAMBIOS_SOLICITUD')
-          ->where('SOL_ID=:cambios', [':cambios' => $model->SOL_ID])
+          ->where('SOL_ID=:solicitud', [':solicitud' => $model->SOL_ID])
           ->limit('1');
       $cquery = $cquery->one();
       $cambios = $cambios->findOne($cquery);
       /*cquery end*/
+
+      $dquery = new Query; //instancia query para traer la derviacion hecha.
+
+      /*dquery start */
+      $dquery->select ('DSD_ID')
+          ->from('DERIVACION_SOLICITUD_DOCUMENTO')
+          ->where('SOL_ID=:solicitud', [':solicitud' => $model->SOL_ID])
+          ->limit('1');
+      $dquery = $dquery->one();
+      if($dquery){
+        $derivacion = new DerivacionSolicitudDocumento();
+      $derivacion = $derivacion->findOne($dquery);
+    }else{
+      $derivacion = NULL;
+    }/*dquery end*/
 
       //buscar el adjunto según el numero del reclamo
       $query->select ('ADJ_ID')
@@ -114,11 +120,26 @@ class SolicitudDocumentoController extends Controller
       }else{
         $adjunto = null;
       }
+      $borquery = new Query;
+      $borquery->select ('BDO_ID')
+          ->from('BORRADOR_DOCUMENTO')
+          ->where('SOL_ID=:solicitud', [':solicitud' => $model->SOL_ID])
+          ->limit('1');
+      $borquery = $borquery->one();
+      if ($borquery) {
+        $borrador = new BorradorDocumento();
+        $borrador = $borrador->findOne($borquery);
+
+      }else {
+        $borrador = NULL;
+      }
         return $this->render('view', [
             'model' => $model,
             'adjunto'=> $adjunto,
             'doc' => $doc,
             'cambios'=>$cambios,
+            'derivacion'=>$derivacion,
+            'borrador'=>$borrador,
         ]);
     }
 
@@ -130,7 +151,7 @@ class SolicitudDocumentoController extends Controller
     public function actionCreate()
     {
         $model = new SolicitudDocumento();
-        $docs = new docs();
+
         $cambios = new DetalleCambiosSolicitud();
         //validacion ajax
         if(Yii::$app->request->isAjax && $model->load($_POST))
@@ -179,8 +200,6 @@ class SolicitudDocumentoController extends Controller
           $cambios->SOL_ID = $model->SOL_ID;
           $cambios->save();
 
-
-
           //si el archivo no es null, entonces lo guarda y guarda el adjunto en la bd.
            if ($model->file != null){
           $model->file->saveAs('uploads/solicitud-documento/Adjunto '. $name . '.' .$model->file->extension);
@@ -198,7 +217,6 @@ class SolicitudDocumentoController extends Controller
         } else {
             return $this->render('create', [
                 'model' => $model,
-                'docs' => $docs,
                 'cambios'=> $cambios,
             ]);
         }
@@ -296,7 +314,7 @@ class SolicitudDocumentoController extends Controller
         } else {
             return $this->render('update', [
                 'model' => $model,
-                'docs' => $docs,
+
 
             ]);
         }
@@ -350,13 +368,23 @@ class SolicitudDocumentoController extends Controller
     {
 
       $model = $this->findModel($id);
-      $cambios = new DetalleCambiosSolicitud();
+
+      $doc = new Documento();
+      $doc = $doc->findOne($model->DOC_CODIGO);
+
+      /*query para hallar los cambios propuestos*/
       $cquery= new Query;
        $cquery->select ('DCS_ID')
           ->from('DETALLE_CAMBIOS_SOLICITUD')
           ->where('SOL_ID=:solicitud', [':solicitud' => $model->SOL_ID])
           ->limit('1');
-
+        if($cquery){
+          $cambios = new DetalleCambiosSolicitud();
+          $cambios = $cambios->findOne($cquery);
+        }else {
+          $cambios= NULL;
+        }
+        /*end query*/
 
 
       if(Yii::$app->request->isAjax && $model->load($_POST))
@@ -372,7 +400,7 @@ class SolicitudDocumentoController extends Controller
       //if($model->SOL_VISTO_BUENO == 'Aprobado' && 'insertar rol aca')
       if($model->SOL_VISTO_BUENO == 'Aprobado'){
 
-            $model->ESO_ID = 3;
+            $model->ESO_ID = 5;//cambiar a 3 cuando los roles esten implementados
             $model->save();
 
             //insertar en el historial la aprobacion
@@ -382,6 +410,7 @@ class SolicitudDocumentoController extends Controller
             $historial->HSO_FECHA_HORA = date('Y-m-d H:i:s');
             $historial->HSO_COMENTARIO = "El usuario ". $historial->USU_RUT . " ha Aprobado la Solicitud Nº ". $historial->SOL_ID ." el día ". $historial->HSO_FECHA_HORA;
             $historial->save();
+
 
         }//elseif($model->SOL_VISTO_BUENO == 'Rechazado' && 'inserte Rol aqui')
         elseif($model->SOL_VISTO_BUENO == 'Rechazado'){
@@ -438,7 +467,8 @@ class SolicitudDocumentoController extends Controller
           }else {
             return $this->render('evaluate', [
                 'model' => $model,
-                'cambios' =>$cambios
+                'cambios' =>$cambios,
+                'doc'=>$doc,
             ]);
           }
 
@@ -498,22 +528,25 @@ class SolicitudDocumentoController extends Controller
     }
 
     public function actionDerivate($id){
+
       $model = $this->findModel($id);
       $derivacion = new DerivacionSolicitudDocumento();
+      $doc = new Documento();
+      $doc = $doc->findOne($model->DOC_CODIGO);
 
-      $query = new Query;
-      $query->select ('DCS_ID')
-         ->from('DETALLE_CAMBIOS_SOLICITUD')
-         ->where('SOL_ID=:solicitud', [':solicitud' => $model->SOL_ID])
-         ->limit('1');
-
-      if($query){
-        $cambios = new DetalleCambiosSolicitud();
-        $cambios = $cambios->findOne($query);
-      }else {
-        $cambios = NULL;
-      }
-
+      /*query para hallar los cambios propuestos*/
+      $cquery= new Query;
+      $cquery->select ('DCS_ID')
+          ->from('DETALLE_CAMBIOS_SOLICITUD')
+          ->where('SOL_ID=:solicitud', [':solicitud' => $model->SOL_ID])
+          ->limit('1');
+        if($cquery){
+          $cambios = new DetalleCambiosSolicitud();
+          $cambios = $cambios->findOne($cquery);
+        }else {
+          $cambios= NULL;
+        }
+        /*end query*/
 
 
       //validacion ajax
@@ -523,34 +556,57 @@ class SolicitudDocumentoController extends Controller
         return \yii\widgets\ActiveForm::validate($model);
       }
 
-      if ($derivacion->load(Yii::$app->request->post()) && $model->load(Yii::$app->request->post()) )
+      if ($derivacion->load(Yii::$app->request->post()) )
       {
-        $model->ESO_ID = 7;
-        $model->save();
 
         $derivacion->DSD_FECHA_DERIVACION = date('Y-m-d');
         $derivacion->SOL_ID= $model->SOL_ID;
         $derivacion->EDS_ID = 1;
 
         $derivacion->save();
+
+        $model->ESO_ID = 7;
+        $model->save();
+
+
         //Historial
+        /*
         $historial = new HistorialSolicitud();
         $historial->SOL_ID= $model->SOL_ID;
         $historial->ESO_ID = $model->ESO_ID;
         $historial->USU_RUT = $model->USU_RUT;
         $historial->HSO_FECHA_HORA = date('Y-m-d H:i:s');
         $historial->HSO_COMENTARIO = "El usuario ". $historial->USU_RUT . " ha Derivado la solucitud Nº ". $model->SOL_ID ." a la unidad  ".$derivacion->DSD_UNIDAD . " el día ". $historial->HSO_FECHA_HORA;
-        $historial->save();
+        $historial->save();*/
 
-        return $this->redirect(['derivacion-solicitud-documento/view', 'id' => $derivacion->DSD_ID]);
+        return $this->redirect(['view', 'id' => $model->SOL_ID]);
 
       }else{
         return $this->render('derivate', [
             'model' => $model,
             'derivacion' => $derivacion,
             'cambios' => $cambios,
+            'doc'=>$doc,
             ]);
           }
+
+    }
+    public function actionEliminar($id){
+      $model = $this->findModel($id);
+      $version = new VersionDocumento();
+      $query = new Query;
+      $query->select('VER_ID')
+            ->from('VERSION_DOCUMENTO')
+            ->where('DOC_CODIGO=:documento', [':documento' => $model->DOC_CODIGO])
+            ->orderBy('VER_ID DESC')
+            ->limit('1');
+
+      if($model->load(Yii::$app->request->post()) ){
+
+        if($model->TAS_ID == 5 || $model->TAS_ID == 6){
+          
+        }
+      }
 
     }
 

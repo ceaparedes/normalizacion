@@ -4,12 +4,14 @@ namespace app\controllers;
 
 use Yii;
 //use models
+use app\models\sp;
 use app\models\ReclamoSugerencia;
 use app\models\SolucionReclamoSugerencia;
 use app\models\ReclamoSugerenciaSearch;
 use app\models\HistorialEstados;
 use app\models\Adjuntos;
 //herramientas de yii
+
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -36,6 +38,7 @@ use yii\web\UploadedFile;
  */
 class ReclamoSugerenciaController extends Controller
 {
+
     public function behaviors()
     {
         return [
@@ -155,6 +158,16 @@ class ReclamoSugerenciaController extends Controller
              $model->REC_NUMERO = $last_id;
              $model->ERS_ID = 1;
 
+
+             /*
+             $connection = Yii::$app->db2;
+             $sp = ' select * from Creditotest..JEFATURA_CONTRATO j
+             where j.jco_fecha_inicio <= GETDATE()
+             and (j.jco_fecha_termino >= GETDATE() or jco_fecha_termino is null )
+             and j.rep_codigo = 30400000';
+             $spquery = $connection->createCommand($sp)->queryAll();
+             */
+
              //Instancia para el adjunto
              $name = 'solicitud ' . $model->REC_NUMERO . ' '. $model->REC_FECHA . ' ' . date('H i');
              $model->file = UploadedFile::getInstance($model,'file');
@@ -185,7 +198,8 @@ class ReclamoSugerenciaController extends Controller
                 }
                 $historial->save();
                 */
-              return $this->redirect(['view', 'id' => $model->REC_NUMERO]);
+
+             //return $this->redirect(['view', 'id' => $model->REC_NUMERO]);
            } else {
                return $this->render('create', [
                    'model' => $model,

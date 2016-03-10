@@ -12,12 +12,9 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="borrador-documento-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="page-header"><h1><?= Html::encode($this->title) ?></h1></div>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('Create Borrador Documento', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -25,13 +22,17 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'BDO_ID',
-            'EBD_ID',
             'SOL_ID',
+            ['attribute' => 'EBD_ID',
+             'value'=>'eBD.EBD_ESTADO'
+            ],
+            ['attribute' => 'SOL_ID',
+            'value'=>'sOL.tAS.TAS_ACCION',
+            'label'=>'Accion Realizada'],
             'BDO_FECHA_ENVIO',
-            'BDO_FECHA_RESPUESTA',
 
-            ['class' => 'yii\grid\ActionColumn'],
+
+            ['class' => 'yii\grid\HistorialRSActionColumn'],
         ],
     ]); ?>
 

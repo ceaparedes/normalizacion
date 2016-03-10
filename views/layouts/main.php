@@ -281,9 +281,9 @@ MyAsset::register($this);
 
               <b class="arrow"></b>
             </li>
-            <!--
+
             <li class="">
-              <a href=" ">
+              <a href="index.php?r=derivacion-solicitud-documento">
                 <i class="menu-icon fa fa-caret-right"></i>
                 Ver Solicitudes Derivadas
               </a>
@@ -292,11 +292,10 @@ MyAsset::register($this);
             </li>
 
             <li class="">
-              <a href=" ">
+              <a href="index.php?r=borrador-documento">
                 <i class="menu-icon fa fa-caret-right"></i>
-                Ver que se yo
+                Ver Borradores de Documentos
               </a>
-            -->
               <b class="arrow"></b>
             </li>
 

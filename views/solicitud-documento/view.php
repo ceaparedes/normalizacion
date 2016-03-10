@@ -6,6 +6,7 @@ use app\models\Documento;
 use app\models\SolicitudDocumento;
 use app\models\VersionDocumento;
 use app\models\DetalleCambiosSolicitud;
+use app\models\BorradorDocumento;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\SolicitudDocumento */
@@ -19,13 +20,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="page-header"><h1><?= Html::encode($this->title) ?></h1></div>
 
     <?php
-    if ($model->ESO_ID == 1 /*Guardado*/){
-
     echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
       <span class="btn btn-xs btn-info no-radius ">
       <i class="glyphicon glyphicon-arrow-left"></i>
-    </span> Volver </label>', '?r=Solicitud-documento', ['class' => 'btn btn-xs btn-white no-radius btn-info']);
+    </span> Volver </label>', '?r=solicitud-documento', ['class' => 'btn btn-xs btn-white no-radius btn-info']);
     echo " ";
+    if ($model->ESO_ID == 1 /*Guardado*/){
+
     //boton Actualizar
     echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
   <span class="btn btn-xs btn-info no-radius ">
@@ -72,13 +73,31 @@ $this->params['breadcrumbs'][] = $this->title;
 
   }elseif($model->ESO_ID == 5/*Aprobado por Normalizacion*/){
 
-    Html::a('<label class="box-title pull-right margenbtnsuperior dark">
-     <span class="btn btn-xs btn-info no-radius">
-     <i class="ace-icon fa fa-send"></i>
-     </span> Derivar</label>', ['derivate', 'id' => $model->SOL_ID], ['class' => 'btn btn-xs btn-white no-radius btn-info']);
-     echo " ";
+    echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
+  <span class="btn btn-xs btn-info no-radius ">
+    <i class="glyphicon glyphicon-send"></i></span> Derivar </label>', ['derivate', 'id' => $model->SOL_ID],
+    ['class' => 'btn btn-xs btn-white no-radius btn-info']);
+    echo ' ';
 
-  }elseif ($model->ESO_ID == 6 /*Derivado a Normalizacion*/) {
+
+
+  }elseif ($model->ESO_ID == 7 /*Derivado a Normalizacion*/) {
+    echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
+  <span class="btn btn-xs btn-info no-radius ">
+    <i class="ace-icon fa fa-expand"></i></span> Ver Derivacion </label>', ['derivacion-solicitud-documento/view', 'id' => $derivacion->DSD_ID],
+    ['class' => 'btn btn-xs btn-white no-radius btn-info']);
+    echo ' ';
+
+  }elseif($model->ESO_ID == 8 && $borrador !=NULL){
+
+
+    echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
+  <span class="btn btn-xs btn-info no-radius ">
+    <i class="ace-icon fa fa-expand"></i></span> Ver Borrador Documento </label>', ['borrador-documento/view', 'id' => $borrador->BDO_ID],
+    ['class' => 'btn btn-xs btn-white no-radius btn-info']);
+    echo ' ';
+
+  }elseif ($model->ESO_ID == 9) {
     # code...
   }
 
@@ -95,13 +114,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'SOL_ID',
-            'eSO.ESO_ESTADO',
             'USU_RUT',
             'tAS.TAS_ACCION',
             'SOL_FECHA',
             'SOL_UNIDAD',
+            'eSO.ESO_ESTADO',
             'SOL_FUNDAMENTO',
-
         ],
     ]);
 

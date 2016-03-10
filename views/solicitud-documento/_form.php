@@ -52,17 +52,7 @@ use app\models\VersionDocumento;
         ]);
     ?>
 
-    <?= $form->field($model, 'VER_ID')->widget(Select2::classname(), [
-    'data' => ArrayHelper::map(VersionDocumento::find()->all(),'VER_ID','VER_NUMERO_EDICION'),
-    'language' => 'es',
-    'options' => ['placeholder' => 'Seleccione la Versión del Documento'],
-    'pluginOptions' => [
-        'allowClear' => true
-          ],
-        ]);
-    ?>
-
-
+    
     <?= $form->field($model, 'SOL_FUNDAMENTO')->textArea(array('rows'=>3)) ?>
 
     <?= $form->field($cambios, 'DCS_CAMBIOS')->textArea(array('rows'=>6)) ?>

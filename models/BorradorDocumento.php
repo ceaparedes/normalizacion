@@ -25,7 +25,10 @@ class BorradorDocumento extends \yii\db\ActiveRecord
     {
         return 'BORRADOR_DOCUMENTO';
     }
-    public $file,
+    public $file;
+    public $visto_bueno_normalizacion;
+    public $visto_bueno_revisor;
+    public $visto_bueno_aprobador;
     /**
      * @inheritdoc
      */
@@ -35,8 +38,8 @@ class BorradorDocumento extends \yii\db\ActiveRecord
             [['EBD_ID'], 'required'],
             [['EBD_ID'], 'integer'],
             [['SOL_ID'], 'string'],
-            [['BDO_FECHA_ENVIO', 'BDO_FECHA_RESPUESTA'], 'safe'],
-            [['file'],'file', 'skipOnEmpty' => true, 'extensions' => 'doc, docx, pdf']
+            [['BDO_FECHA_ENVIO', 'BDO_FECHA_RESPUESTA','visto_bueno_normalizacion'], 'safe'],
+            [['file'],'file', 'skipOnEmpty' => false, 'extensions' => 'doc, docx, pdf , xls, xlsx']
         ];
     }
 
@@ -46,12 +49,15 @@ class BorradorDocumento extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'BDO_ID' => 'Bdo  ID',
-            'EBD_ID' => 'Ebd  ID',
-            'SOL_ID' => 'Sol  ID',
+            'BDO_ID' => 'ID',
+            'EBD_ID' => 'Estado Borrador',
+            'SOL_ID' => 'Solicitud Nº',
             'BDO_FECHA_ENVIO' => 'Fecha  Envio',
             'BDO_FECHA_RESPUESTA' => 'Fecha  Respuesta',
-            'file'=> 'Archivo Adjunto',
+            'file'=> 'Borrador Documento',
+            'visto_bueno_normalizacion'=>'visto_bueno',
+            'visto_bueno_revisor'=>'visto_bueno',
+            'visto_bueno_aprobador'=>'visto_bueno',
         ];
     }
 
