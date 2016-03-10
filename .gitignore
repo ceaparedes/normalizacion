@@ -5,7 +5,7 @@ protected/runtime/*
 protected/data/*.db
 themes/classic/views/
 web/uploads/*
-config/dbacuario.php
+config/dbcreditotest.php
 
 # =========================
 # Operating System Files

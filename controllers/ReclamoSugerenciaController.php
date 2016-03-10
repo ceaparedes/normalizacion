@@ -4,7 +4,6 @@ namespace app\controllers;
 
 use Yii;
 //use models
-use app\models\sp;
 use app\models\ReclamoSugerencia;
 use app\models\SolucionReclamoSugerencia;
 use app\models\ReclamoSugerenciaSearch;
