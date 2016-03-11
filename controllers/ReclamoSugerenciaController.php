@@ -17,6 +17,7 @@ use yii\filters\VerbFilter;
 use yii\db\Query;
 use yii\db\QueryTrait;
 use yii\web\UploadedFile;
+use yii\filters\AccessControl;
 
 /**
  * ReclamoSugerenciaController implements the CRUD actions for ReclamoSugerencia model.
@@ -41,6 +42,16 @@ class ReclamoSugerenciaController extends Controller
     public function behaviors()
     {
         return [
+            'access'=>[
+                'class'=>AccessControl::classname(),
+                'only'=>['create','update','delete','send','view'],
+                'rules'=>[
+                  [
+                    'allow'=>true,
+                    'roles'=>['@'],
+                  ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

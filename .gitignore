@@ -60,3 +60,4 @@ $RECYCLE.BIN/
 composer.phar
 config/dbdocs.php
 config/dbusuario.php
+config/dbdocs.php
