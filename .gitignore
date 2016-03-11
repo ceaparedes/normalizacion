@@ -6,6 +6,7 @@ protected/data/*.db
 themes/classic/views/
 web/uploads/*
 config/dbcreditotest.php
+config/dbdocs.php
 
 # =========================
 # Operating System Files
