@@ -88,7 +88,7 @@ class ReclamoSugerencia extends \yii\db\ActiveRecord
             'TSR_ID' => 'Tipo Solicitante',
             'TRS_ID' => 'Tipo Solicitud',
             'REC_FECHA' => 'Fecha',
-            'REC_REPARTICION' => 'Unidad',
+            'REC_REPARTICION' => 'Repartición',
             'REC_HORA' => 'Hora',
             'REC_MOTIVO' => 'Motivo',
             'REC_VISTO_BUENO' => 'Visto  Bueno',
