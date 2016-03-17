@@ -87,7 +87,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'model' => $model,
             'attributes' => [
                 'REC_NUMERO',
-                'USU_RUT',
+                //'USU_RUT',
                 'REC_NOMBRE_USUARIO',
                 'REC_EMAIL_USUARIO',
                 'REC_TELEFONO_USUARIO',

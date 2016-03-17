@@ -31,10 +31,10 @@ public static function getDb()
     {
         return [
             'id' => 'Documentos',
-            'idc' => 'idc',
-            'tipo' => 'tipo',
-            'tipod' => 'tipod',
-            'especie' => 'especie',
+            'idc' => 'Categoría id',
+            'tipo' => 'tipo Documento',//reglamentos, policticas, etc
+            'tipod' => 'Categoría Documento',
+            'especie' => 'Origen Documento',
             'activo' => 'activo',
             'titulo' => 'Documento',
             'resumen' => 'resumen',

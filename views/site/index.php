@@ -5,7 +5,7 @@
 ?>
 <div class="site-index">
 
-    <div class="col-lg-9">
+    <div class="col-lg-8">
       <h5>
         La Universidad del Bío-Bío, es heredera de la más antigua tradición de la educación superior estatal y pública en la Región del Bío-Bío. Sus raíces se remontan a la creación de la Universidad Técnica del Estado, el 9 de abril de 1947, y al Centro Universitario de Ñuble de la Universidad  de Chile. Posteriormente, la Sede Concepción de la Universidad Técnica del Estado y el plantel chillanejo derivaron en la Universidad de Bío-Bío y el Instituto Profesional de Chillán, instituciones que dieron origen a la actual Universidad del Bío-Bío.
       </h5>
@@ -15,19 +15,19 @@
 
         <div class="row">
             <div class="col-lg-8">
-                <h2 >Misión de la Universidad del Bío-Bío</h2>
+                <div class="page-header"><h1>Misión de la Universidad del Bío-Bío</h1></div>
 
                 <h5>La Universidad del Bío-Bío, a partir de su naturaleza pública, responsable socialmente y estatal, tiene por misión, desde la Región del Biobío, aportar a la sociedad con la formación de personas integrales, a través de una Educación Superior de excelencia. Comprometida con los desafíos de la región y del país, contribuye a la movilidad e integración social por medio de; la generación y transferencia de conocimiento avanzado, mediante la docencia de pregrado y postgrado de calidad, la investigación fundamental, aplicada y de desarrollo, la vinculación bidireccional con el medio, la formación continua y la extensión. Asimismo, impulsa el emprendimiento y la innovación, el fortalecimiento de la internacionalización y el desarrollo sustentable de sus actividades, basada en una cultura participativa centrada en el respeto a las personas.</h5>
 
             </div>
             <div class="col-lg-8">
-                <h2>Visión de la Universidad del Bío-Bío</h2>
+                <div class="page-header"><h1>Visión de la Universidad del Bío-Bío</h1></div>
 
                 <h5>Ser reconocida a nivel nacional e internacional como una Universidad pública, responsable socialmente y regional que, comprometida con su rol estatal, desde la Región del Biobío, forma personas integrales de excelencia y aporta a través de su quehacer al desarrollo sustentable de la región y el país.</h5>
 
             </div>
             <div class="col-lg-8">
-                <h2>Declaración de Valores de la Universidad del Bío-Bío</h2>
+                <div class="page-header"><h1>Declaración de Valores de la Universidad del Bío-Bío</h1></div>
 
                 <ul>
                   <li><h5><b>Excelencia</b></h5></li>

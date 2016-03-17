@@ -1,38 +1,44 @@
 <?php
 
 namespace app\models;
+use Yii;
+use yii\db\ActiveRecord;
 
-class User extends \yii\base\Object implements \yii\web\IdentityInterface
+class User extends ActiveRecord implements \yii\web\IdentityInterface
 {
-    public $id;
-    public $username;
-    public $password;
-    public $authKey;
-    public $accessToken;
 
+  public static function getDb()
+      {
+          // use the "db2" application component
+          return \Yii::$app->dbusuario;
+      }
+
+  public static function tableName()
+  {
+    return 'usuarios';
+
+  }
+
+
+
+    /* aqui estan los usuarios por defecto, eliminar cuando este implementada la conexion con la base de datos.*/
     private static $users = [
-        '100' => [
-            'id' => '100',
-            'username' => 'admin',
-            'password' => 'admin',
-            'authKey' => 'test100key',
-            'accessToken' => '100-token',
-        ],
-        '101' => [
-            'id' => '101',
-            'username' => 'demo',
-            'password' => 'demo',
-            'authKey' => 'test101key',
-            'accessToken' => '101-token',
-        ],
-    ];
+
+
+     ];
 
     /**
      * @inheritdoc
      */
     public static function findIdentity($id)
     {
-        return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
+        //return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
+
+        $usuario = self::find()->where(['rut_us'=>$id])->one();
+        if(!count($usuario)){
+          return null;
+        }
+        return new static ($usuario);
     }
 
     /**
@@ -40,13 +46,12 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        foreach (self::$users as $user) {
-            if ($user['accessToken'] === $token) {
-                return new static($user);
-            }
+        $usuario = self::find()->where(['accessToken'=>$token])->one();
+        if(!count($usuario)){
+          return null;
         }
 
-        return null;
+        return new static($usuario);
     }
 
     /**
@@ -57,22 +62,21 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
      */
     public static function findByUsername($username)
     {
-        foreach (self::$users as $user) {
-            if (strcasecmp($user['username'], $username) === 0) {
-                return new static($user);
-            }
+        $usuario = self::find()->where(['rut_us'=>$username])->one();
+
+        if(!count($usuario)){
+          return null;
         }
 
-        return null;
+        return new static($usuario);
     }
 
     /**
      * @inheritdoc
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+     public function getId() {
+     return $this->rut_us;
+ }
 
     /**
      * @inheritdoc
@@ -96,8 +100,8 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
      * @param  string  $password password to validate
      * @return boolean if password provided is valid for current user
      */
-    public function validatePassword($password)
+    public function validatePassword($password_us)
     {
-        return $this->password === $password;
+        return $this->password_us === $password_us;
     }
 }

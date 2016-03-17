@@ -22,7 +22,6 @@ class MyAsset extends AssetBundle
         'css/bootstrap.min.css',
         'css/chosen.css',
         'css/ace.min.css',
-
         'css/ace-skins.min.css',
 
 

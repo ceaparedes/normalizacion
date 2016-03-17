@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //['class' => 'yii\grid\SerialColumn'],
 
             'REC_NUMERO',
-            'USU_RUT',
+            //'USU_RUT',
             'REC_NOMBRE_USUARIO',
             //'Busqueda Tipo Solicitante',
             [

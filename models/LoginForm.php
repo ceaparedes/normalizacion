@@ -10,12 +10,6 @@ use yii\base\Model;
  */
 class LoginForm extends Model
 {
-  public static function getDb()
-      {
-          // use the "db2" application component
-          return \Yii::$app->dbusuario;
-      }
-
     public $username;
     public $password;
     public $rememberMe = false;
@@ -57,7 +51,7 @@ class LoginForm extends Model
             $user = $this->getUser();
 
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect username or password.');
+                $this->addError($attribute, 'Usuario y/o contraseña incorrectos.');
             }
         }
     }
