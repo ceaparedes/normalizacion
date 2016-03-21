@@ -18,8 +18,7 @@ $this->params['breadcrumbs'][] = 'Resultados';
 ?>
 
 <div class="solucion-reclamo-sugerencia-create">
-    <div class="page-header"><h1><?= Html::encode($this->title) ?></h1></div>
-
+  
     <?=DetailView::widget([
         'model' => $model,
         'attributes' => [

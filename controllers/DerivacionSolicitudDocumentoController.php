@@ -19,6 +19,7 @@ use yii\filters\VerbFilter;
 use yii\db\Query;
 use yii\db\QueryTrait;
 use yii\web\UploadedFile;
+use yii\filters\AccessControl;
 
 
 /**
@@ -29,6 +30,22 @@ class DerivacionSolicitudDocumentoController extends Controller
     public function behaviors()
     {
         return [
+          'access'=>[
+            'class'=>AccessControl::classname(),
+            'only'=>['view','borrador'],
+            'rules'=>[
+              [
+                'allow'=>true,
+                'actions' =>['view','borrador'],
+                'roles'=>['@'],//cambiar al rol a Funcionario DNYC
+              ],
+              [
+                'allow'=>true,
+                'actions' =>['view','borrador'],
+                'roles'=>['@'],//cambiar al rol a Funcionario DNYC
+              ],
+            ],
+          ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -63,9 +80,6 @@ class DerivacionSolicitudDocumentoController extends Controller
       $model = $this->findModel($id);
       $solicitud = new SolicitudDocumento();
       $solicitud = $solicitud->findOne($model->SOL_ID);
-
-
-
 
       $docquery = new Query;
       $docquery->select ('DOC_CODIGO')

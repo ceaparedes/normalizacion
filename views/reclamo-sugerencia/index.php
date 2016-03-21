@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="reclamo-sugerencia-index">
 
-      <div class="page-header"><h1><?= Html::encode($this->title) ?></h1></div>
+      
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
@@ -72,7 +72,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             //'REC_VISTO_BUENO',
 
-            ['class' => 'yii\grid\ReclamoSugerenciaActionColumn'],
+            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
   </div>

@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = 'Evaluar';
  ?>
 
  <div class="solicitud-documento-evaluate">
-       <div class="page-header"><h1><?= Html::encode($this->title) ?></h1></div>
+      
 
 
 <?php

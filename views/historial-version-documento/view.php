@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="historial-version-documento-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->HVD_ID], ['class' => 'btn btn-primary']) ?>

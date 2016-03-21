@@ -52,7 +52,7 @@ use app\models\VersionDocumento;
         ]);
     ?>
 
-    
+
     <?= $form->field($model, 'SOL_FUNDAMENTO')->textArea(array('rows'=>3)) ?>
 
     <?= $form->field($cambios, 'DCS_CAMBIOS')->textArea(array('rows'=>6)) ?>

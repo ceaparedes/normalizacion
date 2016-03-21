@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = 'Evaluar';
 ?>
 
 <div class="reclamo-sugerencia-evaluate">
-      <div class="page-header"><h1><?= Html::encode($this->title) ?></h1></div>
+      
 
   <?=DetailView::widget([
       'model' => $model,

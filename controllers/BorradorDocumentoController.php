@@ -19,6 +19,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\db\Query;
 use yii\db\QueryTrait;
+use yii\filters\AccessControl;
 
 /**
  * BorradorDocumentoController implements the CRUD actions for BorradorDocumento model.
@@ -28,6 +29,22 @@ class BorradorDocumentoController extends Controller
     public function behaviors()
     {
         return [
+          'access'=>[
+            'class'=>AccessControl::classname(),
+            'only'=>['view','evaluate'],
+            'rules'=>[
+              [
+                'allow'=>true,
+                'actions' =>['view','evaluate'],
+                'roles'=>['@'],//cambiar al rol a JDNYC , REVISOR Y APROBADOR.
+              ],
+              [
+                'allow'=>true,
+                'actions' =>['view'],
+                'roles'=>['@'],//cambiar al rol a funcionario DNYC
+              ],
+            ],
+          ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

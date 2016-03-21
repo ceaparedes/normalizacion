@@ -16,8 +16,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="reclamo-sugerencia-view">
 
-      <div class="page-header"><h1><?= Html::encode($this->title) ?></h1></div>
-
     <p>
         <?php
         if ($model->ERS_ID == 1){

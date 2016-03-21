@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = 'Actualización Nº'.$this->title;
 ?>
 <div class="historial-estados-view">
 
-      <div class="page-header"><h1><?= Html::encode($this->title) ?></h1></div>
+    
 
     <p>
         <?= Html::a('Volver a menú Anterior', ['index'], ['class' => 'btn btn-default']) ?>

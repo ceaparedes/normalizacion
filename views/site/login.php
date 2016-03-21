@@ -11,13 +11,13 @@ $this->title = 'Acceso (provisorio)';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
-    <div class="page-header"><h1><?= Html::encode($this->title) ?></h1></div>
+
 
     <p>Complete los datos para su Acceso:</p>
 
     <?php $form = ActiveForm::begin([
         'id' => 'login-form',
-        'options' => ['class' => 'form-horizontal'],
+        
 
     ]); ?>
 

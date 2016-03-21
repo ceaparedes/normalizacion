@@ -14,8 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="borrador-documento-create">
 
-    <div class="page-header"><h1><?= Html::encode($this->title) ?></h1></div>
-
+    
 <div class="borrador-documento-form">
 
   <?php echo DetailView::widget([

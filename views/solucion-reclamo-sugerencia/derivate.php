@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = 'Derivar';
 ?>
 
 <div class="solucion-reclamo-sugerencia-derivate">
-    <div class="page-header"><h1><?= Html::encode($this->title) ?></h1></div>
+    
     <?=DetailView::widget([
         'model' => $model,
         'attributes' => [

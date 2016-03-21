@@ -15,6 +15,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\db\Query;
 use yii\db\QueryTrait;
+use yii\filters\AccessControl;
 
 /**
  * DerivacionReclamoSugerenciaController implements the CRUD actions for DerivacionReclamoSugerencia model.
@@ -24,6 +25,16 @@ class DerivacionReclamoSugerenciaController extends Controller
     public function behaviors()
     {
         return [
+          'access'=>[
+              'class'=>AccessControl::classname(),
+              'only'=>['index','view'],
+              'rules'=>[
+                [
+                  'allow'=>true,
+                  'roles'=>['@'],//cambiar al rol a funcionario R.
+                ],
+              ],
+          ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

@@ -10,6 +10,7 @@ use app\models\HistorialEstadosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * HistorialEstadosController implements the CRUD actions for HistorialEstados model.
@@ -19,6 +20,22 @@ class HistorialEstadosController extends Controller
     public function behaviors()
     {
         return [
+            'access'=>[
+                'class'=>AccessControl::classname(),
+                'only'=>['answer','view'],
+                'rules'=>[
+                  [
+                    'allow'=>true,
+                    'actions' =>['answer','view'],
+                    'roles'=>['@'],//cambiar al rol a funcionario R.
+                  ],
+                  [
+                    'allow'=>true,
+                    'actions' =>['view'],
+                    'roles'=>['@'],//cambiar al rol a usuario
+                  ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

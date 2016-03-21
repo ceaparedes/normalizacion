@@ -12,10 +12,29 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="reclamo-sugerencia-create">
 
-        <div class="page-header"><h1><?= Html::encode($this->title) ?></h1></div>
+      
+<div class="col-xs-6" >
+    <?php
 
-    <?= $this->render('_form', [
+
+      echo $this->render('_form2rs', [
         'model' => $model,
-    ]) ?>
+      ]);
+
+
+      /*if()usuario distinto de JDNYC
+      echo $this->render('_form2rs', [
+        'model' => $model,
+      ]);
+
+      else
+      echo $this->render('_form', [
+        'model' => $model,
+      ]);
+
+      */
+
+      ?>
+</div>
 
 </div>

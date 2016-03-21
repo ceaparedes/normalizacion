@@ -12,12 +12,8 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="solucion-reclamo-sugerencia-view">
 
-    <div class="page-header"><h1><?= Html::encode($this->title) ?></h1></div>
-
     <p>
       <?php
-
-
 
       if ($reclamo->ERS_ID == 3){
 

@@ -6,7 +6,8 @@
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 use app\assets\MyAsset;
-
+use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar;
 
 MyAsset::register($this);
 ?>
@@ -27,15 +28,15 @@ MyAsset::register($this);
     <meta name="description" content="Sistema Realizado para el Departamento de Normalización y Certificación de la Universidad del Bío-Bío">
     <meta name="author" content="Víctor Cea Paredes">
     <link rel="shortcut icon" href="dist/favicon.ico">
-    <?= Html::csrfMetaTags() ?>
+    <?= Html::csrfMetaTags() //no borrar, tag necesario para la eliminación?>
+
 
     <title>Normalización y Certificación - Universidad del Bío-Bío</title>
     <?php $this->head() ?>
 </head>
-<body>
+<body class="no-skin">
 <?php $this->beginBody() ?>
 
-<div class="no-skin">
   <!-- #section:basics/navbar.layout -->
   <div id="navbar" class="navbar navbar-default ace-save-state navbar-fixed-top">
     <script type="text/javascript">
@@ -105,28 +106,43 @@ MyAsset::register($this);
             </a>
 
             <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-              <li>
-                <a href="#">
-                  <i class="ace-icon fa fa-cog"></i>
-                  Configuración
-                </a>
-              </li>
+              <!--  <li>
+                  <a href="#">
+                    <i class="ace-icon fa fa-cog"></i>
+                    Configuración
+                  </a>
+                </li>
 
-              <li>
-                <a href="#">
-                  <i class="ace-icon fa fa-user"></i>
-                  Perfil
-                </a>
-              </li>
+                <li>
+                  <a href="#">
+                    <i class="ace-icon fa fa-user"></i>
+                    Perfil
+                  </a>
+                </li> -->
 
-              <li class="divider"></li>
+                <?= Nav::widget([
+                  'class'=>'user-menu dropdown-menu',
+                'items' => [
+                  ['label' => ' Perfil','url'=>'#',
+                    'linkOptions'=>['class'=>'ace-icon fa fa-user pull-left'],
+                  ],
 
-              <li>
-                <a href="#">
-                  <i class="ace-icon fa fa-power-off"></i>
-                  Salir
-                </a>
-              </li>
+                  Yii::$app->user->isGuest ? (
+                  ['label' => 'Acceder', 'url' => ['/site/login'],
+                    'linkOptions'=>['i class'=>'ace-icon fa fa-power-off pull-left']]
+                  ) : (
+                '<li>'
+                . Html::beginForm(['/site/logout'], 'post')
+                . Html::submitButton(
+                    ' Cerrar sesión',
+                    ['class' => 'ace-icon fa fa-power-off btn btn-link pull-left']
+                )
+                . Html::endForm()
+                . '</li>'
+                )
+                ],
+                  ])?>
+
             </ul>
           </li>
 
@@ -147,8 +163,8 @@ MyAsset::register($this);
     <!-- #section:basics/sidebar -->
     <div id="sidebar" class="sidebar responsive ace-save-state sidebar-fixed" data-sidebar = "true" data-sidebar-scroll = "true" data-sidebar-hover = "true">
       <script type="text/javascript">
-        try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
-      </script>
+					try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+				</script>
 
 <!-- botones feos-->
       <!--<div class="sidebar-shortcuts" id="sidebar-shortcuts">
@@ -184,7 +200,7 @@ MyAsset::register($this);
         </div>
       </div><!-- /.sidebar-shortcuts -->
 
-      <ul class="nav nav-list">
+      <ul class="nav nav-list" style = "top:0px;">
         <li class="active">
           <a href="index.php">
             <i class="menu-icon fa fa-university"></i>
@@ -210,9 +226,16 @@ MyAsset::register($this);
                 <i class="menu-icon fa fa-caret-right"></i>
                 Completar Formulario
               </a>
-
               <b class="arrow"></b>
             </li>
+
+            <!--<li class="">
+              <a href="index.php?r=reclamo-sugerencia%2Fcreate">
+                <i class="menu-icon fa fa-caret-right"></i>
+                Completar Formulario en Blanco
+              </a>
+              <b class="arrow"></b>
+            </li> -->
 
             <li class="">
               <a href="index.php?r=reclamo-sugerencia">
@@ -336,71 +359,67 @@ MyAsset::register($this);
           <?= Breadcrumbs::widget([
               'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
           ]) ?>
-				</div>
+				</div> <!--/ breadcrumbs-->
         <!-- endbreadcrumbs (el submenu de arriba)-->
 
       <!-- #section:basics/content.breadcrumbs -->
-      <div class="breadcrumbs" id="breadcrumbs">
 
-        <script type="text/javascript">
-          try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
-        </script>
-
-        <ul class="breadcrumb">
-        <!-- contenido de la página-->
-        <?= $content ?>
-        <!--/contenido -->
-      </ul>
-
-      <div class="panel-footer">
-
-            <div class="footer-inner">
-                <!-- #section:basics/footer -->
-                <center>
-                <div class="footer-content">
-                    <span class="bigger-120">
-                        <span class="blue bolder">Universidad  del Bío-Bío</span>
-                        Todos los derechos reservados © 2014-2015
-                    </span>
-
-                    &nbsp; &nbsp;
-                    <span class="action-buttons">
-                        <a href="https://twitter.com/ubbchile" target="_blank">
-                            <i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
-                        </a>
-
-                        <a href="https://www.facebook.com/ubiobiochile" target="_blank">
-                            <i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>
-                        </a>
-
-                        <a href="https://www.flickr.com/photos/ubiobio" target="_blank">
-                            <i class="ace-icon fa fa-flickr bigger-150"></i>
-                        </a>
-
-                        <a href="http://cl.linkedin.com/in/ubiobio" target="_blank">
-                            <i class="ace-icon fa fa-linkedin-square blue bigger-150"></i>
-                        </a>
-
-                        <a href="https://www.youtube.com/user/udelbiobio" target="_blank">
-                            <i class="ace-icon fa fa-youtube red bigger-150"></i>
-                        </a>
-                    </span>
+          <div class="page-content-area">
+            <div class="page-header"><h1> <?= $this->title ?> </div></h1>
+                <div class="row">
+                  <div class="col-xs-12"> <!--funciona a medias -->
+                    <!-- contenido de la página-->
+                    <?= $content ?>
+                    <!--/contenido -->
                 </div>
-              </center>
-                <!-- /section:basics/footer -->
+              </div>
             </div>
+            <!--/page content -->
+    </div><!--/page content-->
 
+    <div class="panel-footer">
 
-      </div>
+          <div class="footer-inner">
+              <!-- #section:basics/footer -->
+              <center>
+              <div class="footer-content">
+                  <span class="bigger-120">
+                      <span class="blue bolder">Universidad  del Bío-Bío</span>
+                      Todos los derechos reservados © 2014-2015
+                  </span>
 
+                  &nbsp; &nbsp;
+                  <span class="action-buttons">
+                      <a href="https://twitter.com/ubbchile" target="_blank">
+                          <i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
+                      </a>
 
+                      <a href="https://www.facebook.com/ubiobiochile" target="_blank">
+                          <i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>
+                      </a>
 
+                      <a href="https://www.flickr.com/photos/ubiobio" target="_blank">
+                          <i class="ace-icon fa fa-flickr bigger-150"></i>
+                      </a>
+
+                      <a href="http://cl.linkedin.com/in/ubiobio" target="_blank">
+                          <i class="ace-icon fa fa-linkedin-square blue bigger-150"></i>
+                      </a>
+
+                      <a href="https://www.youtube.com/user/udelbiobio" target="_blank">
+                          <i class="ace-icon fa fa-youtube red bigger-150"></i>
+                      </a>
+                  </span>
+              </div>
+            </center>
+              <!-- /section:basics/footer -->
+          </div>
     </div>
-  </div>
+
 
 
 </div>
-</div>
+
 
 
 <?php $this->endBody() ?>

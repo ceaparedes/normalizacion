@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="historial-estados-index">
 
-      <div class="page-header"><h1><?= Html::encode($this->title) ?></h1></div>
+    
     <?php echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <div class="box-body table-responsive no-padding table-bordered siempre_responsivo">

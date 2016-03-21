@@ -20,7 +20,7 @@ use yii\filters\VerbFilter;
 use yii\db\Query;
 use yii\db\QueryTrait;
 use yii\web\UploadedFile;
-
+use yii\filters\AccessControl;
 
 /**
  * SolicitudDocumentoController implements the CRUD actions for SolicitudDocumento model.
@@ -45,6 +45,27 @@ class SolicitudDocumentoController extends Controller
     public function behaviors()
     {
         return [
+          'access'=>[
+            'class'=>AccessControl::classname(),
+            'only'=>['create','update','delete','send','view','evaluate','derivate','eliminar'],
+            'rules'=>[
+              [
+                'allow'=>true,
+                'actions' =>['create','update','send','delete','view'],
+                'roles'=>['@'],//cambiar al rol a Funcionario comun.
+              ],
+              [
+                'allow'=>true,
+                'actions' =>['create','update','delete','send','view','eliminar'],
+                'roles'=>['@'],//cambiar al rol a Funcionario DNYC
+              ],
+              [
+                'allow'=>true,
+                'actions' =>['create','update','delete','send','view','eliminar'],
+                'roles'=>['@'],//cambiar al rol a JDNYC
+              ],
+            ],
+          ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -330,36 +351,39 @@ class SolicitudDocumentoController extends Controller
     {
       $model = $this->findModel($id);
 
-
-      $adjunto = new Adjuntos();
       $query = new Query;
       $query->select ('ADJ_ID')
           ->from('ADJUNTOS')
           ->where('SOL_ID=:solicitud', [':solicitud' => $model->SOL_ID])
           ->limit('1');
       $query = $query->one();
-      if ($query){
-          $adjunto = $adjunto->findOne($query);
-          $adjunto = $adjunto->delete($query);
-      }
 
-      $cambios = new DetalleCambiosSolicitud();
       $cquery= new Query;
-       $cquery->select ('DCS_ID')
+      $cquery->select ('DCS_ID')
           ->from('DETALLE_CAMBIOS_SOLICITUD')
           ->where('SOL_ID=:solicitud', [':solicitud' => $model->SOL_ID])
           ->limit('1');
-          if ($cquery){
-              $cambios = $cambios->findOne($cquery);
-              $cambios = $cambios->delete($cquery);
-          }
+      $cquery = $cquery->one();
+      if(Yii::$app->request->post()){
+      if ($query){
+          $adjunto = new Adjuntos();
+          $adjunto = $adjunto->findOne($query);
+          unlink($adjunto->ADJ_URL);
+          $adjunto = $adjunto->delete($query);
+      }
+
+      if ($cquery){
+          $cambios = new DetalleCambiosSolicitud();
+          $cambios = $cambios->findOne($cquery);
+          $cambios = $cambios->delete($cquery);
+      }
 
       if($model->ESO_ID == 1){
         $this->findModel($id)->delete();
         return $this->redirect(['index']);
       }
 
-
+}
     }
 
 
@@ -604,7 +628,7 @@ class SolicitudDocumentoController extends Controller
       if($model->load(Yii::$app->request->post()) ){
 
         if($model->TAS_ID == 5 || $model->TAS_ID == 6){
-          
+
         }
       }
 

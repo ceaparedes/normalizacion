@@ -17,6 +17,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\db\Query;
 use yii\db\QueryTrait;
+use yii\filters\AccessControl;
 /**
  * SolucionReclamoSugerenciaController implements the CRUD actions for SolucionReclamoSugerencia model.
  */
@@ -25,6 +26,22 @@ class SolucionReclamoSugerenciaController extends Controller
     public function behaviors()
     {
         return [
+          'access'=>[
+              'class'=>AccessControl::classname(),
+              'only'=>['derivate','evaluate','resultados','view',],
+              'rules'=>[
+                [
+                  'allow'=>true,
+                  'actions' =>['derivate','view','resultados'],
+                  'roles'=>['@'],//cambiar al rol a JDNYC
+                ],
+                [
+                  'allow'=>true,
+                  'actions' =>['evaluate','view'],
+                  'roles'=>['@'],//cambiar al rol a usuario
+                ],
+              ],
+          ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

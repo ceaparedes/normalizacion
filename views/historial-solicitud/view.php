@@ -12,9 +12,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="historial-solicitud-view">
 
-    <div class="page-header"><h1><?= Html::encode($this->title) ?></h1></div>
-
-
 
     <?= DetailView::widget([
         'model' => $model,

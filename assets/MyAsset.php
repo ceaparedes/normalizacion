@@ -18,7 +18,7 @@ class MyAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css',
+        //'css/site.css',
         'css/bootstrap.min.css',
         'css/chosen.css',
         'css/ace.min.css',

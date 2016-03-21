@@ -13,8 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="derivacion-reclamo-sugerencia-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
+  
     <p>
       <?= Html::a('Inicio', ['/site/index'], ['class' => 'btn btn-default']) ?>
       <?php

@@ -26,9 +26,9 @@ use app\models\TipoSolicitanteReclamoSugerencia;
 
     <?= $form->field($model, 'REC_MOTIVO')->textArea(array('rows'=>6)) ?>
 
-    <?= $form->field($model, 'file')->fileInput(['class'=>'btn btn-info']) ?>
+    <?= $form->field($model, 'file')->fileInput() ?>
 
-  
+
 
       <div class="form-group">
 

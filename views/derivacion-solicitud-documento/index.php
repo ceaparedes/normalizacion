@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="derivacion-solicitud-documento-index">
 
-    <div class="page-header"><h1><?= Html::encode($this->title) ?></h1></div>
+    
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([

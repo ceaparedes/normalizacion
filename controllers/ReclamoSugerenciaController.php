@@ -44,11 +44,17 @@ class ReclamoSugerenciaController extends Controller
         return [
             'access'=>[
                 'class'=>AccessControl::classname(),
-                'only'=>['create','update','delete','send','view'],
+                'only'=>['create','update','delete','send','view','evaluate','derivate'],
                 'rules'=>[
                   [
                     'allow'=>true,
-                    'roles'=>['@'],
+                    'actions' =>['create','update','delete','send','view'],
+                    'roles'=>['@'],//cambiar al rol usuario
+                  ],
+                  [
+                    'allow'=>true,
+                    'actions' =>['create','update','delete','send','view','evaluate'],
+                    'roles'=>['@'],//cambiar al rol JDNYC
                   ],
                 ],
             ],
@@ -130,6 +136,8 @@ class ReclamoSugerenciaController extends Controller
      public function actionCreate()
        {
            $model = new ReclamoSugerencia();
+
+            Yii::$app->controller->enableCsrfValidation = false;
            //validacion ajax
            if(Yii::$app->request->isAjax && $model->load($_POST))
            {
@@ -169,6 +177,14 @@ class ReclamoSugerenciaController extends Controller
              $model->ERS_ID = 1;
 
 
+             $model->TSR_ID = 2;
+             //Ejemplo de insert con variables del usuario
+             /*
+             $model->REC_NOMBRE_USUARIO = Yii::$app->user->identity->rut_us;
+             $model->REC_TELEFONO_USUARIO = Yii::$app->user->identity->tipo_us;
+             */
+
+
              /*
              $connection = Yii::$app->db2;
              $sp = ' select * from Creditotest..JEFATURA_CONTRATO j
@@ -179,7 +195,7 @@ class ReclamoSugerenciaController extends Controller
              */
 
              //Instancia para el adjunto
-             $name = 'solicitud ' . $model->REC_NUMERO . ' '. $model->REC_FECHA . ' ' . date('H i');
+             $name = 'Formulario ' . $model->REC_NUMERO . ' '. $model->REC_FECHA . ' ' . date('H i');
              $model->file = UploadedFile::getInstance($model,'file');
              $model->save();
              //si el archivo no es null, entonces lo guarda y guarda el adjunto en la bd.
@@ -192,24 +208,7 @@ class ReclamoSugerenciaController extends Controller
              $adjunto->ADJ_URL = 'uploads/reclamo-sugerencia/Adjunto '. $name . '.' .$model->file->extension;
              $adjunto->save();
             }
-
-              //guardar Creacion en el Historial
-              /*
-              $historial = new HistorialEstados();
-              $historial->REC_NUMERO = $model->REC_NUMERO;
-              $historial->ERS_ID = $model->ERS_ID;
-              $historial->USU_RUT = $model->USU_RUT;
-              $historial->HES_FECHA_HORA = date('Y-m-d H:i:s');
-              if($model->TRS_ID == 1){
-                  $historial->HES_COMENTARIO = "El usuario ". $historial->USU_RUT . " ha ingresado el Reclamo Nº ". $historial->REC_NUMERO ." el día ". $historial->HES_FECHA_HORA;
-
-              }else{
-                      $historial->HES_COMENTARIO = "El usuario ". $historial->USU_RUT . " ha ingresado la Sugerencia Nº ". $historial->REC_NUMERO .  " el día ". $historial->HES_FECHA_HORA;
-                }
-                $historial->save();
-                */
-
-             //return $this->redirect(['view', 'id' => $model->REC_NUMERO]);
+            return $this->redirect(['view', 'id' => $model->REC_NUMERO]);
            } else {
                return $this->render('create', [
                    'model' => $model,
@@ -272,21 +271,26 @@ class ReclamoSugerenciaController extends Controller
     public function actionDelete($id)
     {
       $model = $this->findModel($id);
+      $query = new Query;
       $query->select ('ADJ_ID')
           ->from('ADJUNTOS')
           ->where('REC_NUMERO=:reclamo', [':reclamo' => $model->REC_NUMERO])
           ->limit('1');
       $query = $query->one();
-      if ($query){
-          $adjunto = $adjunto->findOne($query);
-          $adjunto = $adjunto->delete($query);
-      }
-      if($model->ERS_ID == 1){
-        $this->findModel($id)->delete();
-        return $this->redirect(['index']);
-
+      if(Yii::$app->request->post()){
+        if ($query){
+            $adjunto = new Adjuntos();
+            $adjunto = $adjunto->findOne($query);
+            unlink($adjunto->ADJ_URL);
+            $adjunto = $adjunto->delete($query);
         }
+        if($model->ERS_ID == 1){
+          $this->findModel($id)->delete();
+          return $this->redirect(['index']);
 
+          }
+        }
+        
 
     }
 

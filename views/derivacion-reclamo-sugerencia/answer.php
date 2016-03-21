@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = 'Respuesta';
 ?>
 
 <div class="Derivacion-reclamo-sugerencia-create">
-    <h1><?= Html::encode($this->title) ?></h1>
+    
     <?=DetailView::widget([
         'model' => $model,
         'attributes' => [

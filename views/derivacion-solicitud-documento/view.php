@@ -15,8 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="derivacion-solicitud-documento-view">
 
-    <div class="page-header"><h1><?= Html::encode($this->title) ?></h1></div>
-
+    
 
   <?php
   echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
