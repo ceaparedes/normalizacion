@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'SRS_FECHA_ENVIO',
             // 'SRS_RESULTADOS',
 
-            ['class' => 'yii\grid\SolucionReclamoSugerenciaActionColumn'],
+            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 

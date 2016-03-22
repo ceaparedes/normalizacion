@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="derivacion-reclamo-sugerencia-view">
 
-  
+
     <p>
       <?= Html::a('Inicio', ['/site/index'], ['class' => 'btn btn-default']) ?>
       <?php
@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>-->
     </p>
-
+<div class="col-xs-8" >
     <?php
     if(!$model->DRS_RESPUESTA){
       echo DetailView::widget([
@@ -72,5 +72,5 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
      ?>
-
+</div>
 </div>

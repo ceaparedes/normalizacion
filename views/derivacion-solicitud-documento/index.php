@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             // 'DSD_FECHA_RESPUESTA',
 
-            ['class' => 'yii\grid\HistorialRSActionColumn'],
+            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 

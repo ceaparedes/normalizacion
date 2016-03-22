@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="derivacion-solicitud-documento-view">
 
-    
+
 
   <?php
   echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
@@ -32,8 +32,9 @@ $this->params['breadcrumbs'][] = $this->title;
       ['class' => 'btn btn-xs btn-white no-radius btn-info']);
       echo ' ';
     }
-
-
+?>
+<div class="col-xs-8" >
+<?php
           echo DetailView::widget([
               'model' => $model,
               'attributes' => [
@@ -67,5 +68,5 @@ $this->params['breadcrumbs'][] = $this->title;
         }
 
       ?>
-
+</div>
 </div>

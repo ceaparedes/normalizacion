@@ -12,7 +12,7 @@ use app\models\TipoSolicitanteReclamoSugerencia;
 ?>
 
 <div class="reclamo-sugerencia-form">
-
+    
     <?php $form = ActiveForm::begin(['options' =>
                               ['enctype' => 'multipart/form-data',
                               'enableAjaxValidation'=>true]]); ?>

@@ -12,19 +12,10 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="historial-version-documento-view">
 
-    
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->HVD_ID], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->HVD_ID], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
 
+
+<div class="col-xs-8">
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -37,5 +28,5 @@ $this->params['breadcrumbs'][] = $this->title;
             'HVD_VISTO_BUENO',
         ],
     ]) ?>
-
+</div>
 </div>

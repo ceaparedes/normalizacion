@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="solicitud-documento-view">
 
-  
+
 
     <?php
     echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
@@ -105,9 +105,9 @@ $this->params['breadcrumbs'][] = $this->title;
     ?>
 
 </p>
-<div class="box-body table-responsive no-padding table-bordered siempre_responsivo">
-<div class="bs-callout bs-callout-info">
 
+<div class="bs-callout bs-callout-info">
+<div class="col-xs-6" >
     <?php
 
         echo DetailView::widget([
@@ -157,4 +157,5 @@ $this->params['breadcrumbs'][] = $this->title;
       ]); }
 
     ?>
+</div>
 </div>

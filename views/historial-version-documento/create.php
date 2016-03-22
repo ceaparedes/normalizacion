@@ -12,10 +12,10 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="historial-version-documento-create">
 
-    
 
+<div class="col-xs-6" >
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
-
+</div>
 </div>

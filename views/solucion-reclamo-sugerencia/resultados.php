@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = 'Resultados';
 ?>
 
 <div class="solucion-reclamo-sugerencia-create">
-  
+
     <?=DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = 'Resultados';
             'SRS_ANTECEDENTES',
         ],
     ]) ?>
-
+<div class="col-xs-6" >
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'SRS_RESULTADOS')->textArea(array('rows' =>3)) ?>
@@ -51,5 +51,5 @@ $this->params['breadcrumbs'][] = 'Resultados';
          ],]) ?>
 
     <?php $form = ActiveForm::end(); ?>
-
+  </div>
   </div>

@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = 'Evaluar';
  ?>
 
  <div class="solicitud-documento-evaluate">
-      
+
 
 
 <?php
@@ -57,7 +57,7 @@ echo DetailView::widget([
 ]);
  }
 ?>
-
+<div class="col-xs-6" >
 <?php $form = ActiveForm::begin(); ?>
 
 <?= $form->field($model, 'visto_bueno_normalizacion')->radioList(array('Aprobado'=>'Aprobar','Rechazado'=>'Rechazar')); ?>
@@ -73,3 +73,5 @@ echo DetailView::widget([
      ],]) ?>
 
   <?php $form = ActiveForm::end(); ?>
+</div>
+</div>

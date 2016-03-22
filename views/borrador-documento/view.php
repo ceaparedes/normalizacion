@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="borrador-documento-view">
 
-  
+
 
     <?php
     echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
@@ -25,8 +25,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <span class="btn btn-xs btn-info no-radius ">
     <i class="glyphicon  glyphicon-pencil"></i></span>Evaluar Borrador</label>', ['evaluate', 'id' => $model->BDO_ID], ['class' => 'btn btn-xs btn-white no-radius btn-info']);
     echo " ";
-
-
+?>
+<div class="col-xs-6" >
+<?php
         echo DetailView::widget([
           'model' => $solicitud,
           'attributes' => [
@@ -71,5 +72,5 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     ?>
-
+</div>
 </div>

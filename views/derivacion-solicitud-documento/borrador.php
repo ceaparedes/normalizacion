@@ -14,8 +14,9 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="borrador-documento-create">
 
-    
+
 <div class="borrador-documento-form">
+
 
   <?php echo DetailView::widget([
     'model' => $solicitud,
@@ -37,6 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
       ]);}
 ?>
 
+<div class="col-xs-6" >
     <?php $form = ActiveForm::begin(['options' =>
                                       ['enctype' => 'multipart/form-data']]); ?>
 
@@ -54,6 +56,6 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?>
   </div>
     <?php ActiveForm::end(); ?>
-
+</div>
 </div>
 </div>

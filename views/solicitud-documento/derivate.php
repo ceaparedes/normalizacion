@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="solicitud-documentos-derivate">
 
-    
+
     <?php echo DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
     ]);
 
      ?>
-
+<div class="col-xs-6" >
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($derivacion, 'USU_RUT')->textInput() ?>
@@ -63,5 +63,5 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php $form = ActiveForm::end(); ?>
 
-
+</div>
 </div>

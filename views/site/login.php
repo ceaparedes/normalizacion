@@ -14,10 +14,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     <p>Complete los datos para su Acceso:</p>
-
+<div class="col-xs-4">
     <?php $form = ActiveForm::begin([
         'id' => 'login-form',
-        
+
 
     ]); ?>
 
@@ -32,6 +32,6 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
 
     <?php ActiveForm::end(); ?>
-
+</div>
 
 </div>

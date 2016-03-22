@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'BDO_FECHA_ENVIO',
 
 
-            ['class' => 'yii\grid\HistorialRSActionColumn'],
+            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 

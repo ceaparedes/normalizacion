@@ -17,9 +17,7 @@ MyAsset::register($this);
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- font awesome desde la web-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <!--end font awesome-->
+
     <!-- serve fonts (open sans) from google -->
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300" />
     <!-- end font-->
@@ -73,8 +71,6 @@ MyAsset::register($this);
       <div class="navbar-buttons navbar-header pull-right" role="navigation">
         <ul class="nav ace-nav">
 
-
-
           <li class="purple">
             <a href="http://werken.ubiobio.cl/" target="_blank">
               <i class="ace-icon fa fa-book icon-animated-bell"></i>
@@ -90,8 +86,6 @@ MyAsset::register($this);
             </a>
 
           </li>
-
-
 
           <!-- #section:basics/navbar.user_menu -->
           <li class="light-blue">
@@ -161,11 +155,13 @@ MyAsset::register($this);
     </script>
 
     <!-- #section:basics/sidebar -->
-    <div id="sidebar" class="sidebar responsive ace-save-state sidebar-fixed" data-sidebar = "true" data-sidebar-scroll = "true" data-sidebar-hover = "true">
+    <div id="sidebar" class="sidebar sidebar-fixed responsive sidebar-scroll" >
       <script type="text/javascript">
 					try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
 				</script>
-
+      <div style="position: relative;">
+        <div class="nav-wrap" style="max-height:228px;">
+          <div style="position:relative; top: 0px; transition-property: top; transition-duration: 0.2s;">
 <!-- botones feos-->
       <!--<div class="sidebar-shortcuts" id="sidebar-shortcuts">
         <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
@@ -348,6 +344,9 @@ MyAsset::register($this);
           }catch(e){}
       </script>
     </div>
+    </div>
+    </div>
+    </div>
 
     <!-- /section:basics/sidebar -->
     <div class="main-content">
@@ -373,12 +372,10 @@ MyAsset::register($this);
                     <!--/contenido -->
                 </div>
               </div>
-            </div>
-            <!--/page content -->
+            </div><!--/page content area-->
     </div><!--/page content-->
 
-    <div class="panel-footer">
-
+    <div class="footer">
           <div class="footer-inner">
               <!-- #section:basics/footer -->
               <center>

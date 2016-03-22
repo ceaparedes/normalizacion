@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="derivacion-reclamo-sugerencia-index">
 
-  
+
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
 
@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'DRS_FECHA_RESPUESTA',
             // 'DRS_RESPUESTA',
 
-            ['class' => 'yii\grid\DerivacionActionColumn'],
+            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 

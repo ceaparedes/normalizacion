@@ -12,11 +12,11 @@ $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="solicitud-documento-update">
 
-    
 
+<div class="col-xs-6" >
     <?= $this->render('_form', [
         'model' => $model,
         'docs' => $docs,
     ]) ?>
-
+</div>
 </div>

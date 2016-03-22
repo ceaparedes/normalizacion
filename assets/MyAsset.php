@@ -20,20 +20,21 @@ class MyAsset extends AssetBundle
     public $css = [
         //'css/site.css',
         'css/bootstrap.min.css',
+        'css/font-awesome.min.css',
         'css/chosen.css',
         'css/ace.min.css',
+        'css/ace-part2.css',
         'css/ace-skins.min.css',
+        'css/ace-fonts.css',
+        'css/ace-ie.css',
 
 
 
     ];
     public $js = [
       'js/main.js',
-
       'js/ace-extra.min.js',
-
       'js/respond.min.js',
-
       'js/bootstrap.js',
       'js/excanvas.js',
       'js/ace.js',

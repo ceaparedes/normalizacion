@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="historial-solicitud-view">
 
-
+<div class="col-xs-8">
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -24,5 +24,5 @@ $this->params['breadcrumbs'][] = $this->title;
             'HSO_COMENTARIO',
         ],
     ]) ?>
-
+</div>
 </div>

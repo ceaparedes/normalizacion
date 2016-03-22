@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = 'Respuesta';
 ?>
 
 <div class="Derivacion-reclamo-sugerencia-create">
-    
+
     <?=DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = 'Respuesta';
             'sRS.SRS_ANTECEDENTES',
         ],
     ]) ?>
-
+<div class="col-xs-6" >
     <?php $form = ActiveForm::begin(['enableAjaxValidation'=>true]); ?>
 
     <?= $form->field($model, 'DRS_SERVICIO_NO_CONFORME')->radioList(array('Si'=>'Si','No'=>'No')); ?>
@@ -45,5 +45,5 @@ $this->params['breadcrumbs'][] = 'Respuesta';
       ],]) ?>
 
     <?php $form = ActiveForm::end(); ?>
-
+  </div>
   </div>

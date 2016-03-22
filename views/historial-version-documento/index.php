@@ -12,12 +12,10 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="historial-version-documento-index">
 
-    
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <div class="col-xs-6" >
+    <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
+    </div>
 
-    <p>
-        <?= Html::a('Create Historial Version Documento', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

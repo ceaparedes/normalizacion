@@ -13,12 +13,12 @@ $this->params['breadcrumbs'][] = 'Actualización Nº'.$this->title;
 ?>
 <div class="historial-estados-view">
 
-    
+
 
     <p>
         <?= Html::a('Volver a menú Anterior', ['index'], ['class' => 'btn btn-default']) ?>
     </p>
-
+<div class="col-xs-8">
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -30,5 +30,5 @@ $this->params['breadcrumbs'][] = 'Actualización Nº'.$this->title;
             'HES_COMENTARIO',
         ],
     ]) ?>
-
+</div>
 </div>

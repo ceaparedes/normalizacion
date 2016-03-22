@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = 'Evaluar';
 
 
 <div class="solicitud-documento-evaluate">
-      
+
 
       <?php
 
@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = 'Evaluar';
       ],
   ]);
    ?>
-
+<div class="col-xs-6" >
       <?php $form = ActiveForm::begin(); ?>
 
       <?= $form->field($model, 'SOL_VISTO_BUENO')->radioList(array('Aprobado'=>'Autorizar','Rechazado'=>'Rechazar')); ?>
@@ -64,5 +64,5 @@ $this->params['breadcrumbs'][] = 'Evaluar';
            ],]) ?>
 
         <?php $form = ActiveForm::end(); ?>
-
+</div>
 </div>

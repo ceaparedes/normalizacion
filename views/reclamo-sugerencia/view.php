@@ -18,8 +18,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?php
+
         if ($model->ERS_ID == 1){
         //boton Actualizar
+        echo " ";
         echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
       <span class="btn btn-xs btn-info no-radius ">
         <i class="glyphicon  glyphicon-pencil"></i></span> Actualizar </label>', ['update', 'id' => $model->REC_NUMERO],
@@ -75,8 +77,9 @@ $this->params['breadcrumbs'][] = $this->title;
         ?>
 
     </p>
-<div class="box-body table-responsive no-padding table-bordered siempre_responsivo">
+
   <div class="bs-callout bs-callout-info">
+    <div class="col-xs-8" >
     <?php
 
 
@@ -141,6 +144,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
      ?>
+
 </div>
 </div>
 </div>

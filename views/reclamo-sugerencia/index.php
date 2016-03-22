@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="reclamo-sugerencia-index">
 
-      
+
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
@@ -30,8 +30,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-
+        //'filterModel' => $searchModel,
+        
+        'headerRowOptions'=>[
+          'class'=>'table-header'
+        ],
 
         'rowOptions'=> function($model){
                     if($model->ERS_ID == 8){

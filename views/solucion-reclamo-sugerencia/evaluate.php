@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = 'Autorizar';
 ?>
 
 <div class="solucion-reclamo-sugerencia-create">
-    
+
     <?php
 
       if(!$respuesta){
@@ -60,10 +60,11 @@ $this->params['breadcrumbs'][] = 'Autorizar';
 
     ?>
 
-
+<div class="col-xs-6" >
     <?= $this->render('_-form', [
         'model' => $model,
         'reclamo'=>$reclamo,
         'respuesta'=>$respuesta,
     ]) ?>
+</div>
 </div>

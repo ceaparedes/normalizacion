@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = 'Evaluar';
 ?>
 
 <div class="reclamo-sugerencia-evaluate">
-      
+
 
   <?=DetailView::widget([
       'model' => $model,
@@ -30,11 +30,11 @@ $this->params['breadcrumbs'][] = 'Evaluar';
           'eRS.ERS_ESTADO',
       ],
   ]) ?>
-
+<div class="col-xs-6" >
   <?=   $this->render('_-form', [
         'model' => $model,
         'solucion'=>$solucion,
     ])?>
-
+</div>
 
 </div>

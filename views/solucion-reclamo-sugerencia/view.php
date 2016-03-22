@@ -62,7 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
         -->
     </p>
-
+<div class="col-xs-8" >
     <?php
         if(!$model->SRS_RESULTADOS){
           if($model->SRS_VISTO_BUENO== 'Autorizado'){
@@ -137,5 +137,5 @@ $this->params['breadcrumbs'][] = $this->title;
     }
 
     ?>
-
+</div>
 </div>

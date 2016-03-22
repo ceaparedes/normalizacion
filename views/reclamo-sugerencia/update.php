@@ -12,10 +12,11 @@ $this->params['breadcrumbs'][] = 'Actualizar';
 ?>
 <div class="reclamo-sugerencia-update">
 
-      
 
+<div class="col-xs-6" >
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
+</div>
 
 </div>

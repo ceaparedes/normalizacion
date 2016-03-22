@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = 'Derivar';
 ?>
 
 <div class="solucion-reclamo-sugerencia-derivate">
-    
+
     <?=DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = 'Derivar';
             'SRS_COMENTARIO',
         ],
     ]) ?>
-
+<div class="col-xs-6" >
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'SRS_ANTECEDENTES')->textArea(array('rows'=>4)) ?>
@@ -52,5 +52,5 @@ $this->params['breadcrumbs'][] = 'Derivar';
 
 
     <?php $form = ActiveForm::end(); ?>
-
+</div>
   </div>
