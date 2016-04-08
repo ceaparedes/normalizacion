@@ -25,7 +25,6 @@ class MyAsset extends AssetBundle
         'css/ace.min.css',
         'css/ace-part2.css',
         'css/ace-skins.min.css',
-        'css/ace-fonts.css',
         'css/ace-ie.css',
 
 

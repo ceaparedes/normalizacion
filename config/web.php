@@ -17,7 +17,7 @@ $config = [
         ],
         'user' => [
             'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
+            'enableAutoLogin' => false,
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -41,7 +41,7 @@ $config = [
         'db' => require(__DIR__ . '/db.php'),
         'dbcreditotest' => require(__DIR__ . '/dbcreditotest.php'),
         'dbdocs' => require(__DIR__ . '/dbdocs.php'),
-        'dbusuario' => require(__DIR__ . '/dbusuario.php'),
+        'dbubb' => require(__DIR__ . '/dbubb.php'),
     ],
     'params' => $params,
 ];

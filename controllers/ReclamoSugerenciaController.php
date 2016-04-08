@@ -44,11 +44,11 @@ class ReclamoSugerenciaController extends Controller
         return [
             'access'=>[
                 'class'=>AccessControl::classname(),
-                'only'=>['create','update','delete','send','view','evaluate','derivate'],
+                'only'=>['create','update','delete','send','view','evaluate','derivate','index'],
                 'rules'=>[
                   [
                     'allow'=>true,
-                    'actions' =>['create','update','delete','send','view'],
+                    'actions' =>['create','update','delete','send','view','index'],
                     'roles'=>['@'],//cambiar al rol usuario
                   ],
                   [
@@ -177,12 +177,11 @@ class ReclamoSugerenciaController extends Controller
              $model->ERS_ID = 1;
 
 
-             $model->TSR_ID = 2;
+             $model->TSR_ID = 1;
              //Ejemplo de insert con variables del usuario
-             /*
-             $model->REC_NOMBRE_USUARIO = Yii::$app->user->identity->rut_us;
-             $model->REC_TELEFONO_USUARIO = Yii::$app->user->identity->tipo_us;
-             */
+
+
+
 
 
              /*
@@ -290,7 +289,7 @@ class ReclamoSugerenciaController extends Controller
 
           }
         }
-        
+
 
     }
 

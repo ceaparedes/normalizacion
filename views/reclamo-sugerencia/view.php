@@ -97,8 +97,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'REC_FECHA',
                 'REC_REPARTICION',
                 'REC_HORA',
-                'REC_MOTIVO',
                 'eRS.ERS_ESTADO',
+                'REC_MOTIVO',
                 //'REC_VISTO_BUENO',
             ],
         ]);

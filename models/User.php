@@ -10,22 +10,28 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
   public static function getDb()
       {
           // use the "db2" application component
-          return \Yii::$app->dbusuario;
+          return \Yii::$app->dbubb;
       }
 
   public static function tableName()
   {
-    return 'usuarios';
+    return 'ubb.dbo.sp_VTA_WEB_IDENTIFICACION';
 
   }
 
 
+  public $rut_us;
+  public $password;
+  public $email;
+  public $campus;
+  public $nombres;
+  public $apellido_p;
+  public $apellido_m;
+  public $alias;
+  
 
     /* aqui estan los usuarios por defecto, eliminar cuando este implementada la conexion con la base de datos.*/
-    private static $users = [
 
-
-     ];
 
     /**
      * @inheritdoc
@@ -34,7 +40,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     {
         //return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
 
-        $usuario = self::find()->where(['rut_us'=>$id])->one();
+        $usuario = self::find()->where(['rut'=>$id])->one();
         if(!count($usuario)){
           return null;
         }
@@ -62,7 +68,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
      */
     public static function findByUsername($username)
     {
-        $usuario = self::find()->where(['rut_us'=>$username])->one();
+        $usuario = self::find()->where(['rut'=>$username])->one();
 
         if(!count($usuario)){
           return null;
@@ -75,7 +81,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
      * @inheritdoc
      */
      public function getId() {
-     return $this->rut_us;
+     return $this->rut;
  }
 
     /**
@@ -100,8 +106,10 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
      * @param  string  $password password to validate
      * @return boolean if password provided is valid for current user
      */
-    public function validatePassword($password_us)
+     /*
+    public function validatePassword($password)
     {
-        return $this->password_us === $password_us;
+        return $this->clave_web === $password;
     }
+    */
 }

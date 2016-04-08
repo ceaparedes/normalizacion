@@ -22,7 +22,7 @@ class HistorialEstadosController extends Controller
         return [
             'access'=>[
                 'class'=>AccessControl::classname(),
-                'only'=>['answer','view'],
+                'only'=>['view', 'index'],
                 'rules'=>[
                   [
                     'allow'=>true,

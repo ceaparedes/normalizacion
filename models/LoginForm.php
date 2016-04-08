@@ -24,10 +24,10 @@ class LoginForm extends Model
     {
         return [
             // username and password are both required
-            [['username', 'password'], 'required'],
+            [['username'], 'required'],
             // rememberMe must be a boolean value
             // password is validated by validatePassword()
-            ['password', 'validatePassword'],
+            //['password', 'validatePassword'],
         ];
     }
     public function attributeLabels()
@@ -45,14 +45,16 @@ class LoginForm extends Model
      * @param string $attribute the attribute currently being validated
      * @param array $params the additional name-value pairs given in the rule
      */
+
+
     public function validatePassword($attribute, $params)
     {
         if (!$this->hasErrors()) {
             $user = $this->getUser();
-
+            /*
             if (!$user || !$user->validatePassword($this->password)) {
                 $this->addError($attribute, 'Usuario y/o contraseña incorrectos.');
-            }
+            }*/
         }
     }
 

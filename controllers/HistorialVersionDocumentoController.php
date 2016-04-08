@@ -17,6 +17,22 @@ class HistorialVersionDocumentoController extends Controller
     public function behaviors()
     {
         return [
+          'access'=>[
+              'class'=>AccessControl::classname(),
+              'only'=>['view', 'index'],
+              'rules'=>[
+                [
+                  'allow'=>true,
+                  'actions' =>['answer','view'],
+                  'roles'=>['@'],//cambiar al rol a funcionario R.
+                ],
+                [
+                  'allow'=>true,
+                  'actions' =>['view'],
+                  'roles'=>['@'],//cambiar al rol a usuario
+                ],
+              ],
+          ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

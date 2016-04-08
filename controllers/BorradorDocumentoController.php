@@ -31,11 +31,11 @@ class BorradorDocumentoController extends Controller
         return [
           'access'=>[
             'class'=>AccessControl::classname(),
-            'only'=>['view','evaluate'],
+            'only'=>['view','index','evaluate'],
             'rules'=>[
               [
                 'allow'=>true,
-                'actions' =>['view','evaluate'],
+                'actions' =>['view','index','evaluate'],
                 'roles'=>['@'],//cambiar al rol a JDNYC , REVISOR Y APROBADOR.
               ],
               [

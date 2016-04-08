@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\user;
 
 class SiteController extends Controller
 {
@@ -59,8 +60,20 @@ class SiteController extends Controller
         }
 
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+        $user = new User;
+        if ($model->load(Yii::$app->request->post()) ) {
+            $rut = $model->username;
+            $sp = "ubb..sp_web_identificacion $rut";
+            $resultado = Yii::$app->dbubb->createCommand($sp)->queryOne();
+            if($resultado != NULL)
+            {
+              $model->login();
+
             return $this->goBack();
+          }else {
+            echo "paso por aca";
+            return;
+          }
         }
         return $this->render('login', [
             'model' => $model,

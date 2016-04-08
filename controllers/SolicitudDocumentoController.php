@@ -47,7 +47,7 @@ class SolicitudDocumentoController extends Controller
         return [
           'access'=>[
             'class'=>AccessControl::classname(),
-            'only'=>['create','update','delete','send','view','evaluate','derivate','eliminar'],
+            'only'=>['create','update','delete','send','view','evaluate','derivate','eliminar','index'],
             'rules'=>[
               [
                 'allow'=>true,

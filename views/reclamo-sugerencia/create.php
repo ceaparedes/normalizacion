@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="reclamo-sugerencia-create">
 
-      
+
 <div class="col-xs-6" >
     <?php
 

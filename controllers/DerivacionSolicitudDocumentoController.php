@@ -32,7 +32,7 @@ class DerivacionSolicitudDocumentoController extends Controller
         return [
           'access'=>[
             'class'=>AccessControl::classname(),
-            'only'=>['view','borrador'],
+            'only'=>['view','borrador','index'],
             'rules'=>[
               [
                 'allow'=>true,

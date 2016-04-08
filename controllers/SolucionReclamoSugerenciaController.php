@@ -28,7 +28,7 @@ class SolucionReclamoSugerenciaController extends Controller
         return [
           'access'=>[
               'class'=>AccessControl::classname(),
-              'only'=>['derivate','evaluate','resultados','view',],
+              'only'=>['derivate','evaluate','resultados','view','index'],
               'rules'=>[
                 [
                   'allow'=>true,

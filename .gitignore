@@ -60,5 +60,5 @@ $RECYCLE.BIN/
 *.lnk
 composer.phar
 config/dbdocs.php
-config/dbusuario.php
+config/dbubb.php
 config/dbdocs.php
