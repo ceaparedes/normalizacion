@@ -72,24 +72,29 @@ class TipoAccionSolicitudController extends Controller
     }
 
 
-    public function actionLists($id){
-        $countPosts = TipoAccionSolicitud::find()
-                      ->where(['ODO_ID' => $id])
-                      ->count();
+    public function actionLists($id)
+      {
 
-        $posts =  TipoAccionSolicitud::find()
-                      ->where(['ODO_ID' => $id])
-                      ->all();
+          $countAccion = TipoAccionSolicitud::find()
+                  ->where(['ODO_ID' => $id])
+                  ->count();
 
-        if ($countPosts > 0){
-          foreach ($posts as $post) {
-            echo "<option value =". $post->TAS_ID."'>".$post->TAS_ACCION . "</option>";
+          $acciones = TipoAccionSolicitud::find()
+                  ->where(['ODO_ID' => $id])
+                  ->all();
+
+          if($countAccion > 0 )
+          {
+              foreach($acciones as $accion ){
+                  echo "<option value='".$accion->TAS_ID."'>".$accion->TAS_ACCION."</option>";
+              }
           }
-          else {
-            echo "<option>-</option>";
+          else{
+              echo "<option> - </option>";
           }
-        }
-    }
+
+      }
+
 
 
 }
