@@ -1,0 +1,484 @@
+.bs-callout {
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #eee;
+    border-top-width:  5px;
+    border-radius: 3px;
+}
+.bs-callout h4 {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+.bs-callout p:last-child {
+    margin-bottom: 0;
+}
+.bs-callout code {
+    border-radius: 3px;
+}
+.bs-callout+.bs-callout {
+    margin-top: -5px;
+}
+.bs-callout-danger {
+    border-left-color: #d9534f;
+}
+.bs-callout-danger h4 {
+    color: #d9534f;
+}
+.bs-callout-warning {
+    border-left-color: #f0ad4e;
+}
+.bs-callout-warning h4 {
+    color: #f0ad4e;
+}
+.bs-callout-info {
+    border-top-color:  #438EB9;
+}
+.bs-callout-info h4 {
+    color: #438EB9;
+}
+
+.bs-callout-exclamacion {
+    border-top-color:  rgba(181, 179, 7, 0.46);
+}
+.bs-callout-exclamacion h4 {
+    color: rgba(181, 179, 7, 0.46);
+}
+
+.yellow{
+    color:rgba(144, 142, 15, 0.46);
+}
+.warning{
+    color:#FFB752;
+}
+ 
+
+.bs-callout-noacceso {
+    border-top-color:  rgb(197, 59, 59);
+}
+
+.bs-callout-noacceso h4 {
+    color: #f2dede;
+}
+
+
+.bs-customizer .bs-callout h4 {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+select{
+    padding-top: 5px !IMPORTANT;
+    padding-bottom: 5px !IMPORTANT;
+    height: 34px !IMPORTANT;
+}   
+
+/*1450px antes del 13-02-15; se agregaron 3000px por las tablas de asistente social->(BienestarEstudiantil)Generar ficha*/
+@media screen and (max-width: 1450) {
+    .table-responsive {
+        width: 100%;
+        margin-bottom: 15px;
+        overflow-y: hidden;
+        overflow-x: scroll;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+        border: 1px solid #DDD;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+@media screen and (max-width: 3000px) {
+    .table-responsive {
+        width: 100%;
+        margin-bottom: 15px;
+        overflow-y: hidden;
+        overflow-x: auto;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+        border: 1px solid #DDD;
+        -webkit-overflow-scrolling: touch;
+    }    
+    #siempre_responsivo {
+        width: 100%!important;
+        margin-bottom: 15px!important;
+        overflow-y: hidden!important;
+        overflow-x: auto!important;
+        -ms-overflow-style: -ms-autohiding-scrollbar!important;
+        border: 1px solid #DDD!important;
+        -webkit-overflow-scrolling: touch!important;
+    }
+    .siempre_responsivo {
+        width: 100%!important;
+        margin-bottom: 15px!important;
+        overflow-y: hidden!important;
+        overflow-x: auto!important;
+        -ms-overflow-style: -ms-autohiding-scrollbar!important;
+        border: 1px solid #DDD!important;
+        -webkit-overflow-scrolling: touch!important;
+    }
+}
+
+
+.limpiar{
+    clear:both;
+}
+
+.no-bottom{
+    margin-bottom:0px;
+    border-bottom: 0px;
+}
+
+.margenb5{
+    margin-bottom:5px;
+}
+
+.margenbtnsuperior{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+/*
+@media print { 
+    .elementoaocultar {
+        display: none;
+
+    }
+
+    .bs-callout{
+        border:none;
+    }
+    
+    form{
+
+        border: none;
+        display: none;
+    }
+
+    .page-header h1{
+        color: #2679b5!IMPORTANT;
+    }
+
+    .table-responsive, .table-responsive tr, .table-responsive th, .table-responsive    td{
+        border-color: #2679b5!IMPORTANT;
+    }
+    
+    .panel-footer{
+        display: none;
+    }
+
+
+    .box-header, .margenb5, .pull-right{
+
+        display: none;
+    }
+
+    .breadcrumbs{
+        display: none;
+    }
+
+    .footer-content{
+        display: none;
+    }
+
+    .box-body{
+        border: 0px;
+    } 
+
+    .negrita{     
+        font-weight:bold;
+    }
+
+    .bs-callout, .bs-callout-info, .no-bottom{
+        padding:0px;
+        margin: 0px;
+        border: 0px;
+    }
+    
+   
+}
+*/
+
+.nav-tabs.nav-justified>.active>a, .nav-tabs.nav-justified>.active>a:focus, .nav-tabs.nav-justified>.active>a:hover {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    top:1px;
+    border-top: 2px solid #5bc0de;
+}
+
+.encabezadotabla th{
+    background: #438EB9;
+    color: white;
+}
+
+.subencabezadotabla th{
+    background: #76b3d7;
+    color: white;
+}
+
+.subencabezadofondotabla{
+    background: rgba(181, 243, 253, 0.5);
+    color: black;
+}
+
+
+
+
+.label-resultados{
+    background-color: white;
+    color: #438EB9;
+}
+
+
+.tabla-no-bottom{
+    margin-bottom: 0px;
+}
+
+.izquierda{
+    text-align: left !IMPORTANT;
+}
+
+.gritter-item {
+    font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif !IMPORTANT;
+    font-size: 1.1em !IMPORTANT;
+}
+
+.gritter-title {
+    font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif !IMPORTANT;
+    font-size: 1.2em !IMPORTANT;
+}
+
+.gritter-center{
+    position:fixed !IMPORTANT;
+    z-index:9999 !IMPORTANT;
+    top: auto !IMPORTANT;
+    left: auto !IMPORTANT;
+    bottom: 20px !IMPORTANT;
+    right: 20px !IMPORTANT;
+}
+
+.btn-file {
+    position: relative !IMPORTANT;
+    overflow: hidden !IMPORTANT;
+}
+.btn-file input[type=file] {
+    position: absolute !IMPORTANT;
+    top: 0 !IMPORTANT;
+    right: 0 !IMPORTANT;
+    min-width: 100% !IMPORTANT;
+    min-height: 100% !IMPORTANT;
+    font-size: 100px !IMPORTANT;
+    text-align: right !IMPORTANT;
+    filter: alpha(opacity=0) !IMPORTANT;
+    opacity: 0 !IMPORTANT;
+    outline: none !IMPORTANT;
+    background: white !IMPORTANT;
+    cursor: inherit !IMPORTANT;
+    display: block !IMPORTANT;
+}
+
+
+span.mAprobada{
+    background-color: #3a87ad!IMPORTANT;
+}
+i.mAprobada{
+    color: #3a87ad!IMPORTANT;
+}
+
+
+span.mReprobada{
+    background-color: #dd5a43!IMPORTANT;
+}
+i.mReprobada{
+    color: #dd5a43!IMPORTANT;
+}
+
+
+span.mNcr{
+    /*background-color: rgba(144, 142, 15, 0.46)!IMPORTANT;*/
+    background-color: #EDE800!IMPORTANT;
+}
+i.mNcr{
+    /*color: rgba(144, 142, 15, 0.46)!IMPORTANT;*/
+    color: #EDE800!IMPORTANT;
+}
+
+
+span.mRenunciada{
+    /*background-color: #69aa46!IMPORTANT;*/
+    background-color: #3AD400!IMPORTANT;
+}
+i.mRenunciada{
+    /*color: #69aa46!IMPORTANT;*/
+    color: #3AD400!IMPORTANT;
+}
+
+
+span.mInscrita{
+    /*background-color: #777!IMPORTANT;*/
+    background-color: #ACB0B2!IMPORTANT;
+}
+i.mInscrita{
+    /*color: #777!IMPORTANT;*/
+    color: #ACB0B2!IMPORTANT;
+}
+
+
+span.mPendiente{
+    background-color: brown!IMPORTANT;
+}
+i.mPendiente{
+    color: brown!IMPORTANT;
+}
+
+.panel-footer{
+    border-top: 0px!important;
+}
+
+
+
+/* Propiedad agregada el 13-3-2015 pues en losbscallout se veía un espacio excesivo */
+table{
+    margin-bottom: 0px!important;
+}
+bs-callout{
+    padding-top: 0px!important;
+}
+
+
+/* Para los scroll interiores */
+.flexcroll{
+    scrollbar-face-color: #367CD2;
+    scrollbar-shadow-color: #FFFFFF;
+    scrollbar-highlight-color: #FFFFFF;
+    scrollbar-3dlight-color: #FFFFFF;
+    scrollbar-darkshadow-color: #FFFFFF;
+    scrollbar-track-color: #FFFFFF;
+    scrollbar-arrow-color: #FFFFFF;
+}
+
+/* Let's get this party started */
+.flexcroll::-webkit-scrollbar {
+    width: 12px;
+}
+
+/* Track */
+.flexcroll::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+/* Handle */
+.flexcroll::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(111, 179, 224, 1);
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+.ace-nav .nav-user-photo {
+    margin: -3px 8px 0 0!important;
+    border-radius: 20%!important;
+    border: 0.5px solid #FFF!important;
+    max-width: 40px!important;
+    max-height: 45px!important;
+}
+
+.center{
+    text-align: center!important;
+}
+
+
+.popover-title{
+    background-color: #438EB9!important;
+    color: white!important;
+    font-weight: bold!important;
+}
+
+.no_mostrar_modal {
+    display: none;
+}
+
+.page-header h1{
+     font-weight: 400!important;
+}
+
+.page-header b{
+    font-weight: 400!important;
+}
+.bloque-accordion{
+    padding-left:30px;
+}
+/*Alert Background color para nuevos gritter, bootstrap-notify usados en makeGritter, commonjs.js*/
+.alert-blue {
+  background-color: rgba(49, 81, 133, 0.92);
+  border-color: rgba(149, 149, 149, 0.3);
+  border-radius: 5px;
+  color: #EEE;
+  font-size: medium !important;
+  padding: 10px;
+}
+
+.alert-green {
+  background-color: rgba(89, 131, 75, 0.92);
+  border-color: rgba(149, 149, 149, 0.3);
+  border-radius: 5px;
+  color: #EEE;
+  font-size: medium !important;
+  padding: 10px;
+}
+
+.alert-red {
+  background-color: rgba(153, 40, 18, 0.92);
+  border-color: rgba(149, 149, 149, 0.3);
+  border-radius: 5px;
+  color: #EEE;
+  font-size: medium !important;
+  padding: 10px;
+}
+
+.alert-yellow {
+  background-color: rgba(190, 112, 31, 0.92);
+  border-color: rgba(149, 149, 149, 0.3);
+  border-radius: 5px;
+  color: #EEE;
+  font-size: medium !important;
+  padding: 10px;
+}
+
+.chosen-container>.chosen-single, [class*=chosen-container]>.chosen-single {
+  line-height: 28px;
+  height: 34px !important;
+  box-shadow: none;
+  background: #FFFFFF !important;
+}
+
+[class*="col-"] .chosen-container {
+    width:100%!important;
+}
+[class*="col-"] .chosen-container .chosen-search input[type="text"] {
+    /*padding:2px 4%!important;*/
+    width:100%!important;
+    /*margin:5px 2%;*/
+}
+[class*="col-"] .chosen-container .chosen-drop {
+    width: 100%!important;
+}
+
+/*.chosen-container>.chosen-single, [class*=chosen-container][disabled]>.chosen-single {
+  line-height: 28px;
+  height: 34px !important;
+  box-shadow: none;
+  background: #eee!important; 
+  color: #000000;
+}*/
+
+.chosen-disabled {
+  opacity: .5!important;
+  cursor: default;
+  background: #eee!important; 
+}
+
+.chosen-disabled .chosen-single {
+  cursor: default;
+  background: #eee!important;
+  color: #000000!important; 
+}
+
+  
