@@ -12,9 +12,8 @@ use app\models\SolucionReclamoSugerencia;
 
   <?php $form = ActiveForm::begin(['enableAjaxValidation'=>true]); ?>
 
-  <?= $form->field($solucion, 'SRS_VISTO_BUENO')->radioList(array('Aprobado'=>'Autorizar','Rechazado'=>'Rechazar')); ?>
+  <?= $form->field($solucion, 'SRS_VISTO_BUENO')->radioList(array('Autorizado'=>'Autorizar','Rechazado'=>'Rechazar')); ?>
 
-  <?= $form->field($solucion, 'USU_RUT')->textInput() ?>
 
   <?= $form->field($solucion, 'SRS_COMENTARIO')->textArea(array('rows'=>4)) ?>
 

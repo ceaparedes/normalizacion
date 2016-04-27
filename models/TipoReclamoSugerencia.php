@@ -39,7 +39,7 @@ class TipoReclamoSugerencia extends \yii\db\ActiveRecord
     {
         return [
             'TRS_ID' => 'Trs  ID',
-            'TRS_TIPO' => 'Tipo',
+            'TRS_TIPO' => 'Tipo Solicitud',
         ];
     }
 

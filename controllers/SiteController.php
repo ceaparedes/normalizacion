@@ -65,13 +65,14 @@ class SiteController extends Controller
             $rut = $model->username;
             $sp = "ubb..sp_web_identificacion $rut";
             $resultado = Yii::$app->dbubb->createCommand($sp)->queryOne();
+
             if($resultado != NULL)
             {
               $model->login();
 
             return $this->goBack();
           }else {
-            echo "paso por aca";
+            //hacer un popup para advertir de los datos incorrectos
             return;
           }
         }

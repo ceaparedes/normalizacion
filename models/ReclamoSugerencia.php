@@ -45,7 +45,7 @@ class ReclamoSugerencia extends \yii\db\ActiveRecord
     }
 
     //atributo necesario para realizar un adjunto
-    public $file;
+    public $files;
 
     /*$spcargo = Yii::app()->db2()->createCommand('select *
                                         from Creditotest..JEFATURA_CONTRATO j
@@ -66,7 +66,7 @@ class ReclamoSugerencia extends \yii\db\ActiveRecord
             [['REC_REPARTICION'],'string', 'max'=>100],
             [['REC_MOTIVO'],'string', 'max'=>250],
             [['REC_EMAIL_USUARIO'],'email'],
-            [['file'],'file', 'skipOnEmpty' => true, 'maxSize' => 1024 * 1024 * 2, 'extensions'=> 'jpg, png, doc, docx, pdf'],
+            [['files'],'file', 'skipOnEmpty' => true, 'maxFiles' => 6, 'extensions'=> 'jpg, png, doc, docx, pdf'],
             [['ERS_ID', 'TSR_ID', 'TRS_ID','REC_TELEFONO_USUARIO'], 'integer'],
             [['REC_FECHA', 'REC_HORA', 'ERS_ID'], 'safe'],
             [['REC_MOTIVO','REC_REPARTICION'], 'textValidate'],
@@ -79,20 +79,20 @@ class ReclamoSugerencia extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'REC_NUMERO' => 'Número ',
+            'REC_NUMERO' => 'Número Solicitud',
             'USU_RUT' => 'Rut Usuario',
             'ERS_ID' => 'Estado',
-            'REC_NOMBRE_USUARIO' => 'Nombre Usuario',
+            'REC_NOMBRE_USUARIO' => 'Usuario Solicitante',
             'REC_EMAIL_USUARIO' => 'Correo Electrónico',
             'REC_TELEFONO_USUARIO' => 'Teléfono/celular',
             'TSR_ID' => 'Tipo Solicitante',
             'TRS_ID' => 'Tipo Solicitud',
-            'REC_FECHA' => 'Fecha',
+            'REC_FECHA' => 'Fecha Envío',
             'REC_REPARTICION' => 'Repartición',
             'REC_HORA' => 'Hora',
             'REC_MOTIVO' => 'Motivo',
             'REC_VISTO_BUENO' => 'Visto  Bueno',
-            'file'=> 'Archivo adjunto'
+            'files'=> 'Archivo(s) adjunto(s)'
         ];
     }
 
@@ -170,5 +170,8 @@ class ReclamoSugerencia extends \yii\db\ActiveRecord
         $this->addError($attribute,'Verifique el texto ingresado');
 
       }
+
+    
+
 
 }

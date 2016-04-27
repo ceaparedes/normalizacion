@@ -71,10 +71,10 @@ MyAsset::register($this);
       <div class="navbar-buttons navbar-header pull-right" role="navigation">
         <ul class="nav ace-nav">
 
-          <li class="purple">
-            <a href="http://werken.ubiobio.cl/" target="_blank">
+          <li class="grey">
+            <a href="http://intranet.ubiobio.cl/" target="_blank">
               <i class="ace-icon fa fa-book icon-animated-bell"></i>
-              <span class="badge badge-important">WERKEN</span>
+              <span class="badge badge-default">INTRANET</span>
             </a>
 
           </li>
@@ -363,17 +363,13 @@ MyAsset::register($this);
 
       <!-- #section:basics/content.breadcrumbs -->
 
-          <div class="page-content-area">
-            <div class="page-header"><h1> <?= $this->title ?> </div></h1>
-                <div class="row">
-                  <div class="col-xs-12"> <!--funciona a medias -->
-                    <!-- contenido de la página-->
-                    <?= $content ?>
-                    <!--/contenido -->
-                </div>
-              </div>
-            </div><!--/page content area-->
-    </div><!--/page content-->
+          <div class="page-content">
+
+              <!-- contenido de la página-->
+              <?= $content ?>
+              <!--/contenido -->
+
+          </div><!--/page content-->
 
     <div class="footer">
           <div class="footer-inner">

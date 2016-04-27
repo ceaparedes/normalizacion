@@ -46,6 +46,7 @@ class HistorialEstadosSearch extends HistorialEstados
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=>false,
         ]);
 
         $this->load($params);
@@ -65,7 +66,7 @@ class HistorialEstadosSearch extends HistorialEstados
         $query->andFilterWhere(['like', 'REC_NUMERO', $this->REC_NUMERO])
             ->andFilterWhere(['like', 'USU_RUT', $this->USU_RUT])
             ->andFilterWhere(['like', 'HES_COMENTARIO', $this->HES_COMENTARIO]);
-            
+
 
         return $dataProvider;
     }

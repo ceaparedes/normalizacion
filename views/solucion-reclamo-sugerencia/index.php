@@ -13,11 +13,11 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="solucion-reclamo-sugerencia-index">
 
-    
+
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-
-    <div class="box-body table-responsive no-padding table-bordered siempre_responsivo">
+<div class="page-header"><h1> <?= $this->title ?></h1></div>
+    <div class="box-body table-responsive no-padding table-bordered">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'SRS_ANTECEDENTES',
             // 'SRS_FECHA_RESPUESTA',
             // 'SRS_FECHA_ENVIO',
-            // 'SRS_RESULTADOS',
+
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

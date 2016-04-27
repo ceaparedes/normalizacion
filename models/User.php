@@ -21,14 +21,13 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
 
 
   public $rut_us;
-  public $password;
   public $email;
   public $campus;
   public $nombres;
   public $apellido_p;
   public $apellido_m;
   public $alias;
-  
+
 
     /* aqui estan los usuarios por defecto, eliminar cuando este implementada la conexion con la base de datos.*/
 

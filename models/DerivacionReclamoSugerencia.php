@@ -34,6 +34,11 @@ class DerivacionReclamoSugerencia extends \yii\db\ActiveRecord
     {
         return 'DERIVACION_RECLAMO_SUGERENCIA';
     }
+    public $nombre;
+    public $apellido;
+    public $files;
+    public $hidden;
+
 
     /**
      * @inheritdoc
@@ -42,8 +47,9 @@ class DerivacionReclamoSugerencia extends \yii\db\ActiveRecord
     {
         return [
 
-            [['USU_RUT', 'DRS_CARGO', 'DRS_UNIDAD', 'DRS_RESPUESTA'], 'string'],
-            [['DRS_FECHA_DERIVACION', 'DRS_FECHA_RESPUESTA', 'DRS_SERVICIO_NO_CONFORME','SRS_ID', 'EDR_ID'], 'safe'],
+            [['USU_RUT', 'DRS_CARGO', 'DRS_UNIDAD', 'DRS_RESPUESTA', 'DRS_NOMBRE' ,'nombre','apellido'], 'string'],
+            [['files'],'file', 'skipOnEmpty' => true, 'maxFiles' => 6, 'extensions'=> 'doc, docx, pdf'],
+            [['DRS_FECHA_DERIVACION', 'DRS_FECHA_RESPUESTA','SRS_ID', 'EDR_ID', 'hidden'], 'safe'],
             [['DRS_RESPUESTA'],'textValidate']
         ];
     }
@@ -55,15 +61,19 @@ class DerivacionReclamoSugerencia extends \yii\db\ActiveRecord
     {
         return [
             'DRS_ID' => 'Derivación Nº.',
-            'EDR_ID' => 'Estado',
+            'EDR_ID' => 'Estado Derivación',
             'USU_RUT' => 'Rut',
             'SRS_ID' => 'Número Reclamo',
             'DRS_CARGO' => 'Cargo',
             'DRS_UNIDAD' => 'Unidad',
             'DRS_FECHA_DERIVACION' => 'Fecha  Derivacion',
             'DRS_FECHA_RESPUESTA' => 'Fecha  Respuesta',
-            'DRS_SERVICIO_NO_CONFORME'=>'¿Servicio no conforme?',
+            'DRS_NOMBRE' => 'Nombre RORS',
             'DRS_RESPUESTA' => 'Respuesta',
+            'nombre'=>'Nombre',
+            'apellido'=> 'Apellido',
+            'files' => 'Archivo(s) Adjunto(s)',
+
         ];
     }
 

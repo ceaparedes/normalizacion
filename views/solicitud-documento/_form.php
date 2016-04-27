@@ -25,22 +25,19 @@ use app\models\VersionDocumento;
                               ['enctype' => 'multipart/form-data',
                               'enableAjaxValidation'=>true]]); ?>
 
-    <?= $form->field($model, 'USU_RUT')->textInput() ?>
-
-    <?= $form->field($model, 'SOL_UNIDAD')->textInput() ?>
 
     <?= $form->field($model,'ODO_ID')->dropDownList(
-                                ArrayHelper::map( OrigenDocumento::find()->all(), 'ODO_ID', 'ODO_ORIGEN'),
-                                [
-                                    'prompt'=>'Seleccione el Origen',
-                                    'onchange'=>'
-                                        $.post( "index.php?r=documento/lists&id='.'"+$(this).val(), function( data ) {
-                                            $( "select#solicituddocumento-doc_codigo" ).html( data );
-                                        }),
-                                        $.post( "index.php?r=tipo-accion-solicitud/lists&id='.'"+$(this).val(), function( data ) {
-                                            $( "select#solicituddocumento-tas_id" ).html( data );
-                                        });'
-                                ]); ?>
+              ArrayHelper::map( OrigenDocumento::find()->all(), 'ODO_ID', 'ODO_ORIGEN'),
+              [
+                  'prompt'=>'Seleccione el Origen',
+                  'onchange'=>'
+                      $.post( "index.php?r=documento/lists&id='.'"+$(this).val(), function( data ) {
+                          $( "select#solicituddocumento-doc_codigo" ).html( data );
+                      }),
+                      $.post( "index.php?r=tipo-accion-solicitud/lists&id='.'"+$(this).val(), function( data ) {
+                          $( "select#solicituddocumento-tas_id" ).html( data );
+                      });'
+              ]); ?>
 
       <?= $form->field($model, 'DOC_CODIGO')->widget(Select2::classname(), [
       'data' => ArrayHelper::map(Documento::find()->all(),'DOC_CODIGO','DOC_TITULO'),

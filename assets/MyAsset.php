@@ -26,6 +26,7 @@ class MyAsset extends AssetBundle
         'css/ace-part2.css',
         'css/ace-skins.min.css',
         'css/ace-ie.css',
+        'css/estilosintranet.css',
 
 
 
@@ -64,6 +65,10 @@ class MyAsset extends AssetBundle
       'js/language/html.js',
       'js/language/css.js',
       'js/language/javascript.js',
+
+
+
+      
     ];
     public $depends = [
         'yii\web\YiiAsset',

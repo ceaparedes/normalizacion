@@ -13,9 +13,9 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="solicitud-documento-index">
 
-    
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+<div class="page-header"><h1> <?= $this->title ?></h1></div>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,

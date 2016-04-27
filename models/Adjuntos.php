@@ -57,7 +57,7 @@ class Adjuntos extends \yii\db\ActiveRecord
             'DSD_ID' => 'Dsd  ID',
             'REC_NUMERO' => 'Rec Numero',
             'ADJ_TIPO' => 'Tipo',
-            'ADJ_URL' => 'Adjunto',
+            'ADJ_URL' => 'Archivo Adjunto',
         ];
     }
 

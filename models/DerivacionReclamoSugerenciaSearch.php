@@ -21,7 +21,7 @@ class DerivacionReclamoSugerenciaSearch extends DerivacionReclamoSugerencia
     {
         return [
             [['DRS_ID'], 'integer'],
-            [['USU_RUT', 'DRS_CARGO', 'DRS_UNIDAD', 'DRS_FECHA_DERIVACION', 'DRS_FECHA_RESPUESTA', 'DRS_RESPUESTA','DRS_SERVICIO_NO_CONFORME', 'EDR_ID', 'SRS_ID'], 'safe'],
+            [['USU_RUT', 'DRS_CARGO', 'DRS_UNIDAD', 'DRS_FECHA_DERIVACION', 'DRS_FECHA_RESPUESTA', 'DRS_RESPUESTA','DRS_NOMBRE', 'EDR_ID', 'SRS_ID'], 'safe'],
         ];
     }
 
@@ -70,7 +70,7 @@ class DerivacionReclamoSugerenciaSearch extends DerivacionReclamoSugerencia
             ->andFilterWhere(['like', 'DRS_CARGO', $this->DRS_CARGO])
             ->andFilterWhere(['like', 'DRS_UNIDAD', $this->DRS_UNIDAD])
             ->andFilterWhere(['like', 'DRS_RESPUESTA', $this->DRS_RESPUESTA])
-            ->andFilterWhere(['like', 'DRS_SERVICIO_NO_CONFORME', $this->DRS_SERVICIO_NO_CONFORME])
+            ->andFilterWhere(['like', 'DRS_NOMBRE', $this->DRS_NOMBRE])
             ->andFilterWhere(['like', 'EDR_ESTADO', $this->EDR_ID])
             ->andFilterWhere(['like', 'REC_NUMERO', $this->SRS_ID]);
 

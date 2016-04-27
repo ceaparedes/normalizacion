@@ -17,7 +17,7 @@ use app\models\EstadoSolucionReclamoSugerencia;
  * @property string $SRS_ANTECEDENTES
  * @property string $SRS_FECHA_RESPUESTA
  * @property string $SRS_FECHA_ENVIO
- * @property string $SRS_RESULTADOS
+ * @property string $SRS_NOMBRE
  *
  * @property DERIVACIONRECLAMOSUGERENCIA[] $dERIVACIONRECLAMOSUGERENCIAs
  * @property SACSAP[] $sACSAPs
@@ -35,6 +35,7 @@ class SolucionReclamoSugerencia extends \yii\db\ActiveRecord
     {
         return 'SOLUCION_RECLAMO_SUGERENCIA';
     }
+    public $visto_bueno; 
 
     /**
      * @inheritdoc
@@ -43,8 +44,8 @@ class SolucionReclamoSugerencia extends \yii\db\ActiveRecord
     {
         return [
             [['USU_RUT', 'REC_NUMERO', 'ESR_ID', 'SRS_COMENTARIO'], 'required'],
-            [['USU_RUT', 'REC_NUMERO', 'SRS_VISTO_BUENO', 'SRS_COMENTARIO', 'SRS_ANTECEDENTES', 'SRS_RESULTADOS'], 'string'],
-            [['SRS_FECHA_RESPUESTA', 'SRS_FECHA_ENVIO', 'ESR_ID'], 'safe'],
+            [['USU_RUT', 'REC_NUMERO', 'SRS_VISTO_BUENO', 'SRS_COMENTARIO', 'SRS_ANTECEDENTES', 'SRS_NOMBRE'], 'string'],
+            [['SRS_FECHA_RESPUESTA', 'SRS_FECHA_ENVIO', 'ESR_ID','SRS_SERVICIO_NO_CONFORME'], 'safe'],
             [['SRS_COMENTARIO'],'textValidate'],
         ];
     }
@@ -64,7 +65,8 @@ class SolucionReclamoSugerencia extends \yii\db\ActiveRecord
             'SRS_ANTECEDENTES' => 'Antecedentes',
             'SRS_FECHA_RESPUESTA' => 'Fecha  Respuesta',
             'SRS_FECHA_ENVIO' => 'Fecha  Envio',
-            'SRS_RESULTADOS' => 'Resultados',
+            'SRS_NOMBRE' => 'Emisor Evaluación',
+            'SRS_SERVICIO_NO_CONFORME' => '¿Servicio no conforme?'
         ];
     }
 

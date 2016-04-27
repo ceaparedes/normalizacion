@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
       <div class="row">
         <form name="reclamo-sugerencia-create" method action class="form-horizontal">
 
-      <div class="col-xs-12 col-lg-6">
+      <div class="col-xs-12 col-lg-6 ">
     <?= $form->field($model, 'TRS_ID')->dropDownList(
         ArrayHelper::map(TIPORECLAMOSUGERENCIA::find()->all(),'TRS_ID','TRS_TIPO'),
         ['prompt'=>'Seleccione el tipo de su Solicitud',
@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
       </div>
 
       <div class="col-xs-12 col-lg-6">
-    <?= $form->field($model, 'file')->fileInput() ?>
+    <?= $form->field($model, 'files[]')->fileInput(['multiple' => true]) ?>
       </div>
 
         </form>

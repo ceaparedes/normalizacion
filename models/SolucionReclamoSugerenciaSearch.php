@@ -18,7 +18,7 @@ class SolucionReclamoSugerenciaSearch extends SolucionReclamoSugerencia
     public function rules()
     {
         return [
-            [['USU_RUT', 'REC_NUMERO', 'SRS_COMENTARIO', 'SRS_ANTECEDENTES', 'SRS_FECHA_RESPUESTA', 'SRS_FECHA_ENVIO', 'SRS_RESULTADOS', 'SRS_ID', 'ESR_ID', 'SRS_VISTO_BUENO'], 'safe'],
+            [['USU_RUT', 'REC_NUMERO', 'SRS_COMENTARIO', 'SRS_ANTECEDENTES', 'SRS_FECHA_RESPUESTA', 'SRS_FECHA_ENVIO', 'SRS_NOMBRE', 'SRS_ID', 'ESR_ID', 'SRS_VISTO_BUENO'], 'safe'],
         ];
     }
 
@@ -66,7 +66,7 @@ class SolucionReclamoSugerenciaSearch extends SolucionReclamoSugerencia
             ->andFilterWhere(['like', 'REC_NUMERO', $this->REC_NUMERO])
             ->andFilterWhere(['like', 'SRS_COMENTARIO', $this->SRS_COMENTARIO])
             ->andFilterWhere(['like', 'SRS_ANTECEDENTES', $this->SRS_ANTECEDENTES])
-            ->andFilterWhere(['like', 'SRS_RESULTADOS', $this->SRS_RESULTADOS])
+            ->andFilterWhere(['like', 'SRS_NOMBRE', $this->SRS_NOMBRE])
             ->andFilterWhere(['like', 'ESR_ESTADO', $this->ESR_ID]);
 
         return $dataProvider;

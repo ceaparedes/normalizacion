@@ -2,6 +2,9 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\db\Query;
+use yii\db\QueryTrait;
+use app\models\Adjuntos;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\SolucionReclamoSugerencia */
@@ -12,10 +15,15 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="solucion-reclamo-sugerencia-view">
 
-    <p>
+  <div class="box-header margenb5 pull-right">
       <?php
+      echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
+      <span class="btn btn-xs btn-info no-radius ">
+      <i class="glyphicon glyphicon-arrow-left"></i>
+      </span> Volver </label>', '?r=reclamo-sugerencia', ['class' => 'btn btn-xs btn-white no-radius btn-info']);
+      echo " ";
 
-      if ($reclamo->ERS_ID == 3){
+      if ($reclamo->ERS_ID == 3 ){
 
             echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
           <span class="btn btn-xs btn-info no-radius" id="agregaperiodo" onclick="envia()">
@@ -26,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
           }else {
 
-            if($reclamo->ERS_ID == 4 || $reclamo->ERS_ID == 6){
+            if($reclamo->ERS_ID == 6){
               echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
             <span class="btn btn-xs btn-info no-radius" id="agregaperiodo" onclick="envia()">
               <i class="glyphicon glyphicon-pencil"></i>
@@ -48,94 +56,84 @@ $this->params['breadcrumbs'][] = $this->title;
         }
 
 
-
-
       ?>
+  </div>
+<div class="page-header"><h1> <?= $this->title ?></h1></div>
 
-        <!--
-        <?= Html::a('Eliminar', ['delete', 'id' => $model->SRS_ID], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => '¿Esta Seguro de eliminar la solicitud?',
-                'method' => 'post',
-            ],
-        ]) ?>
-        -->
-    </p>
-<div class="col-xs-8" >
+<div class="bs-callout bs-callout-info">
+  <div class="row" >
     <?php
-        if(!$model->SRS_RESULTADOS){
           if($model->SRS_VISTO_BUENO== 'Autorizado'){
+              echo DetailView::widget([
+              'model' => $reclamo,
+              'attributes' => [
+                  'REC_NUMERO',
+                  'tRS.TRS_TIPO',
+                  'REC_NOMBRE_USUARIO',
+                  'eRS.ERS_ESTADO',
+                  'REC_MOTIVO',
+                ],
+                ]);
               echo DetailView::widget([
               'model' => $model,
               'attributes' => [
-                  'SRS_ID',
-                  'USU_RUT',
-                  'REC_NUMERO',
-                  'eSR.ESR_ESTADO',
+
+                  'SRS_NOMBRE',
                   'SRS_VISTO_BUENO',
                   'SRS_COMENTARIO',
-                  'SRS_ANTECEDENTES',
                   //'SRS_FECHA_RESPUESTA',
                   'SRS_FECHA_ENVIO',
-                  //'SRS_RESULTADOS',
                 ],
                 ]);
             }else {
               echo DetailView::widget([
+              'model' => $reclamo,
+              'attributes' => [
+                  'REC_NUMERO',
+                  'tRS.TRS_TIPO',
+                  'REC_NOMBRE_USUARIO',
+                  'eRS.ERS_ESTADO',
+                  'REC_MOTIVO',
+                ],
+                ]);
+              echo DetailView::widget([
               'model' => $model,
               'attributes' => [
-                  'SRS_ID',
-                  'USU_RUT',
-                  'REC_NUMERO',
-                  'eSR.ESR_ESTADO',
+                  'SRS_NOMBRE',
                   'SRS_VISTO_BUENO',
-                  'SRS_COMENTARIO',
-                  //'SRS_ANTECEDENTES',
                   //'SRS_FECHA_RESPUESTA',
                   'SRS_FECHA_ENVIO',
-                  //'SRS_RESULTADOS',
+                  'SRS_COMENTARIO',
                 ],
                 ]);
 
             }
-        }else{
-          echo DetailView::widget([
-          'model' => $model,
-          'attributes' => [
-              'SRS_ID',
-              'USU_RUT',
-              'REC_NUMERO',
-              'ESR_ID',
-              'SRS_VISTO_BUENO',
-              'SRS_COMENTARIO',
-              'SRS_ANTECEDENTES',
-              'SRS_FECHA_RESPUESTA',
-              'SRS_FECHA_ENVIO',
-              'SRS_RESULTADOS',
 
+          if($contador >0){
+            //muestra el enlace al Archivo adjunto
+            $query = new Query;
+            $query->select ('ADJ_ID')
+                ->from('ADJUNTOS')
+                ->where('REC_NUMERO=:reclamo', [':reclamo' => $model->REC_NUMERO]);
+            $query = $query->All();
 
-        ],
-      ]);
-    }
-
-    if($adjunto ){
-      echo DetailView::widget([
-      'model' => $adjunto,
-      'attributes' => [
-
-        [
-          'attribute'=>'ADJ_URL',
-          'format'=>'raw',
-          'value'=>Html::a('Archivo Adjunto', $adjunto->ADJ_URL, ['target' => '_blank']),
-
-        ],
-
-      ],
-    ]);
-
-    }
+            for ($i=0; $i <$contador ; $i++) {
+              $adj = new Adjuntos();
+              $adj = $adj->findOne($query[$i]);
+              echo DetailView::widget([
+              'model' => $adj,
+              'attributes' => [
+                    [
+                      'attribute'=>'ADJ_URL',
+                      'format'=>'raw',
+                      'value'=>Html::a('Vea aquí el Archivo Adjunto', $adj->ADJ_URL, ['target' => '_blank']),
+                    ],
+              ],
+            ]);
+          }
+        }
 
     ?>
+  </div>
 </div>
 </div>

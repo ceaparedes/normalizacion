@@ -2,10 +2,14 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\db\Query;
+use yii\db\QueryTrait;
+
 use app\models\TipoReclamoSugerencia;
 use app\models\TipoSolicitanteReclamoSugerencia;
 use app\models\EstadoReclamoSugerencia;
 use app\models\Adjuntos;
+
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\ReclamoSugerencia */
@@ -16,10 +20,16 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="reclamo-sugerencia-view">
 
-    <p>
+      <div class="box-header margenb5 pull-right">
         <?php
 
-        if ($model->ERS_ID == 1){
+        echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
+      <span class="btn btn-xs btn-info no-radius ">
+        <i class="glyphicon glyphicon-arrow-left"></i>
+      </span> Volver </label>', '?r=reclamo-sugerencia', ['class' => 'btn btn-xs btn-white no-radius btn-info']);
+      echo " ";
+
+        if ($model->ERS_ID == 1 && $model->USU_RUT == Yii::$app->user->identity->rut){
         //boton Actualizar
         echo " ";
         echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
@@ -51,35 +61,27 @@ $this->params['breadcrumbs'][] = $this->title;
           ]);
 
 
-      }else {
+      }elseif($model->ERS_ID == 2) {
 
-        echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
-      <span class="btn btn-xs btn-info no-radius ">
-        <i class="glyphicon glyphicon-arrow-left"></i>
-      </span> Volver </label>', '?r=reclamo-sugerencia', ['class' => 'btn btn-xs btn-white no-radius btn-info']);
-      echo " ";
-
-        if( $model->ERS_ID == 2){
         echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
       <span class="btn btn-xs btn-info no-radius ">
         <i class="glyphicon  glyphicon-pencil"></i></span>Evaluar</label>', ['evaluate', 'id' => $model->REC_NUMERO], ['class' => 'btn btn-xs btn-white no-radius btn-info']);
         echo " ";
-      }else {
-          echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
-      <span class="btn btn-xs btn-info no-radius">
-        <i class="ace-icon fa fa-expand"></i>
-      </span> Ver Evaluacion</label>', ['solucion-reclamo-sugerencia/view', 'id' => $solucion->SRS_ID], ['class' => 'btn btn-xs btn-white no-radius btn-info']);
-          echo " ";
 
-      }
 
+      }elseif ($model->ERS_ID == 3 || $model->ERS_ID == 4) {
+        echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
+      <span class="btn btn-xs btn-info no-radius ">
+        <i class="ace-icon fa fa-expand"></i></span>Ver Evaluacion</label>', ['solucion-reclamo-sugerencia/view', 'id' => $solucion->SRS_ID], ['class' => 'btn btn-xs btn-white no-radius btn-info']);
+        echo " ";
       }
         ?>
 
-    </p>
-
+    </div>
+<div class="page-header"><h1> <?= $this->title ?> </div></h1>
   <div class="bs-callout bs-callout-info">
-    <div class="col-xs-8" >
+    <div class="row" >
+
     <?php
 
 
@@ -123,22 +125,35 @@ $this->params['breadcrumbs'][] = $this->title;
             ]);
 
       }
-      //si existe el adjunto y el reclamo no esta eliminado
-      if($adjunto && $model->ERS_ID !=8){
+      //si existe el adjunto
+      if($contador >0){
         //muestra el enlace al Archivo adjunto
-        echo DetailView::widget([
-        'model' => $adjunto,
-        'attributes' => [
+        $query = new Query;
+        $query->select ('ADJ_ID')
+            ->from('ADJUNTOS')
+            ->where('REC_NUMERO=:reclamo', [':reclamo' => $model->REC_NUMERO]);
+        $query = $query->All();
 
-          [
-            'attribute'=>'ADJ_URL',
-            'format'=>'raw',
-            'value'=>Html::a('Archivo Adjunto', $adjunto->ADJ_URL, ['target' => '_blank']),
+        for ($i=0; $i <$contador ; $i++) {
+          $adj = new Adjuntos();
+          $adj = $adj->findOne($query[$i]);
+          echo DetailView::widget([
+          'model' => $adj,
+          'attributes' => [
+
+            [
+              'attribute'=>'ADJ_URL',
+              'format'=>'raw',
+              'value'=>Html::a('Vea aquí el Archivo Adjunto', $adj->ADJ_URL, ['target' => '_blank']),
+
+            ],
 
           ],
+        ]);
 
-        ],
-      ]);
+
+        }
+
 
       }
 

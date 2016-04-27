@@ -26,7 +26,7 @@ class HistorialEstadosController extends Controller
                 'rules'=>[
                   [
                     'allow'=>true,
-                    'actions' =>['answer','view'],
+                    'actions' =>['index','view'],
                     'roles'=>['@'],//cambiar al rol a funcionario R.
                   ],
                   [
