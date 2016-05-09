@@ -26,7 +26,11 @@ $this->params['breadcrumbs'][] = 'Derivar';
 
 <div class="solucion-reclamo-sugerencia-derivate">
 
-  <?php $form = ActiveForm::begin();?>
+  <?php $form = ActiveForm::begin(['options'=>
+                                      ['name'=>'derivacion-form',
+                                        'id' => 'derivacion-form',
+                                      'enctype' => 'multipart/form-data']
+                                        ]);?>
 
   <div class="box-header margenb5 pull-right">
   <?= Html::submitButton('<label class="box-title pull-right margenbtnsuperior dark">
@@ -45,16 +49,16 @@ $this->params['breadcrumbs'][] = 'Derivar';
 <!--datos completados en procesos anteriores-->
   <div class="bs-callout bs-callout-info">
     <div class="row" >
-      <?=DetailView::widget([
-          'model' => $model,
-          'attributes' => [
-              'REC_NUMERO',
-              'rECNUMERO.tRS.TRS_TIPO',
-              'rECNUMERO.eRS.ERS_ESTADO',
-              'SRS_COMENTARIO',
-              'rECNUMERO.REC_MOTIVO',
-          ],
-      ]) ?>
+        <?=DetailView::widget([
+            'model' => $model,
+            'attributes' => [
+                'REC_NUMERO',
+                'rECNUMERO.tRS.TRS_TIPO',
+                'rECNUMERO.eRS.ERS_ESTADO',
+                'SRS_COMENTARIO',
+                'rECNUMERO.REC_MOTIVO',
+            ],
+        ]) ?>
     </div>
   </div>
 
@@ -70,17 +74,42 @@ $this->params['breadcrumbs'][] = 'Derivar';
 
       <div class="col-xs-12 col-lg-6">
         <?= $form->field($derivacion, 'files[]')->fileInput(['multiple' => true]) ?>
+
       </div>
     </div>
+    <?= $form->field($derivacion, 'hidden')->hiddenInput()->label(false) ?>
+
+<?php $form = ActiveForm::end();?>
   </div>
-  <!--los datos del funciorario deben ser recepciona-->
-<?php $form = ActiveForm::end(); ?>
+  <!--deberia insertar los datos del personal aqui-->
+  <!--los datos del funciorario deberian ser recepcionados-->
+
 <!--debe quedar aqui el ActiveForm END ya que o si no el boton buscar hace submit-->
 <?= $this->render('_personalSearch', [
     'searchModel' => $searchModel,
     'dataProvider'=> $dataProvider,
-    'model'=>$model,
+    'model'=> $model,
 ]) ?>
+
+
+<?php
+  $js = "$('#derivacion-form').on('beforeSubmit', function (e) {
+    $(". '"input[name='. "'selection[]'" .']:checked"' . ').each(function(){console.log($(this).val());alert($(this).val())
+      $("input[name=\'DerivacionReclamoSugerencia[hidden]\']").val($("input[name=\'DerivacionReclamoSugerencia[hidden]\']").val()+\'-\'+$(this).val());
+    });
+  });';
+
+  $jss = '$("#derivacion-form").submit(function () {
+      if(($("#derivacionreclamosugerencia-hidden").val().length < 1)) {
+          alert("Debe seleccionar a alguien");
+          return false;
+      }
+      return true;
+  });';
+
+  $this->registerJs($js);
+  $this->registerJs($jss);
+  ?>
 
 
 </div>

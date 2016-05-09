@@ -62,3 +62,4 @@ composer.phar
 config/dbdocs.php
 config/dbubb.php
 config/dbdocs.php
+config/web.php

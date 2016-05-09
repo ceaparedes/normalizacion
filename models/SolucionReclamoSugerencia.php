@@ -35,7 +35,8 @@ class SolucionReclamoSugerencia extends \yii\db\ActiveRecord
     {
         return 'SOLUCION_RECLAMO_SUGERENCIA';
     }
-    public $visto_bueno; 
+    public $visto_bueno;
+
 
     /**
      * @inheritdoc
@@ -45,7 +46,7 @@ class SolucionReclamoSugerencia extends \yii\db\ActiveRecord
         return [
             [['USU_RUT', 'REC_NUMERO', 'ESR_ID', 'SRS_COMENTARIO'], 'required'],
             [['USU_RUT', 'REC_NUMERO', 'SRS_VISTO_BUENO', 'SRS_COMENTARIO', 'SRS_ANTECEDENTES', 'SRS_NOMBRE'], 'string'],
-            [['SRS_FECHA_RESPUESTA', 'SRS_FECHA_ENVIO', 'ESR_ID','SRS_SERVICIO_NO_CONFORME'], 'safe'],
+            [['SRS_FECHA_RESPUESTA', 'SRS_FECHA_ENVIO', 'ESR_ID','SRS_SERVICIO_NO_CONFORME', 'visto_bueno'], 'safe'],
             [['SRS_COMENTARIO'],'textValidate'],
         ];
     }

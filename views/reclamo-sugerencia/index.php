@@ -1,9 +1,10 @@
 <?php
-
+//use Yii Tools
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\ListView;
 use yii\widgets\DetailView;
+//use app models
 use app\models\TipoReclamoSugerencia;
 use app\models\TipoSolicitanteReclamoSugerencia;
 use app\models\EstadoReclamoSugerencia;
@@ -24,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
       echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
       <span class="btn btn-xs btn-info no-radius">
       <i class="glyphicon glyphicon-pencil"></i>
-      </span> Completar Formulario en Blanco</label>', ['createblank'], ['class' => 'btn btn-xs btn-white no-radius btn-info']) ;
+      </span> Completar Formulario de Usuarios Externos</label>', ['createblank'], ['class' => 'btn btn-xs btn-white no-radius btn-info']) ;
 
       echo "</div>";
     } ?>

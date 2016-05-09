@@ -19,11 +19,16 @@ use app\models\Personal;
 use app\models\PersonalSearch;
 ?>
 
-<div class="reclamo-sugerencia-search">
+<div class="personal-search">
+
+  <?php Pjax::begin(); ?>
 
   <?php $busqueda = ActiveForm::begin(
       ['action' => ['derivate', 'id' => $model->SRS_ID],
-      'method' => 'get']
+      'method' => 'get',
+      'options'=>[
+            'name'=> 'busquedapersonal-form'
+          ]]
       );?>
     <div class="bs-callout bs-callout-info">
       <div class="row" >
@@ -50,12 +55,12 @@ use app\models\PersonalSearch;
     <h3 id="badges" class="header smaller lighter blue">Resultados</h3>
     <div class="bs-callout bs-callout-info">
       <div class="row" >
-        <?php Pjax::begin();?>
+
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
             'headerRowOptions'=>[
               'class'=>'encabezadotabla',
-              'Pjax'=> true,
+
               ],
 
             'columns' => [
@@ -64,6 +69,7 @@ use app\models\PersonalSearch;
                 'value'=> 'mae_rut',
                 'visible'=>false,
               ],
+
               ['attribute'=>'mae_nombre',
                 'value' => 'mae_nombre',
                 'label'=> 'Nombre Funcionario',
@@ -74,6 +80,7 @@ use app\models\PersonalSearch;
                 'label'=> 'Apellido Paterno',
 
               ],
+
               ['attribute'=>'mae_apellido_materno',
                 'value' => 'mae_apellido_materno',
                 'label'=> 'Apellido Materno',
@@ -81,26 +88,20 @@ use app\models\PersonalSearch;
 
               ['class' => 'yii\grid\CheckboxColumn',
 
+               'checkboxOptions'=>
+                                   function ($model, $key, $index, $column) {
+                                  return ['value' => $model->mae_rut];
+                                },
+
               'multiple'=> true,
               ],
             ],
         ]); ?>
       </div>
     </div>
-    <?php Pjax::end();?>
+
+
 <?php $busqueda = ActiveForm::end(); ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
+<?php Pjax::end(); ?>
 
 </div>

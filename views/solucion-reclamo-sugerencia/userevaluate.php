@@ -11,7 +11,6 @@ use app\models\TipoSolicitanteReclamoSugerencia;
 use app\models\EstadoReclamoSugerencia;
 use app\models\EstadoSolucionReclamoSugerencia;
 use app\models\DerivacionReclamoSugerencia;
-use app\models\Adjuntos;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\ReclamoSugerencia */
@@ -91,40 +90,6 @@ $this->params['breadcrumbs'][] = 'Evaluar Respuesta Entregada';
         }
       }
 
-      if($count_adj_respuestas >0 ){
-        echo '<h3 id="badges" class="header smaller lighter blue">SAC-SAP  Completado por el Usuario</h3>';
-        //muestra el enlace al Archivo adjunto
-        $query = new Query;
-        $query->select ('ADJ_ID')
-            ->from('ADJUNTOS')
-              ->where("REC_NUMERO=:reclamo AND ADJ_TIPO = 'Respuesta-Reclamo-Sugerencia'" , [':reclamo' => $reclamo->REC_NUMERO]);
-        $query = $query->All();
-
-        for ($i=0; $i <$count_adj_respuestas ; $i++) {
-          $adj = new Adjuntos();
-          $adj = $adj->findOne($query[$i]);
-          echo DetailView::widget([
-          'model' => $adj,
-          'attributes' => [
-
-            [
-              'attribute'=>'ADJ_URL',
-              'format'=>'raw',
-              'label'=>'SAC-SAP Adjunto',
-              'value'=>Html::a('Vea aquí el Archivo Adjunto', $adj->ADJ_URL, ['target' => '_blank']),
-
-            ],
-
-          ],
-        ]);
-
-
-        }
-
-
-      }
-
-
     ?>
  </div>
 </div>
@@ -133,7 +98,7 @@ $this->params['breadcrumbs'][] = 'Evaluar Respuesta Entregada';
   <div class="row" >
 
     <div class="col-xs-12 col-lg-7">
-      <?= $form->field($reclamo, 'REC_VISTO_BUENO')->radioList(['Autorizado'=>'Autorizar','Rechazado'=>'Rechazar']); ?>
+      <?= $form->field($model, 'visto_bueno')->radioList(['Autorizado'=>'Autorizar','Rechazado'=>'Rechazar']); ?>
     </div>
   </div>
 </div>

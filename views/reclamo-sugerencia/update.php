@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = 'Actualizar';
                                 ]); ?>
       <div class="box-header margenb5 pull-right">
         <?= Html::submitButton('<label class="box-title pull-right margenbtnsuperior dark">
-          <span class="btn btn-xs btn-info no-radius" id="reclamo-sugerencia-create" onclick="submit">
+          <span class="btn btn-xs btn-info no-radius" id="reclamo-sugerencia-create">
             <i class="glyphicon glyphicon-floppy-disk"></i>
           </span> Guardar </label>',
          ['class' => 'btn btn-xs btn-white no-radius btn-info',

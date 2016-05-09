@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = 'Evaluar';
 <div class="reclamo-sugerencia-evaluate">
   <div class="box-header margenb5 pull-right">
   <?= Html::submitButton('<label class="box-title pull-right margenbtnsuperior dark">
-      <span class="btn btn-xs btn-info no-radius" id="reclamo-sugerencia-evaluate" onclick="submit">
+      <span class="btn btn-xs btn-info no-radius" id="reclamo-sugerencia-evaluate">
         <i class="glyphicon glyphicon-pencil"></i>
       </span> Evaluar </label>',
      ['class' => 'btn btn-xs btn-white no-radius btn-info',

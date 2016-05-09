@@ -40,6 +40,7 @@ class DerivacionReclamoSugerencia extends \yii\db\ActiveRecord
     public $hidden;
 
 
+
     /**
      * @inheritdoc
      */
@@ -49,6 +50,7 @@ class DerivacionReclamoSugerencia extends \yii\db\ActiveRecord
 
             [['USU_RUT', 'DRS_CARGO', 'DRS_UNIDAD', 'DRS_RESPUESTA', 'DRS_NOMBRE' ,'nombre','apellido'], 'string'],
             [['files'],'file', 'skipOnEmpty' => true, 'maxFiles' => 6, 'extensions'=> 'doc, docx, pdf'],
+
             [['DRS_FECHA_DERIVACION', 'DRS_FECHA_RESPUESTA','SRS_ID', 'EDR_ID', 'hidden'], 'safe'],
             [['DRS_RESPUESTA'],'textValidate']
         ];
@@ -64,8 +66,8 @@ class DerivacionReclamoSugerencia extends \yii\db\ActiveRecord
             'EDR_ID' => 'Estado Derivación',
             'USU_RUT' => 'Rut',
             'SRS_ID' => 'Número Reclamo',
-            'DRS_CARGO' => 'Cargo',
-            'DRS_UNIDAD' => 'Unidad',
+            'DRS_CARGO' => 'Cargo RORS',
+            'DRS_UNIDAD' => 'Unidad RORS',
             'DRS_FECHA_DERIVACION' => 'Fecha  Derivacion',
             'DRS_FECHA_RESPUESTA' => 'Fecha  Respuesta',
             'DRS_NOMBRE' => 'Nombre RORS',
@@ -73,6 +75,7 @@ class DerivacionReclamoSugerencia extends \yii\db\ActiveRecord
             'nombre'=>'Nombre',
             'apellido'=> 'Apellido',
             'files' => 'Archivo(s) Adjunto(s)',
+
 
         ];
     }

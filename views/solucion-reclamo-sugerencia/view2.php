@@ -1,9 +1,11 @@
 <?php
-
+//use yii tools
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\db\Query;
 use yii\db\QueryTrait;
+
+//use app models
 use app\models\Adjuntos;
 
 /* @var $this yii\web\View */
@@ -30,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
           }else {
 
-            if($reclamo->ERS_ID == 6 || $reclamo->ERS_ID == 7 ){
+            if($reclamo->ERS_ID == 7 || $reclamo->ERS_ID == 8 ){
               echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
             <span class="btn btn-xs btn-info no-radius" id="agregaperiodo" onclick="envia()">
               <i class="glyphicon glyphicon-pencil"></i>

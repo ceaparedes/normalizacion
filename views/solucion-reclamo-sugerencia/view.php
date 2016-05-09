@@ -1,10 +1,15 @@
 <?php
-
+//use Yii Tools
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\db\Query;
 use yii\db\QueryTrait;
+use yii\widgets\ActiveForm;
+
+//use app models
 use app\models\Adjuntos;
+
+
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\SolucionReclamoSugerencia */
@@ -33,8 +38,20 @@ $this->params['breadcrumbs'][] = $this->title;
             echo " ";
 
           }else {
+            if ($reclamo->ERS_ID == 6 && (Yii::$app->user->identity->rut == $reclamo->USU_RUT) ) {
+              echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
+            <span class="btn btn-xs btn-info no-radius" id="agregaperiodo" onclick="envia()">
+              <i class="glyphicon glyphicon-pencil"></i>
+            </span>Evaluar Respuesta</label>', ['evaluate' , 'id' => $model->SRS_ID], ['class' => 'btn btn-xs btn-white no-radius btn-info',
+            'data' => [
+                'confirm' => 'No han respondido todos los Responsables Involucrados, ¿Está seguro de evaluar la respuesta entregada?',
+                'method' => 'post',
+              ],
+              ]);
+              echo " ";
+            }
 
-            if($reclamo->ERS_ID == 6){
+            if(( $reclamo->ERS_ID == 7 || $reclamo->ERS_ID == 8) && (Yii::$app->user->identity->rut == $reclamo->USU_RUT)){
               echo Html::a('<label class="box-title pull-right margenbtnsuperior dark">
             <span class="btn btn-xs btn-info no-radius" id="agregaperiodo" onclick="envia()">
               <i class="glyphicon glyphicon-pencil"></i>
@@ -134,6 +151,7 @@ $this->params['breadcrumbs'][] = $this->title;
         }
 
     ?>
+    
   </div>
 </div>
 </div>

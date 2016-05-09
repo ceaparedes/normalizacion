@@ -1,8 +1,9 @@
 <?php
-
+//use yii tools
 use yii\helpers\Html;
 use yii\grid\GridView;
-use backend\models\EstadoSolucionReclamoSugerencia;
+// use app models
+use app\models\EstadoSolucionReclamoSugerencia;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\SolucionReclamoSugerenciaSearch */
@@ -12,15 +13,22 @@ $this->title = 'Soluciones a los Reclamos y Sugerencias';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="solucion-reclamo-sugerencia-index">
-
-
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
 <div class="page-header"><h1> <?= $this->title ?></h1></div>
-    <div class="box-body table-responsive no-padding table-bordered">
+
+    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+
+
+
+<div class="bs-callout bs-callout-info">
+<div class="box-body table-responsive no-padding table-bordered">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+
+
+        'headerRowOptions'=>[
+          'class'=>'encabezadotabla',
+        ],
+
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'REC_NUMERO',
@@ -40,6 +48,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-
+</div>
 </div>
 </div>

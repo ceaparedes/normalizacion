@@ -251,6 +251,7 @@ class ReclamoSugerenciaController extends Controller
            $model->save();
 
 
+
         $model->files = UploadedFile::getInstances($model,'files');
          if($model->files ){
            $contador = count($model->files);
@@ -357,6 +358,7 @@ class ReclamoSugerenciaController extends Controller
      * @param string $id
      * @return mixed
      */
+/******************ACTUALIZAR FORMULARIO RS***************/
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -432,6 +434,7 @@ class ReclamoSugerenciaController extends Controller
      * @param string $id
      * @return mixed
      */
+/*************************ELIMINAR RECLAMO SUGERENCIA*************************/
     public function actionDelete($id)
     {
       $model = $this->findModel($id);
@@ -455,8 +458,6 @@ class ReclamoSugerenciaController extends Controller
         }
           $this->findModel($id)->delete();
           return $this->redirect(['index']);
-
-
         }
         return $this->goBack();
 
@@ -477,6 +478,14 @@ class ReclamoSugerenciaController extends Controller
          $model->REC_MOTIVO = $motivo;
          $model->save();
 
+
+         Yii::$app->mailer->compose()
+                  ->setFrom('viceaparedes@gmail.com')
+                  ->setTo('vicea@alumnos.ubiobio.cl')//cambiar al correo del usuario, temporalmente es el mio
+                  ->setSubject('Envío de Reclamo y Sugerencia')
+                  ->setTextBody('probando el envío de correos')
+                  ->send();
+          
          //instancia para crear el Historial;
          $historial = new HistorialEstados();
          $historial->REC_NUMERO = $model->REC_NUMERO;
@@ -536,13 +545,15 @@ class ReclamoSugerenciaController extends Controller
 
           //Autorizar o rechazar el Reclamo o Sugerencia
           $historial = new HistorialEstados();
+          $solucion->save();
+
         if($solucion->SRS_VISTO_BUENO == 'Autorizado'){
 
               $model->ERS_ID = 3;
               $motivo = $model->REC_MOTIVO;
               $model->REC_MOTIVO = $motivo;
               $model->save();
-              $solucion->save();
+
               //insertar en el historial la aprobacion
               $historial->REC_NUMERO = $model->REC_NUMERO;
               $historial->ERS_ID = $model->ERS_ID;
